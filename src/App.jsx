@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/Navbar';
 import CardApp from './components/Card';
+import ViewModal from './components/ViewModal';
 
 //
 
 const App = () => {
+
   return (
     <div className="App">
       <NavbarApp />
