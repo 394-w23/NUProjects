@@ -1,0 +1,95 @@
+{
+    "users": {
+      "user1": {
+        "name": "John",
+        "age": 30,
+        "email": "john@example.com",
+        "jobsApplied": [
+          "Job 1",
+          "Job 2"
+        ]
+      },
+      "user2": {
+        "name": "Jane",
+        "age": 25,
+        "email": "jane@example.com",
+        "jobsApplied": [
+          "Job 3",
+          "Job 4"
+        ]
+      },
+      "user3": {
+        "name": "Bob",
+        "age": 35,
+        "email": "bob@example.com",
+        "jobsApplied": [
+          "Job 5",
+          "Job 6"
+        ]
+      },
+      "user4": {
+        "name": "Alice",
+        "age": 28,
+        "email": "alice@example.com",
+        "jobsApplied": [
+          "Job 7",
+          "Job 8"
+        ]
+      },
+      "user5": {
+        "name": "Charlie",
+        "age": 32,
+        "email": "charlie@example.com",
+        "jobsApplied": [
+          "Job 9",
+          "Job 10"
+        ]
+      },
+      "user6": {
+        "name": "Eve",
+        "age": 29,
+        "email": "eve@example.com",
+        "jobsApplied": [
+          "Job 11",
+          "Job 12"
+        ]
+      },
+      "user7": {
+        "name": "Mallory",
+        "age": 27,
+        "email": "mallory@example.com",
+        "jobsApplied": [
+          "Job 13",
+          "Job 14"
+        ]
+      },
+      "user8": {
+        "name": "Oscar",
+        "age": 33,
+        "email": "oscar@example.com",
+        "jobsApplied": [
+          "Job 15",
+          "Job 16"
+        ]
+      },
+      "user9": {
+        "name": "Peggy",
+        "age": 26,
+        "email": "peggy@example.com",
+        "jobsApplied": [
+          "Job 17",
+          "Job 18"
+        ]
+      },
+      "user10": {
+        "name": "Victor",
+        "age": 31,
+        "email": "victor@example.com",
+        "jobsApplied": [
+          "Job 19",
+          "Job 20"
+        ]
+      }
+    }
+  }
+  
