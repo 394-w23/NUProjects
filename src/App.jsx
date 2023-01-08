@@ -4,22 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/Navbar';
 import CardApp from './components/Card';
-import { useDbData } from './utilities/firebase';
 import TestDB from './components/TestDB';
 
 const App = () => {
-  const data = useDbData();
-  // const cards = Object.values(data[0]['jobs']).map(card => {
-  //   return (
-  //     <CardApp projectName={card.projectName} positionName={card.projectName} description={card.projectName} datePosted={card.projectName}
-  //     tags={card.projectName}/>
-  //   )
-  // });
+  const data = TestDB();
+  let jobs = null;
+  let users = null;
+    if (data) {
+        jobs = data[0];
+        users = data[1];
+        // console.log(jobs);
+        // console.log(users);
+    }
   return (
     <div className="App">
       <NavbarApp />
-      {/* {cards} */}
-      <TestDB />
+      <CardApp />
     </div>
   );
 };

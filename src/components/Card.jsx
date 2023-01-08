@@ -12,11 +12,11 @@ export default function CardApp(props) {
             <Card.Text>
                 {props.description}
             </Card.Text>
-            <ul className="hashtags">
+            {/* <ul className="hashtags">
                 {(props.tags).map((tag, i) => (
                     <li key={i}>{tag}</li>
                 ))}
-            </ul>
+            </ul> */}
             <Button variant="primary">See more</Button>
             </Card.Body>
             <Card.Footer className="text-muted">{props.datePosted}</Card.Footer>

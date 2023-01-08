@@ -3,12 +3,16 @@ import { useDbData } from '../utilities/firebase';
 
 const TestDB = () => {
     const data = useDbData();
-    return (
-        <div>
-        <h1>TestDB</h1>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-    );
+    if (data[0] != undefined) {
+        const jobs = data[0].jobs
+        const users = data[0].users
+        // console.log(jobs);
+        // for (const job in jobs) {
+        //     console.log(jobs[job]);
+        // }
+        return [jobs, users];
+    }
+    return null;
     }
 
 export default TestDB;
