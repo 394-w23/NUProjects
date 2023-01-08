@@ -53,14 +53,21 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
             <b>No. of People:</b> {applicationData.numberOfPeople}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Dated Posted:</b> {applicationData.datePosted}
+            <b>Date Posted:</b> {applicationData.datePosted}
           </Col>
         </Row>
+        <hr />
+        <h5>Skills</h5>
+        <ul className="skills">
+          {applicationData.skillsRequired.map((skill, id) => {
+            return <li className="skill" key={id}>{skill}</li>
+          })}
+        </ul>
         <hr />
         <h5>Description</h5>
         <p>{applicationData.description}</p>
       </Modal.Body>
-      <Modal.Footer className="justify-content-space-between">
+      <Modal.Footer>
         <p>
           <b>Contact Info:</b> {applicationData.contactInfo}
         </p>
