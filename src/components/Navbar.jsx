@@ -1,16 +1,18 @@
 // Create a header component to show the logo and the title of the app.
 //Using React bootstarap
 // Add the following code to the src/components/Header.jsx file:
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'; // import logo from '../logo.svg';
-
+import AddModal from './AddModal/AddModal';
 
 export default function NavbarApp() {
+  const [show, setShow] = useState(false);
+  const toggleShow = () => setShow(!show);
   return (
     <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
       <Container >
@@ -62,6 +64,11 @@ export default function NavbarApp() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <Button variant="outline-success" onClick={toggleShow}>Add</Button>
+        <AddModal
+        show={show}
+        toggleShow={toggleShow}
+        />
       </Container>
     </Navbar>
   );
