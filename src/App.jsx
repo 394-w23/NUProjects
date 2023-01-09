@@ -16,8 +16,7 @@ const App = () => {
     users = data[1];
     cards = Object.values(jobs).map((card, i) => {
       return (
-        <CardApp key={i} projectName={card.projectName} positionName={card.positionName} description={card.description} datePosted={card.datePosted}
-        hashtags={card.hashtags}/>
+        <CardApp key={i} data={card}/>
       )
     });
   }
