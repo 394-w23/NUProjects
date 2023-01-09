@@ -2,6 +2,7 @@
   "name": "vite-template-react",
   "version": "1.2.0",
   "scripts": {
+    "start-serve": "npm run build && npm run serve",
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
