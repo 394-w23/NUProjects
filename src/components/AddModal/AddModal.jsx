@@ -53,11 +53,6 @@ const AddModal = ({ show, toggleShow }) => {
 
 
     <Modal show={show} onHide={closeModal} className="modal">
-            {showToast ?
-          <Alert>
-              Your form is incomplete. Please fill out all required (*) fields.
-          </Alert>
-          : <div></div>}
       <Modal.Header className="modal_header" closeButton>
         <Modal.Title>Create new project</Modal.Title>
       </Modal.Header>
@@ -162,6 +157,11 @@ const AddModal = ({ show, toggleShow }) => {
         </Form>
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
+      {showToast ?
+          <Alert>
+              Your form is incomplete. Please fill out all required (*) fields.
+          </Alert>
+          : <div></div>}
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
