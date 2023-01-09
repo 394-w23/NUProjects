@@ -1,26 +1,38 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import ViewModal from "../ViewModal/ViewModal";
 import "./Card.css";
 
-export default function CardApp({data}) {
-    const hashtags = Object.values(data.hashtags).map((hashtag, i) => {
-        return ( 
-            <li key={i}>{hashtag}</li>
-        )
-    })
-    return (
-        <Card className="job-card">
-            <Card.Header>{data.projectName}</Card.Header>
-            <Card.Body>
-            <Card.Title>{data.positionName}</Card.Title>
-            <Card.Text>
-                {data.description}
-            </Card.Text>
-            <ul className="hashtags">{hashtags}</ul>
-            <Button variant="primary">See more</Button>
-            </Card.Body>
-            <Card.Footer className="text-muted">Date posted: {data.datePosted}</Card.Footer>
-        </Card>
-    );
+export default function CardApp({ data }) {
+  const [show, setShow] = useState(false);
+  const toggleShow = () => setShow(!show);
+
+  const hashtags = Object.values(data.hashtags).map((hashtag, i) => {
+    return <li key={i}>{hashtag}</li>;
+  });
+
+  useEffect(() => {
+    console.log(data);
+  }, []);
+
+  return (
+    <>
+      <Card className="job-card">
+        <Card.Header>{data.projectName}</Card.Header>
+        <Card.Body>
+          <Card.Title>{data.positionName}</Card.Title>
+          <Card.Text>{data.description}</Card.Text>
+          <ul className="hashtags">{hashtags}</ul>
+          <Button onClick={toggleShow} variant="primary">
+            See more
+          </Button>
+        </Card.Body>
+        <Card.Footer className="text-muted">
+          Date posted: {data.datePosted}
+        </Card.Footer>
+      </Card>
+      <ViewModal applicationData={data} show={show} toggleShow={toggleShow} />
+    </>
+  );
 }
