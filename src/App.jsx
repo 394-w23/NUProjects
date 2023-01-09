@@ -10,16 +10,21 @@ const App = () => {
   const data = TestDB();
   let jobs = null;
   let users = null;
-    if (data) {
-        jobs = data[0];
-        users = data[1];
-        // console.log(jobs);
-        // console.log(users);
-    }
+  let cards = null;
+  if (data) {
+    jobs = data[0];
+    users = data[1];
+    cards = Object.values(jobs).map((card, i) => {
+      return (
+        <CardApp key={i} projectName={card.projectName} positionName={card.positionName} description={card.description} datePosted={card.datePosted}
+        hashtags={card.hashtags}/>
+      )
+    });
+  }
   return (
     <div className="App">
       <NavbarApp />
-      <CardApp />
+      {cards}
     </div>
   );
 };

@@ -4,6 +4,14 @@ import Card from 'react-bootstrap/Card';
 import "./Card.css";
 
 export default function CardApp(props) {
+    // console.log(props)
+    // console.log(props.hashtags)
+    // console.log(typeof(props.hashtags))
+    
+    // const hashtags = Object.values(props.hashtags).map((hashtag, i) => {
+    //     return ( 
+    //     <li key={i}>{hashtag}</li>
+    // )})
     return (
         <Card className="job-card">
             <Card.Header>{props.projectName}</Card.Header>
@@ -12,11 +20,7 @@ export default function CardApp(props) {
             <Card.Text>
                 {props.description}
             </Card.Text>
-            {/* <ul className="hashtags">
-                {(props.tags).map((tag, i) => (
-                    <li key={i}>{tag}</li>
-                ))}
-            </ul> */}
+            <ul className="hashtags"><li>{props.hashtags}</li></ul>
             <Button variant="primary">See more</Button>
             </Card.Body>
             <Card.Footer className="text-muted">{props.datePosted}</Card.Footer>
