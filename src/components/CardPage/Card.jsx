@@ -5,9 +5,10 @@ import "./Card.css";
 
 export default function CardApp({data}) {
     const hashtags = Object.values(data.hashtags).map((hashtag, i) => {
-         return ( 
-         <li key={i}>{hashtag}</li>
-     )})
+        return ( 
+            <li key={i}>{hashtag}</li>
+        )
+    })
     return (
         <Card className="job-card">
             <Card.Header>{data.projectName}</Card.Header>
