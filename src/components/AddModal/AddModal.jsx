@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./AddModal.css";
-import { Row, Col } from "react-bootstrap";
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { useInput } from "../../hooks/useInput";
 
@@ -17,28 +16,15 @@ const AddModal = ({ show, toggleShow }) => {
   const positionName = useInput("");
   const description = useInput("");
   const wage = useInput(0);
-  const deadline = useInput((new Date()).getTime());
-  const datePosted = useInput((new Date()).getTime());
-  const contactInfo = useInput("");
-  const timeline = useInput(0);
+  const deadline = useInput("");
   const numberOfPeople = useInput(0);
   const skillsRequired = useInput([]);
 
-    // applicationData = {
-  //   "projectName": "NAME",
-  //   "typeOfProject": "Personal Project",
-  //   "hashtags": ["ML", "AI", "Web Dev"],
-  //   "positionName": "FrontEnd Developer",
-  //   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
-  //   "wage": 10,
-  //   "deadline": "DEADLINE",
-  //   "datePosted": "POSTED DATE",
-  //   "user": "USER",
-  //   "contactInfo": "sengdao@boss.com",
-  //   "timeline": "TIMELINE",
-  //   "numberOfPeople": 5,
-  //   "skillsRequired": ["Python", "Flask", "HTML"]
-  // }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log();
+  };
 
   return (
     <Modal show={show} onHide={toggleShow} className="modal">
@@ -47,52 +33,76 @@ const AddModal = ({ show, toggleShow }) => {
       </Modal.Header>
       <Modal.Body className="modal_body">
         <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Project name</Form.Label>
-          <Form.Control type="email" placeholder="Enter project name" />
-          {/* <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text> */}
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Project name</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter project name"
+              onChange={projectName.onChange}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Type of project</Form.Label>
-          <Form.Select aria-label="Default select project type">
-          <option>Select a type of project</option>
-          <option value="personal">Personal</option>
-          <option value="research">Research</option>
-          <option value="job">Job</option>
-        </Form.Select>
-        </Form.Group>
-        
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Position name</Form.Label>
-          <Form.Control type="text" placeholder="ML/AI, Web Dev, Hardware" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Position name</Form.Label>
-          <Form.Control type="text" placeholder="ML/AI, Web Dev, Hardware" />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Type of project</Form.Label>
+            <Form.Select
+              aria-label="Default select project type"
+              onChange={typeOfProject.onChange}
+            >
+              <option value="">Select a type of project</option>
+              <option value="personal">Personal</option>
+              <option value="research">Research</option>
+              <option value="job">Job</option>
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Position name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="ML/AI, Web Dev, Hardware"
+              onChange={positionName.onChange}
+            />
+          </Form.Group>
 
-      </Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={5}
+              onChange={description.onChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Wage $$$</Form.Label>
+            <Form.Control
+              type="number"
+              value={wage.value}
+              onChange={wage.onChange}
+              min={0}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Deadline</Form.Label>
+            <Form.Control type="date" onChange={deadline.onChange} min={0} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Number of People</Form.Label>
+            <Form.Control
+              type="number"
+              value={numberOfPeople.value}
+              onChange={numberOfPeople.onChange}
+              min={0}
+            />
+          </Form.Group>
+        </Form>
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
-        {/* <Button
-          style={{
-            backgroundColor: "blueviolet",
-            border: "none",
-          }}
-          onClick={toggleShow}
-        >
-          Close
-        </Button> */}
       </Modal.Footer>
     </Modal>
   );
