@@ -64,7 +64,8 @@ export const useDbUpdate = (path) => {
 
   return [updateData, result];
 };
-function writeJobData(params) {
+
+export const writeJobData = (params) => {
   const db = getDatabase();
   set(ref(db, "jobs/" + params.jobId), {
     contactInfo: params.contactInfo,
