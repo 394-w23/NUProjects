@@ -6,12 +6,11 @@ import "./Card.css";
 export default function CardApp(props) {
     // console.log(props)
     // console.log(props.hashtags)
-    // console.log(typeof(props.hashtags))
     
-    // const hashtags = Object.values(props.hashtags).map((hashtag, i) => {
-    //     return ( 
-    //     <li key={i}>{hashtag}</li>
-    // )})
+    const hashtags = Object.values(props.hashtags).map((hashtag, i) => {
+         return ( 
+         <li key={i}>{hashtag}</li>
+     )})
     return (
         <Card className="job-card">
             <Card.Header>{props.projectName}</Card.Header>
@@ -20,7 +19,7 @@ export default function CardApp(props) {
             <Card.Text>
                 {props.description}
             </Card.Text>
-            <ul className="hashtags"><li>{props.hashtags}</li></ul>
+            <ul className="hashtags">{hashtags}</ul>
             <Button variant="primary">See more</Button>
             </Card.Body>
             <Card.Footer className="text-muted">Date posted: {props.datePosted}</Card.Footer>
