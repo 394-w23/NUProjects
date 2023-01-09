@@ -6,9 +6,14 @@
 }
 
 .job-card Button {
-    background-color: blueviolet;
+    background-color: blueviolet ;
     border: none;
     margin-top: 10px;
+}
+
+.job-card Button:hover, .job-card Button:focus {
+    background-color: blueviolet;
+    filter: brightness(85%);
 }
 
 .hashtags {

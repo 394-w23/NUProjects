@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update, set} from 'firebase/database';
+import { getDatabase, onValue, ref, update, set } from "firebase/database";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,7 +14,7 @@ const firebaseConfig = {
   projectId: process.env.projectId,
   storageBucket: process.env.storageBucket,
   messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId
+  appId: process.env.appId,
 };
 
 // Initialize Firebase
@@ -27,36 +27,46 @@ export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
 
-  useEffect(() => (
-    onValue(ref(database, path), (snapshot) => {
-     setData( snapshot.val() );
-    }, (error) => {
-      setError(error);
-    })
-  ), [ path ]);
+  useEffect(
+    () =>
+      onValue(
+        ref(database, path),
+        (snapshot) => {
+          setData(snapshot.val());
+        },
+        (error) => {
+          setError(error);
+        }
+      ),
+    [path]
+  );
 
-  return [ data, error ];
+  return [data, error];
 };
 
 const makeResult = (error) => {
   const timestamp = Date.now();
-  const message = error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
+  const message =
+    error?.message || `Updated: ${new Date(timestamp).toLocaleString()}`;
   return { timestamp, error, message };
 };
 
 export const useDbUpdate = (path) => {
   const [result, setResult] = useState();
-  const updateData = useCallback((value) => {
-    update(ref(database, path), value)
-    .then(() => setResult(makeResult()))
-    .catch((error) => setResult(makeResult(error)))
-  }, [database, path]);
+  const updateData = useCallback(
+    (value) => {
+      update(ref(database, path), value)
+        .then(() => setResult(makeResult()))
+        .catch((error) => setResult(makeResult(error)));
+    },
+    [database, path]
+  );
 
   return [updateData, result];
 };
 function writeJobData(params) {
   const db = getDatabase();
-  set(ref(db, 'jobs/' + params.jobId), {
+  set(ref(db, "jobs/" + params.jobId), {
     contactInfo: params.contactInfo,
     datePosted: params.datePosted,
     dateToSubmit: params.dateToSubmit,
@@ -70,7 +80,7 @@ function writeJobData(params) {
     endDate: params.endDate,
     typeOfProject: params.typeOfProject,
     user: params.user,
-    wage: params.wage
+    wage: params.wage,
   });
 }
 
@@ -79,9 +89,9 @@ function writeJobData(params) {
 //write a user to the database
 function writeUserData(userId, name, email, imageUrl) {
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
+  set(ref(db, "users/" + userId), {
     username: name,
     email: email,
-    profile_picture : imageUrl
+    profile_picture: imageUrl,
   });
 }
