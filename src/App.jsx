@@ -2,8 +2,8 @@ import { useState } from 'react';
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import NavbarApp from './components/Navbar';
-import CardApp from './components/Card';
+import NavbarApp from './components/Navbar/Navbar';
+import CardApp from './components/Card/Card';
 import TestDB from './components/TestDB';
 
 const App = () => {
@@ -25,6 +25,7 @@ const App = () => {
     <div className="App">
       <NavbarApp />
       {cards}
+      <br/>
     </div>
   );
 };

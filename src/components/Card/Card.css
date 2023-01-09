@@ -1,5 +1,7 @@
 .job-card {
-    margin: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 20px;
     text-align: left;
 }
 

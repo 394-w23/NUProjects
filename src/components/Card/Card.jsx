@@ -23,7 +23,7 @@ export default function CardApp(props) {
             <ul className="hashtags"><li>{props.hashtags}</li></ul>
             <Button variant="primary">See more</Button>
             </Card.Body>
-            <Card.Footer className="text-muted">{props.datePosted}</Card.Footer>
+            <Card.Footer className="text-muted">Date posted: {props.datePosted}</Card.Footer>
         </Card>
     );
 }
