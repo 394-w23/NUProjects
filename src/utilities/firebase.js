@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { useState, useEffect, useCallback } from 'react';
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update} from 'firebase/database';
+import { getDatabase, onValue, ref, update, set} from 'firebase/database';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -54,3 +54,34 @@ export const useDbUpdate = (path) => {
 
   return [updateData, result];
 };
+function writeJobData(params) {
+  const db = getDatabase();
+  set(ref(db, 'jobs/' + params.jobId), {
+    contactInfo: params.contactInfo,
+    datePosted: params.datePosted,
+    dateToSubmit: params.dateToSubmit,
+    description: params.description,
+    hashtags: params.hashtags,
+    numberOfPeople: params.numberOfPeople,
+    positionName: params.positionName,
+    projectName: params.projectName,
+    skillsRequired: params.skillsRequired,
+    startDate: params.startDate,
+    endDate: params.endDate,
+    typeOfProject: params.typeOfProject,
+    user: params.user,
+    wage: params.wage
+  });
+}
+
+//write a tset to the database
+
+//write a user to the database
+function writeUserData(userId, name, email, imageUrl) {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    username: name,
+    email: email,
+    profile_picture : imageUrl
+  });
+}
