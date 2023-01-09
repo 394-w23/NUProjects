@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import "./AddModal.css";
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { useInput } from "../../hooks/useInput";
+import Alert from "react-bootstrap/Alert";
+import Toast from 'react-bootstrap/Toast';
+
 
 const AddModal = ({ show, toggleShow }) => {
   //   const [show, setShow] = useState(false)
@@ -21,35 +24,61 @@ const AddModal = ({ show, toggleShow }) => {
 
   const [skillsRequired, setSkillsRequired] = useState([]);
   const [hashtags, setHashTags] = useState([]);
-
+  const [showToast, setShowToast] = useState(false);
+  const clearValues = () => {
+    projectName.setValue("");
+    typeOfProject.setValue("");
+    positionName.setValue("");
+    description.setValue("");
+    wage.setValue(0);
+    deadline.setValue("");
+    numberOfPeople.setValue(0);
+    setSkillsRequired([]);
+    setHashTags([]);
+  }
   const handleSubmit = (event) => {
-
-    event.preventDefault();
-
-    console.log();
+    // check if all form fields required are entered
+    // print all fields
+    console.log([projectName.value]);
+    if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value)) {
+      setShowToast(true);
+    } else {
+      closeModal();
+      clearValues();
+    }
   };
+  const closeModal = () => {toggleShow(); setShowToast(false);};
 
   return (
-    <Modal show={show} onHide={toggleShow} className="modal">
+
+
+    <Modal show={show} onHide={closeModal} className="modal">
+            {showToast ?
+          <Alert>
+              This is a alert—check it out!
+          </Alert>
+          : <div></div>}
       <Modal.Header className="modal_header" closeButton>
         <Modal.Title>Create new project</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label>Project name</Form.Label>
+            <Form.Label>Project name*</Form.Label>
             <Form.Control
               type="email"
               placeholder="Enter project name"
               onChange={projectName.onChange}
+              required
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Type of project</Form.Label>
+            <Form.Label>Type of project*</Form.Label>
             <Form.Select
               aria-label="Default select project type"
               onChange={typeOfProject.onChange}
+              required
             >
               <option value="">Select a type of project</option>
               <option value="personal">Personal</option>
@@ -59,7 +88,7 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Position name</Form.Label>
+            <Form.Label>Position name*</Form.Label>
             <Form.Control
               type="text"
               placeholder="Front-End Developer, ML Engineer, Data Scientist"
@@ -93,11 +122,12 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Description</Form.Label>
+            <Form.Label>Description*</Form.Label>
             <Form.Control
               as="textarea"
               rows={5}
               onChange={description.onChange}
+              required
             />
           </Form.Group>
 
@@ -137,6 +167,7 @@ const AddModal = ({ show, toggleShow }) => {
         </Button>
       </Modal.Footer>
     </Modal>
+
   );
 };
 
