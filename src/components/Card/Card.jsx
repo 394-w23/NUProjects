@@ -3,26 +3,23 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./Card.css";
 
-export default function CardApp(props) {
-    // console.log(props)
-    // console.log(props.hashtags)
-    
-    const hashtags = Object.values(props.hashtags).map((hashtag, i) => {
+export default function CardApp({data}) {
+    const hashtags = Object.values(data.hashtags).map((hashtag, i) => {
          return ( 
          <li key={i}>{hashtag}</li>
      )})
     return (
         <Card className="job-card">
-            <Card.Header>{props.projectName}</Card.Header>
+            <Card.Header>{data.projectName}</Card.Header>
             <Card.Body>
-            <Card.Title>{props.positionName}</Card.Title>
+            <Card.Title>{data.positionName}</Card.Title>
             <Card.Text>
-                {props.description}
+                {data.description}
             </Card.Text>
             <ul className="hashtags">{hashtags}</ul>
             <Button variant="primary">See more</Button>
             </Card.Body>
-            <Card.Footer className="text-muted">Date posted: {props.datePosted}</Card.Footer>
+            <Card.Footer className="text-muted">Date posted: {data.datePosted}</Card.Footer>
         </Card>
     );
 }
