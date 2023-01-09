@@ -5,3 +5,8 @@
     width: 95%;
     margin-top: 20px;
 }
+
+.add-button:hover, .add-button:focus {
+    background-color: blueviolet;
+    filter: brightness(85%);
+}

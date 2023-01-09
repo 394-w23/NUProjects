@@ -9,11 +9,6 @@ import Toast from 'react-bootstrap/Toast';
 
 
 const AddModal = ({ show, toggleShow }) => {
-  //   const [show, setShow] = useState(false)
-  //   const handleClose = () => setShow(false)
-  //   const handleShow = () => setShow(true)
-
-  // const [projectName, setProjectName] = useState("");
   const projectName = useInput("");
   const typeOfProject = useInput("");
   const positionName = useInput("");

@@ -5,8 +5,8 @@ import ViewModal from "../ViewModal/ViewModal";
 import "./Card.css";
 
 export default function CardApp({ data }) {
-  const [show, setShow] = useState(false);
-  const toggleShow = () => setShow(!show);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const toggleShowViewModal = () => setShowViewModal(!showViewModal);
 
   const hashtags = Object.values(data.hashtags).map((hashtag, i) => {
     return <li key={i}>{hashtag}</li>;
@@ -24,7 +24,7 @@ export default function CardApp({ data }) {
           <Card.Title>{data.positionName}</Card.Title>
           <Card.Text>{data.description}</Card.Text>
           <ul className="hashtags">{hashtags}</ul>
-          <Button onClick={toggleShow} variant="primary">
+          <Button onClick={toggleShowViewModal} variant="primary">
             See more
           </Button>
         </Card.Body>
@@ -32,7 +32,7 @@ export default function CardApp({ data }) {
           Date posted: {data.datePosted}
         </Card.Footer>
       </Card>
-      <ViewModal applicationData={data} show={show} toggleShow={toggleShow} />
+      <ViewModal applicationData={data} show={showViewModal} toggleShow={toggleShowViewModal} />
     </>
   );
 }
