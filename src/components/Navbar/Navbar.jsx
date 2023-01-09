@@ -8,10 +8,14 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'; // import logo from '../logo.svg';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import "./Navbar.css";
 
 
 export default function NavbarApp() {
   return (
+    <div>
     <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
       <Container >
         <Navbar.Brand href="#">NUProjects</Navbar.Brand>
@@ -39,15 +43,7 @@ export default function NavbarApp() {
             </Nav.Link> */}
           </Nav>
 
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          
           {/* Add Profile */}
           <Nav>
           <NavDropdown title="Profile" id="collasible-nav-dropdown">
@@ -64,5 +60,22 @@ export default function NavbarApp() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <div className="search-area">
+      <Form className="d-flex">
+      <Form.Control
+        type="search"
+        placeholder="Search positions..."
+        className="me-2"
+        aria-label="Search"
+      />
+      <Button variant="outline-success" className="search-button">Search</Button>
+      <DropdownButton id="dropdown-basic-button" className="filter-button" title="Filter">
+        <Dropdown.Item href="#/action-1">Research Positions</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Paid Positions</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Academic Positions</Dropdown.Item>
+      </DropdownButton>
+      </Form>
+    </div>
+  </div>
   );
 }

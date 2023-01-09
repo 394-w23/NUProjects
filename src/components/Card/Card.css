@@ -1,0 +1,23 @@
+.job-card {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.job-card Button {
+    background-color: blueviolet;
+    border: none;
+    margin-top: 10px;
+}
+
+.hashtags {
+    list-style-type: none;
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+    display: flex;
+}
+
+.hashtags li {
+    padding-right: 7.5px;
+}

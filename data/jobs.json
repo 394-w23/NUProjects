@@ -1,0 +1,163 @@
+{
+    "jobs": {
+      "job1": {
+        "contactInfo": "john@example.com",
+        "datePosted": "2022-01-01",
+        "dateToSubmit": "2022-01-07",
+        "description": "Seeking a skilled web developer to build a new e-commerce website.",
+        "hashtags": [
+          "#webdevelopment",
+          "#ecommerce"
+        ],
+        "numberOfPeople": 1,
+        "positionName": "Web Developer",
+        "projectName": "New E-Commerce Website",
+        "skillsRequired": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "PHP"
+        ],
+        "timeline": "3 months",
+        "typeOfProject": "Full-time",
+        "user": "user1",
+        "wage": "$60,000 per year"
+      },
+      "job2": {
+        "contactInfo": "jane@example.com",
+        "datePosted": "2022-02-01",
+        "dateToSubmit": "2022-02-07",
+        "description": "Need a graphic designer to create a new logo and branding materials for a startup company.",
+        "hashtags": [
+          "#graphicdesign",
+          "#startup"
+        ],
+        "numberOfPeople": 1,
+        "positionName": "Graphic Designer",
+        "projectName": "Startup Branding Materials",
+        "skillsRequired": [
+          "Adobe Illustrator",
+          "Adobe Photoshop"
+        ],
+        "timeline": "1 month",
+        "typeOfProject": "Part-time",
+        "user": "user2",
+        "wage": "$30 per hour"
+      },
+      "job3": {
+        "contactInfo": "bob@example.com",
+        "datePosted": "2022-03-01",
+        "dateToSubmit": "2022-03-07",
+        "description": "Seeking a social media manager to create and execute a social media strategy for a small business.",
+        "hashtags": [
+          "#socialmedia",
+          "#smallbusiness"
+        ],
+        "numberOfPeople": 1,
+        "positionName": "Social Media Manager",
+        "projectName": "Small Business Social Media Strategy",
+        "skillsRequired": [
+          "Facebook",
+          "Twitter",
+          "Instagram"
+        ],
+        "timeline": "6 months",
+        "typeOfProject": "Part-time",
+        "user": "user3",
+        "wage": "$40 per hour"
+      }
+    },
+    "users": {
+      "user1": {
+        "name": "John",
+        "age": 30,
+        "email": "john@example.com",
+        "jobsApplied": [
+          "Job 1",
+          "Job 2"
+        ]
+      },
+      "user2": {
+        "name": "Jane",
+        "age": 25,
+        "email": "jane@example.com",
+        "jobsApplied": [
+          "Job 3",
+          "Job 4"
+        ]
+      },
+      "user3": {
+        "name": "Bob",
+        "age": 35,
+        "email": "bob@example.com",
+        "jobsApplied": [
+          "Job 5",
+          "Job 6"
+        ]
+      },
+      "user4": {
+        "name": "Alice",
+        "age": 28,
+        "email": "alice@example.com",
+        "jobsApplied": [
+          "Job 7",
+          "Job 8"
+        ]
+      },
+      "user5": {
+        "name": "Charlie",
+        "age": 32,
+        "email": "charlie@example.com",
+        "jobsApplied": [
+          "Job 9",
+          "Job 10"
+        ]
+      },
+      "user6": {
+        "name": "Eve",
+        "age": 29,
+        "email": "eve@example.com",
+        "jobsApplied": [
+          "Job 11",
+          "Job 12"
+        ]
+      },
+      "user7": {
+        "name": "Mallory",
+        "age": 27,
+        "email": "mallory@example.com",
+        "jobsApplied": [
+          "Job 13",
+          "Job 14"
+        ]
+      },
+      "user8": {
+        "name": "Oscar",
+        "age": 33,
+        "email": "oscar@example.com",
+        "jobsApplied": [
+          "Job 15",
+          "Job 16"
+        ]
+      },
+      "user9": {
+        "name": "Peggy",
+        "age": 26,
+        "email": "peggy@example.com",
+        "jobsApplied": [
+          "Job 17",
+          "Job 18"
+        ]
+      },
+      "user10": {
+        "name": "Victor",
+        "age": 31,
+        "email": "victor@example.com",
+        "jobsApplied": [
+          "Job 19",
+          "Job 20"
+        ]
+      }
+    }
+}
+  
