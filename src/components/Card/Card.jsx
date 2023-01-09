@@ -4,9 +4,6 @@ import Card from 'react-bootstrap/Card';
 import "./Card.css";
 
 export default function CardApp(props) {
-    // console.log(props)
-    // console.log(props.hashtags)
-    
     const hashtags = Object.values(props.hashtags).map((hashtag, i) => {
          return ( 
          <li key={i}>{hashtag}</li>

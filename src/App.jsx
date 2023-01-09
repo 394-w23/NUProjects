@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarApp from './components/Navbar/Navbar';
 import CardApp from './components/Card/Card';
-import TestDB from './components/TestDB';
+import Database from './components/Database';
 
 const App = () => {
-  const data = TestDB();
+  const data = Database();
   let jobs = null;
   let users = null;
   let cards = null;
