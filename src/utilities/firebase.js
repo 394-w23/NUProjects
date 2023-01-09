@@ -8,13 +8,13 @@ import { getDatabase, onValue, ref, update} from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyABFVW-AgGP6OrHMrHnYSBD4dWv19fMjFY",
-  authDomain: "nuprojects-37022.firebaseapp.com",
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
   databaseURL: "https://nuprojects-37022-default-rtdb.firebaseio.com",
-  projectId: "nuprojects-37022",
-  storageBucket: "nuprojects-37022.appspot.com",
-  messagingSenderId: "895929247438",
-  appId: "1:895929247438:web:5424e7b84395adb3ef929f"
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId
 };
 
 // Initialize Firebase
