@@ -2,7 +2,7 @@ import CardApp from './Card';
 import Database from '../Database';
 
 
-export default function CardPage() {
+export default function CardPageApp() {
     const data = Database();
     let jobs = null;
     let users = null;
