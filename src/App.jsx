@@ -5,6 +5,7 @@ import './App.css';
 import NavbarApp from './components/Navbar/Navbar';
 import CardApp from './components/Card/Card';
 import Database from './components/Database';
+import AddButtonApp from './components/AddButton/AddButton';
 
 const App = () => {
   const data = Database();
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <div className="App">
       <NavbarApp />
+      <AddButtonApp />
       {cards}
       <br/>
     </div>
