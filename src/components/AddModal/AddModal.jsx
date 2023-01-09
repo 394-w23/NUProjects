@@ -39,7 +39,7 @@ const AddModal = ({ show, toggleShow }) => {
   const handleSubmit = (event) => {
     // check if all form fields required are entered
     // print all fields
-    console.log([projectName.value]);
+    // console.log([projectName.value]);
     if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value)) {
       setShowToast(true);
     } else {
@@ -55,7 +55,7 @@ const AddModal = ({ show, toggleShow }) => {
     <Modal show={show} onHide={closeModal} className="modal">
             {showToast ?
           <Alert>
-              This is a alert—check it out!
+              Your form is incomplete. Please fill out all required (*) fields.
           </Alert>
           : <div></div>}
       <Modal.Header className="modal_header" closeButton>
