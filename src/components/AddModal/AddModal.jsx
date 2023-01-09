@@ -4,9 +4,9 @@ import Button from "react-bootstrap/Button";
 import "./AddModal.css";
 import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { useInput } from "../../hooks/useInput";
+import { writeJobData } from "../../utilities/firebase";
 import Alert from "react-bootstrap/Alert";
 import Toast from 'react-bootstrap/Toast';
-
 
 const AddModal = ({ show, toggleShow }) => {
   const projectName = useInput("");
@@ -39,14 +39,36 @@ const AddModal = ({ show, toggleShow }) => {
       setShowToast(true);
     } else {
       closeModal();
+
+      const params = {
+        jobId: Math.floor(Math.random()*10000),
+        contactInfo: "Test@email.com",
+        dateToSubmit: deadline.value,
+        datePosted: new Date(),
+        description: description.value,
+        hashtags: hashtags,
+        numberOfPeople: numberOfPeople.value,
+        positionName: positionName.value,
+        projectName: projectName.value,
+        skillsRequired: skillsRequired,
+        startDate: new Date(),
+        endDate: new Date(),
+        typeOfProject: typeOfProject.value,
+        user: "John Doe",
+        wage: wage.value
+      }
+
+      writeJobData(params);
       clearValues();
     }
   };
-  const closeModal = () => {toggleShow(); setShowToast(false);};
+
+  const closeModal = () => {
+    toggleShow(); 
+    setShowToast(false);
+  }
 
   return (
-
-
     <Modal show={show} onHide={closeModal} className="modal">
       <Modal.Header className="modal_header" closeButton>
         <Modal.Title>Create new project</Modal.Title>
@@ -71,9 +93,9 @@ const AddModal = ({ show, toggleShow }) => {
               required
             >
               <option value="">Select a type of project</option>
-              <option value="personal">Personal</option>
-              <option value="research">Research</option>
-              <option value="job">Job</option>
+              <option value="Personal">Personal</option>
+              <option value="Research">Research</option>
+              <option value="Job">Job</option>
             </Form.Select>
           </Form.Group>
 
@@ -129,9 +151,9 @@ const AddModal = ({ show, toggleShow }) => {
               value={skillsRequired}
               onChange={e => setSkillsRequired([].slice.call(e.target.selectedOptions).map(item => item.value))}
             >
-              <option value="htmlcss">HTML/CSS</option>
-              <option value="python">Python</option>
-              <option value="javascript">Javascript</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="Python">Python</option>
+              <option value="JavaScript">JavaScript</option>
             </Form.Control>
           </Form.Group>
 
@@ -143,9 +165,9 @@ const AddModal = ({ show, toggleShow }) => {
               value={hashtags}
               onChange={e => setHashTags([].slice.call(e.target.selectedOptions).map(item => item.value))}
             >
-              <option value="webdevelopment">Web Development</option>
-              <option value="mlai">ML/AI</option>
-              <option value="hardware">Hardware</option>
+              <option value="Web Development">Web Development</option>
+              <option value="ML/AI">ML/AI</option>
+              <option value="Hardware">Hardware</option>
             </Form.Control>
           </Form.Group>
 

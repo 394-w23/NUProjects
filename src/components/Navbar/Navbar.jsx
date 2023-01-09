@@ -12,11 +12,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Navbar.css";
 
-import AddModal from "../AddModal/AddModal";
-
 export default function NavbarApp() {
-  const [show, setShow] = useState(false);
-  const toggleShow = () => setShow(!show);
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
@@ -56,10 +52,6 @@ export default function NavbarApp() {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
-          <Button variant="outline-success" onClick={toggleShow}>
-            Add
-          </Button>
-          <AddModal show={show} toggleShow={toggleShow} />
         </Container>
       </Navbar>
       <div className="search-area">
