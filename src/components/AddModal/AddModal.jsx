@@ -18,9 +18,12 @@ const AddModal = ({ show, toggleShow }) => {
   const wage = useInput(0);
   const deadline = useInput("");
   const numberOfPeople = useInput(0);
-  const skillsRequired = useInput([]);
+
+  const [skillsRequired, setSkillsRequired] = useState([]);
+  const [hashtags, setHashTags] = useState([]);
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
 
     console.log();
@@ -59,8 +62,33 @@ const AddModal = ({ show, toggleShow }) => {
             <Form.Label>Position name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="ML/AI, Web Dev, Hardware"
+              placeholder="Front-End Developer, ML Engineer, Data Scientist"
               onChange={positionName.onChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Application Deadline</Form.Label>
+            <Form.Control type="date" onChange={deadline.onChange} min={0} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Number of People</Form.Label>
+            <Form.Control
+              type="number"
+              value={numberOfPeople.value}
+              onChange={numberOfPeople.onChange}
+              min={0}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Wage ($/hr)</Form.Label>
+            <Form.Control
+              type="number"
+              value={wage.value}
+              onChange={wage.onChange}
+              min={0}
             />
           </Form.Group>
 
@@ -74,29 +102,33 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Wage $$$</Form.Label>
+            <Form.Label>Required Skills</Form.Label>
             <Form.Control
-              type="number"
-              value={wage.value}
-              onChange={wage.onChange}
-              min={0}
-            />
+              as="select"
+              multiple
+              value={skillsRequired}
+              onChange={e => setSkillsRequired([].slice.call(e.target.selectedOptions).map(item => item.value))}
+            >
+              <option value="htmlcss">HTML/CSS</option>
+              <option value="python">Python</option>
+              <option value="javascript">Javascript</option>
+            </Form.Control>
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Deadline</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} min={0} />
+            <Form.Label>Tags</Form.Label>
+            <Form.Control
+              as="select"
+              multiple
+              value={hashtags}
+              onChange={e => setHashTags([].slice.call(e.target.selectedOptions).map(item => item.value))}
+            >
+              <option value="webdevelopment">Web Development</option>
+              <option value="mlai">ML/AI</option>
+              <option value="hardware">Hardware</option>
+            </Form.Control>
           </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Number of People</Form.Label>
-            <Form.Control
-              type="number"
-              value={numberOfPeople.value}
-              onChange={numberOfPeople.onChange}
-              min={0}
-            />
-          </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
