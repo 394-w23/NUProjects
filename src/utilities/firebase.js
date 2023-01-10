@@ -69,7 +69,6 @@ export const writeJobData = (params) => {
   const db = getDatabase();
   set(ref(db, "jobs/" + params.jobId), {
     // default empty if no value passed
-    contractInfo: params.contractInfo || "",
     contactInfo: params.contactInfo || "",
     datePosted: params.datePosted || "",
     dateToSubmit: params.dateToSubmit || "",
