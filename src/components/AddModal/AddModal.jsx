@@ -17,8 +17,8 @@ const AddModal = ({ show, toggleShow }) => {
   const deadline = useInput("");
   const numberOfPeople = useInput(0);
 
-  const [skillsRequired, setSkillsRequired] = useState([]);
-  const [hashtags, setHashTags] = useState([]);
+  const [skillsRequired, setSkillsRequired] = useState([""]);
+  const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
   const clearValues = () => {
     projectName.setValue("");
@@ -28,8 +28,8 @@ const AddModal = ({ show, toggleShow }) => {
     wage.setValue(0);
     deadline.setValue("");
     numberOfPeople.setValue(0);
-    setSkillsRequired([]);
-    setHashTags([]);
+    setSkillsRequired([" "]);
+    setHashTags([" "]);
   }
   const handleSubmit = (event) => {
     // check if all form fields required are entered
@@ -57,6 +57,8 @@ const AddModal = ({ show, toggleShow }) => {
         user: "John Doe",
         wage: wage.value
       }
+
+      console.log("print params: ", Object.values(params));
 
       writeJobData(params);
       clearValues();
