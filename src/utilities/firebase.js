@@ -73,11 +73,11 @@ export const writeJobData = (params) => {
     datePosted: params.datePosted || "",
     dateToSubmit: params.dateToSubmit || "",
     description: params.description || "",
-    hashtags: params.hashtags || [],
+    hashtags: params.hashtags || [""],
     numberOfPeople: params.numberOfPeople || "",
     positionName: params.positionName || "",
     projectName: params.projectName || "",
-    skillsRequired: params.skillsRequired || [],
+    skillsRequired: params.skillsRequired || [""],
     startDate: params.startDate || "",
     endDate: params.endDate || "",
     typeOfProject: params.typeOfProject || "",
@@ -88,6 +88,7 @@ export const writeJobData = (params) => {
 }
 
 //write a tset to the database
+
 
 //write a user to the database
 function writeUserData(userId, name, email, imageUrl) {
