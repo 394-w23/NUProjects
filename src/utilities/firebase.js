@@ -68,20 +68,23 @@ export const useDbUpdate = (path) => {
 export const writeJobData = (params) => {
   const db = getDatabase();
   set(ref(db, "jobs/" + params.jobId), {
-    contactInfo: params.contactInfo,
-    datePosted: params.datePosted,
-    dateToSubmit: params.dateToSubmit,
-    description: params.description,
-    hashtags: params.hashtags,
-    numberOfPeople: params.numberOfPeople,
-    positionName: params.positionName,
-    projectName: params.projectName,
-    skillsRequired: params.skillsRequired,
-    startDate: params.startDate,
-    endDate: params.endDate,
-    typeOfProject: params.typeOfProject,
-    user: params.user,
-    wage: params.wage,
+    // default empty if no value passed
+    contractInfo: params.contractInfo || "",
+    contactInfo: params.contactInfo || "",
+    datePosted: params.datePosted || "",
+    dateToSubmit: params.dateToSubmit || "",
+    description: params.description || "",
+    hashtags: params.hashtags || "",
+    numberOfPeople: params.numberOfPeople || "",
+    positionName: params.positionName || "",
+    projectName: params.projectName || "",
+    skillsRequired: params.skillsRequired || "",
+    startDate: params.startDate || "",
+    endDate: params.endDate || "",
+    typeOfProject: params.typeOfProject || "",
+    user: params.user || "",
+    wage: params.wage || "",
+    jobId: params.jobId || "",
   });
 }
 
