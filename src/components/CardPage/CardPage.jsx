@@ -8,26 +8,22 @@ export default function CardPageApp() {
   let jobs = null;
   let users = null;
   let cards = null;
-  
-
+  function compare(a, b) {
+    if (a.datePosted < b.datePosted){
+      return 1;
+    }
+    if (a.datePosted > b.datePosted){
+      return -1;
+    }
+    return 0;
+  }
   if (data) {
     jobs = data.jobs;
     console.log(jobs);
     users = data.users;
-    const testJobs = [jobs];
-    testJobs.sort((a, b) => {
-      if ( b.dataPosted == null) {
-        if (a.dataPosted == null){
-          return false
-        }
-        return false
-      }
-      return new Date(a.datePosted) - new Date(b.datePosted); // descending order
-    })
-    console.log("This is testJobs")
-    console.log(testJobs)
-
-    cards = Object.values(jobs).map((card, i) => {
+    jobs = Object.values(jobs);
+    jobs.sort(compare);
+    cards = jobs.map((card, i) => {
       return <CardApp key={i} data={card} />;
     });
   }
