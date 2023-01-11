@@ -68,6 +68,17 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
           })}
         </ul>
         <hr />
+        <h5>Hashtags</h5>
+        <ul className="skills">
+          {applicationData.hashtags.map((hashtag, id) => {
+            return (
+              <li className="skill" key={id}>
+                {hashtag}
+              </li>
+            );
+          })}
+        </ul>
+        <hr />
         <h5>Description</h5>
         <p>{applicationData.description}</p>
       </Modal.Body>
@@ -82,7 +93,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
           }}
           onClick={toggleShow}
         >
-          Close
+          Apply
         </Button>
       </Modal.Footer>
     </Modal>
