@@ -54,7 +54,7 @@ export default function NavbarApp() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div className="search-area">
+      {/* <div className="search-area">
         <Form className="d-flex">
           <Form.Control
             type="search"
@@ -75,7 +75,7 @@ export default function NavbarApp() {
             <Dropdown.Item href="#/action-3">Academic Positions</Dropdown.Item>
           </DropdownButton>
         </Form>
-      </div>
+      </div> */}
     </div>
   );
 }
