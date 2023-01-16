@@ -6,6 +6,11 @@
     text-align: left;
 }
 
+.selectOptions {
+    font-size: small;
+    color: aqua;
+}
+
 .job-card Button {
     background-color: blueviolet ;
     border: none;

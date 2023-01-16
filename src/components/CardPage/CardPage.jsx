@@ -11,6 +11,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../l
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import BootstrapSelect from 'react-bootstrap-select-dropdown';
+import "./Card.css"
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
@@ -53,7 +54,7 @@ export default function CardPageApp() {
           Search
         </Button>
 
-        <BootstrapSelect isMultiSelect placeholder="Filter" options={[
+        <BootstrapSelect isMultiSelect placeholder="Filter by skills" className="selectOptions" options={[
         {
           "labelKey": "facebook",
           "value": "Facebook"
@@ -65,6 +66,10 @@ export default function CardPageApp() {
         {
           "labelKey": "python",
           "value": "Python"
+        },
+        {
+          "labelKey": "htmlcss",
+          "value": "HTML/CSS"
         },
         ]} onChange={handleFiltersChange}/>
 
@@ -79,7 +84,7 @@ export default function CardPageApp() {
     jobs.sort(compare);
     jobs = jobs.filter((job) => {
       console.log(job)
-      return job.positionName.toLowerCase().includes(search.toLowerCase());
+      return job.positionName.toLowerCase().includes(search.toLowerCase()) || job.projectName.toLowerCase().includes(search.toLowerCase()) || job.description.toLowerCase().includes(search.toLowerCase())  ;
     })
     
     if (filters.length > 0) {
