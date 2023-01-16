@@ -93,7 +93,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
           }}
           onClick={toggleShow}
         >
-          Apply
+          Close
         </Button>
       </Modal.Footer>
     </Modal>
