@@ -1,6 +1,6 @@
 import CardApp from "./Card";
 import Database from "../Database";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDbData } from '../../utilities/firebase';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -15,6 +15,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState(["Facebook", "Python"]);
   console.log(data);
   let jobs = null;
   let users = null;
@@ -28,6 +29,10 @@ export default function CardPageApp() {
     }
     return 0;
   }
+
+  useEffect(() => {
+    console.log(filters)
+  }, [filters])
 
   let search_comp = () => {
     return (
@@ -47,10 +52,11 @@ export default function CardPageApp() {
           id="dropdown-basic-button"
           className="filter-button"
           title="Filter"
+          onChange={e => setFilters([].slice.call(e.target.selectedOptions).map(item => item.value))}
         >
-          <Dropdown.Item href="#/action-1">Research Positions</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Paid Positions</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Academic Positions</Dropdown.Item>
+          <Dropdown.Item href="#/action-1">Facebook</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Python</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">JavaScript</Dropdown.Item>
         </DropdownButton>
       </Form>
     </div>  );
@@ -64,7 +70,14 @@ export default function CardPageApp() {
     jobs = jobs.filter((job) => {
       console.log(job)
       return job.positionName.toLowerCase().includes(search.toLowerCase());
-    });
+    })
+    
+    if (filters.length > 0) {
+      jobs = jobs.filter((job) => {
+        return job.skillsRequired.some(skill => filters.includes(skill));
+      });
+    }
+    
     cards = jobs.map((card, i) => {
       return <CardApp key={i} data={card} />;
     });
