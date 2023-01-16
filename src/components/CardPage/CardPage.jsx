@@ -1,6 +1,6 @@
 import CardApp from "./Card";
 import Database from "../Database";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDbData } from '../../utilities/firebase';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -10,11 +10,12 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../logo.svg';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-
+import BootstrapSelect from 'react-bootstrap-select-dropdown';
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState([]);
   console.log(data);
   let jobs = null;
   let users = null;
@@ -27,6 +28,14 @@ export default function CardPageApp() {
       return -1;
     }
     return 0;
+  }
+
+  useEffect(() => {
+    console.log(filters)
+  }, [filters])
+
+  const handleFiltersChange = (selectedOptions) => {
+    setFilters(selectedOptions.selectedValue);
   }
 
   let search_comp = () => {
@@ -43,15 +52,22 @@ export default function CardPageApp() {
         <Button variant="outline-success" className="search-button">
           Search
         </Button>
-        <DropdownButton
-          id="dropdown-basic-button"
-          className="filter-button"
-          title="Filter"
-        >
-          <Dropdown.Item href="#/action-1">Research Positions</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Paid Positions</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Academic Positions</Dropdown.Item>
-        </DropdownButton>
+
+        <BootstrapSelect isMultiSelect placeholder="Filter" options={[
+        {
+          "labelKey": "facebook",
+          "value": "Facebook"
+        },
+        {
+          "labelKey": "javascript",
+          "value": "JavaScript"
+        },
+        {
+          "labelKey": "python",
+          "value": "Python"
+        },
+        ]} onChange={handleFiltersChange}/>
+
       </Form>
     </div>  );
   }
@@ -64,7 +80,14 @@ export default function CardPageApp() {
     jobs = jobs.filter((job) => {
       console.log(job)
       return job.positionName.toLowerCase().includes(search.toLowerCase());
-    });
+    })
+    
+    if (filters.length > 0) {
+      jobs = jobs.filter((job) => {
+        return job.skillsRequired.some(skill => filters.includes(skill));
+      });
+    }
+    
     cards = jobs.map((card, i) => {
       return <CardApp key={i} data={card} />;
     });

@@ -73,13 +73,12 @@ const AddModal = ({ show, toggleShow }) => {
   }
 
   const handleSkillsChange = (selectedOptions) => {
-    setSkillsRequired([].slice.call(selectedOptions).map(item => item.value))
+    setSkillsRequired(selectedOptions.selectedValue)
   }
   
   const handleTagsChange = (selectedOptions) => {
-    setHashTags([].slice.call(selectedOptions).map(item => item.value))
+    setHashTags(selectedOptions.selectedValue)
   }
-
 
   return (
     <Modal show={show} onHide={closeModal} className="modal">
