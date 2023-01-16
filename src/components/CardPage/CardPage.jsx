@@ -10,12 +10,12 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../logo.svg';
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-
+import BootstrapSelect from 'react-bootstrap-select-dropdown';
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
-  const [filters, setFilters] = useState(["Facebook", "Python"]);
+  const [filters, setFilters] = useState([]);
   console.log(data);
   let jobs = null;
   let users = null;
@@ -34,6 +34,10 @@ export default function CardPageApp() {
     console.log(filters)
   }, [filters])
 
+  const handleFiltersChange = (selectedOptions) => {
+    setFilters(selectedOptions.selectedValue);
+  }
+
   let search_comp = () => {
     return (
       <div className="search-area">
@@ -48,16 +52,22 @@ export default function CardPageApp() {
         <Button variant="outline-success" className="search-button">
           Search
         </Button>
-        <DropdownButton
-          id="dropdown-basic-button"
-          className="filter-button"
-          title="Filter"
-          onChange={e => setFilters([].slice.call(e.target.selectedOptions).map(item => item.value))}
-        >
-          <Dropdown.Item href="#/action-1">Facebook</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Python</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">JavaScript</Dropdown.Item>
-        </DropdownButton>
+
+        <BootstrapSelect isMultiSelect placeholder="Filter" options={[
+        {
+          "labelKey": "facebook",
+          "value": "Facebook"
+        },
+        {
+          "labelKey": "javascript",
+          "value": "JavaScript"
+        },
+        {
+          "labelKey": "python",
+          "value": "Python"
+        },
+        ]} onChange={handleFiltersChange}/>
+
       </Form>
     </div>  );
   }
