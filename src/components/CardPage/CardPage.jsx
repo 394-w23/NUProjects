@@ -11,6 +11,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../l
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
+
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");

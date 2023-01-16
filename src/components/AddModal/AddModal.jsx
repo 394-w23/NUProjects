@@ -7,6 +7,8 @@ import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
 import Alert from "react-bootstrap/Alert";
 import Toast from 'react-bootstrap/Toast';
+import BootstrapSelect from 'react-bootstrap-select-dropdown';
+
 
 const AddModal = ({ show, toggleShow }) => {
   const projectName = useInput("");
@@ -69,6 +71,15 @@ const AddModal = ({ show, toggleShow }) => {
     toggleShow(); 
     setShowToast(false);
   }
+
+  const handleSkillsChange = (selectedOptions) => {
+    setSkillsRequired([].slice.call(selectedOptions).map(item => item.value))
+  }
+  
+  const handleTagsChange = (selectedOptions) => {
+    setHashTags([].slice.call(selectedOptions).map(item => item.value))
+  }
+
 
   return (
     <Modal show={show} onHide={closeModal} className="modal">
@@ -144,33 +155,42 @@ const AddModal = ({ show, toggleShow }) => {
               required
             />
           </Form.Group>
-
           <Form.Group className="mb-3">
-            <Form.Label>Required Skills</Form.Label>
-            <Form.Control
-              as="select"
-              multiple
-              value={skillsRequired}
-              onChange={e => setSkillsRequired([].slice.call(e.target.selectedOptions).map(item => item.value))}
-            >
-              <option value="HTML/CSS">HTML/CSS</option>
-              <option value="Python">Python</option>
-              <option value="JavaScript">JavaScript</option>
-            </Form.Control>
+          <Form.Label>Required Skills</Form.Label>
+            <br></br>
+            <BootstrapSelect isMultiSelect options={[
+            {
+              "labelKey": "htmlcss",
+              "value": "HTML/CSS"
+            },
+            {
+              "labelKey": "python",
+              "value": "Python"
+            },
+            {
+              "labelKey": "javascript",
+              "value": "JavaScript"
+            }
+            ]} onChange={handleSkillsChange}/>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Tags</Form.Label>
-            <Form.Control
-              as="select"
-              multiple
-              value={hashtags}
-              onChange={e => setHashTags([].slice.call(e.target.selectedOptions).map(item => item.value))}
-            >
-              <option value="Web Development">Web Development</option>
-              <option value="ML/AI">ML/AI</option>
-              <option value="Hardware">Hardware</option>
-            </Form.Control>
+            <br></br>
+            <BootstrapSelect isMultiSelect options={[
+            {
+              "labelKey": "mlai",
+              "value": "ML/AI"
+            },
+            {
+              "labelKey": "webdevelopment",
+              "value": "Web Development"
+            },
+            {
+              "labelKey": "hardware",
+              "value": "Hardware"
+            },
+            ]} onChange={handleTagsChange}/>
           </Form.Group>
 
         </Form>
