@@ -8,6 +8,7 @@ import { writeJobData } from "../../utilities/firebase";
 import Alert from "react-bootstrap/Alert";
 import Toast from 'react-bootstrap/Toast';
 import BootstrapSelect from 'react-bootstrap-select-dropdown';
+import {v4 as uuidv4 } from 'uuid';
 
 
 const AddModal = ({ show, toggleShow }) => {
@@ -37,13 +38,13 @@ const AddModal = ({ show, toggleShow }) => {
     // check if all form fields required are entered
     // print all fields
     // console.log([projectName.value]);
-    if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value)) {
+    if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value) || (skillsRequired.length == 0) || (hashtags.length == 0)) {
       setShowToast(true);
     } else {
       closeModal();
 
       const params = {
-        jobId: Math.floor(Math.random()*10000),
+        jobId: uuidv4(),
         contactInfo: "Test@email.com",
         dateToSubmit: deadline.value,
         datePosted: new Date(),
@@ -155,9 +156,9 @@ const AddModal = ({ show, toggleShow }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-          <Form.Label>Required Skills</Form.Label>
+          <Form.Label>Required Skills*</Form.Label>
             <br></br>
-            <BootstrapSelect isMultiSelect options={[
+            <BootstrapSelect required isMultiSelect options={[
             {
               "labelKey": "htmlcss",
               "value": "HTML/CSS"
@@ -174,9 +175,9 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Tags</Form.Label>
+            <Form.Label>Tags*</Form.Label>
             <br></br>
-            <BootstrapSelect isMultiSelect options={[
+            <BootstrapSelect required isMultiSelect options={[
             {
               "labelKey": "mlai",
               "value": "ML/AI"
