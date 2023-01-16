@@ -161,15 +161,18 @@ const AddModal = ({ show, toggleShow }) => {
             <BootstrapSelect required isMultiSelect options={[
             {
               "labelKey": "htmlcss",
-              "value": "HTML/CSS"
+              "value": "HTML/CSS",
+              "style": {"font-size":"15px"}
             },
             {
               "labelKey": "python",
-              "value": "Python"
+              "value": "Python",
+              "style": {"font-size":"15px"}
             },
             {
               "labelKey": "javascript",
-              "value": "JavaScript"
+              "value": "JavaScript",
+              "style": {"font-size":"15px"}
             }
             ]} onChange={handleSkillsChange}/>
           </Form.Group>
@@ -180,15 +183,18 @@ const AddModal = ({ show, toggleShow }) => {
             <BootstrapSelect required isMultiSelect options={[
             {
               "labelKey": "mlai",
-              "value": "ML/AI"
+              "value": "ML/AI",
+              "style": {"font-size":"15px"}
             },
             {
               "labelKey": "webdevelopment",
-              "value": "Web Development"
+              "value": "Web Development",
+              "style": {"font-size":"15px"}
             },
             {
               "labelKey": "hardware",
-              "value": "Hardware"
+              "value": "Hardware",
+              "style": {"font-size":"15px"}
             },
             ]} onChange={handleTagsChange}/>
           </Form.Group>

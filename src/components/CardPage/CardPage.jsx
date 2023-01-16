@@ -54,22 +54,26 @@ export default function CardPageApp() {
           Search
         </Button>
 
-        <BootstrapSelect isMultiSelect placeholder="Filter by skills" className="selectOptions" options={[
+        <BootstrapSelect isMultiSelect placeholder="Filter by skills" selectStyle="btn btn-primary" style={{marginLeft:'5px'}} options={[
         {
           "labelKey": "facebook",
-          "value": "Facebook"
+          "value": "Facebook",
+          "style": {"font-size":"15px"}
         },
         {
           "labelKey": "javascript",
-          "value": "JavaScript"
+          "value": "JavaScript",
+          "style": {"font-size":"15px"}
         },
         {
           "labelKey": "python",
-          "value": "Python"
+          "value": "Python",
+          "style": {"font-size":"15px"}
         },
         {
           "labelKey": "htmlcss",
-          "value": "HTML/CSS"
+          "value": "HTML/CSS",
+          "style": {"font-size":"15px"}
         },
         ]} onChange={handleFiltersChange}/>
 
