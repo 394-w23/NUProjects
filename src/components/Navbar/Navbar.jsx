@@ -26,7 +26,7 @@ export default function NavbarApp() {
               navbarScroll
             >
               <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">FAQ</Nav.Link>
+              {/* <Nav.Link href="#action2">FAQ</Nav.Link> */}
               {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -43,14 +43,14 @@ export default function NavbarApp() {
             </Nav>
 
             {/* Add Profile */}
-            <Nav>
+            {/* <Nav>
               <NavDropdown title="Profile" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Jobs</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Sign out</NavDropdown.Item>
               </NavDropdown>
-            </Nav>
+            </Nav> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
