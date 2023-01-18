@@ -88,7 +88,16 @@ export default function CardPageApp() {
     jobs.sort(compare);
     jobs = jobs.filter((job) => {
       console.log(job)
-      return job.positionName.toLowerCase().includes(search.toLowerCase()) || job.projectName.toLowerCase().includes(search.toLowerCase()) || job.description.toLowerCase().includes(search.toLowerCase())  ;
+      // search in all job fields and keywords
+      return (
+        job.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
+        job.jobDescription.toLowerCase().includes(search.toLowerCase()) ||
+        job.datePosted.toLowerCase().includes(search.toLowerCase()) ||
+        job.companyName.toLowerCase().includes(search.toLowerCase()) ||
+        job.skillsRequired.some(skill => skill.toLowerCase().includes(search.toLowerCase())) ||
+        job.keywords.some(keyword => keyword.toLowerCase().includes(search.toLowerCase()))
+      );
+
     })
     
     if (filters.length > 0) {
