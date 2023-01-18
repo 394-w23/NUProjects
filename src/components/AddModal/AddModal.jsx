@@ -183,17 +183,17 @@ const AddModal = ({ show, toggleShow }) => {
             <BootstrapSelect required isMultiSelect options={[
             {
               "labelKey": "mlai",
-              "value": "ML/AI",
+              "value": "#ML/AI",
               "style": {"font-size":"15px"}
             },
             {
               "labelKey": "webdevelopment",
-              "value": "Web Development",
+              "value": "#WebDevelopment",
               "style": {"font-size":"15px"}
             },
             {
               "labelKey": "hardware",
-              "value": "Hardware",
+              "value": "#Hardware",
               "style": {"font-size":"15px"}
             },
             ]} onChange={handleTagsChange}/>
