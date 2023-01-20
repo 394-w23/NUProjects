@@ -19,19 +19,14 @@ const SignInButton = () => (
 );
 
 const SignOutButton = () => (
-  <Nav.Link onClick={signOut}>Sign out</Nav.Link>
+  <NavDropdown.Item onClick={signOut}>Sign out</NavDropdown.Item>
 );
-
-const AuthButton = () => {
-  const [user] = useAuthState();
-  console.log("state of the user ", user);
-  return user ? <SignOutButton /> : <SignInButton />;
-};
 
 const activation = ({isActive}) => isActive ? 'active' : 'inactive';
 
 
 export default function NavbarApp() {
+  const [user] = useAuthState();
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
@@ -44,58 +39,24 @@ export default function NavbarApp() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              {/* <Nav.Link href="#action2">FAQ</Nav.Link> */}
-              {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown> */}
-              {/* <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
+            <Nav.Link href="#action1">Home</Nav.Link>
             </Nav>
 
             {/* Add Profile */}
             <Nav>
-            <AuthButton />
-              {/* <NavDropdown title="Profile" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Jobs</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Sign out</NavDropdown.Item>
-              </NavDropdown> */}
+              {!user && <SignInButton />}
+              {
+                user && <NavDropdown title="Profile" id="collasible-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Saved</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <SignOutButton />
+                </NavDropdown>
+              }
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {/* <div className="search-area">
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search positions..."
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success" className="search-button">
-            Search
-          </Button>
-          <DropdownButton
-            id="dropdown-basic-button"
-            className="filter-button"
-            title="Filter"
-          >
-            <Dropdown.Item href="#/action-1">Research Positions</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Paid Positions</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Academic Positions</Dropdown.Item>
-          </DropdownButton>
-        </Form>
-      </div> */}
     </div>
   );
 }
