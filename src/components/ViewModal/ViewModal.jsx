@@ -46,18 +46,21 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
             <b>Type:</b> {applicationData.typeOfProject  || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Timeline:</b> {applicationData.timeline || "N/A"}
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={6} sm={12}>
             <b>No. of People:</b> {applicationData.numberOfPeople || "N/A"}
           </Col>
+        </Row>
+        <Row>
           <Col lg={6} sm={12}>
-            <b>Date Posted:</b> {applicationData.datePosted || "N/A"}
+            <b>Start Date:</b> {applicationData.startDate || "N/A"}
+          </Col>
+          <Col lg={6} sm={12}>
+            <b>End Date:</b> {applicationData.endDate || "N/A"}
           </Col>
         </Row>
         <Row>
+        <Col lg={6} sm={12}>
+            <b>Date Posted:</b> {applicationData.datePosted || "N/A"}
+          </Col>
           <Col lg={6} sm={12}>
             <b>Deadline:</b> {applicationData.dateToSubmit || "N/A"}
           </Col>
