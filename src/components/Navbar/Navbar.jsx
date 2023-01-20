@@ -11,6 +11,25 @@ import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../l
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Navbar.css";
+import { signInWithGoogle, signOut, useAuthState } from '../../utilities/firebase';
+
+
+const SignInButton = () => (
+  <Nav.Link onClick={signInWithGoogle}>Sign in</Nav.Link>
+);
+
+const SignOutButton = () => (
+  <Nav.Link onClick={signOut}>Sign out</Nav.Link>
+);
+
+const AuthButton = () => {
+  const [user] = useAuthState();
+  console.log("state of the user ", user);
+  return user ? <SignOutButton /> : <SignInButton />;
+};
+
+const activation = ({isActive}) => isActive ? 'active' : 'inactive';
+
 
 export default function NavbarApp() {
   return (
@@ -43,14 +62,15 @@ export default function NavbarApp() {
             </Nav>
 
             {/* Add Profile */}
-            {/* <Nav>
-              <NavDropdown title="Profile" id="collasible-nav-dropdown">
+            <Nav>
+            <AuthButton />
+              {/* <NavDropdown title="Profile" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Settings</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Jobs</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Sign out</NavDropdown.Item>
-              </NavDropdown>
-            </Nav> */}
+              </NavDropdown> */}
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>

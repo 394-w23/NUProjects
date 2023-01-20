@@ -2,19 +2,20 @@
 import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update, set } from "firebase/database";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
+  apiKey: "AIzaSyABFVW-AgGP6OrHMrHnYSBD4dWv19fMjFY",
+  authDomain: "nuprojects-37022.firebaseapp.com",
   databaseURL: "https://nuprojects-37022-default-rtdb.firebaseio.com",
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
+  projectId: "nuprojects-37022",
+  storageBucket: "nuprojects-37022.appspot.com",
+  messagingSenderId: "895929247438",
+  appId: "1:895929247438:web:651215d43228c05bef929f",
 };
 
 // Initialize Firebase
@@ -70,7 +71,7 @@ export const writeJobData = (params) => {
   set(ref(db, "jobs/" + params.jobId), {
     // default empty if no value passed
     contactInfo: params.contactInfo || "",
-    datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+    datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
     dateToSubmit: params.dateToSubmit || "",
     description: params.description || "",
     hashtags: params.hashtags || [""],
@@ -99,3 +100,22 @@ function writeUserData(userId, name, email, imageUrl) {
     profile_picture: imageUrl,
   });
 }
+
+export const signInWithGoogle = () => {
+  signInWithPopup(getAuth(app), new GoogleAuthProvider());
+};
+
+const firebaseSignOut = () => signOut(getAuth(app));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+  useEffect(() => (
+    onAuthStateChanged(getAuth(app), setUser)
+  ), []);
+
+
+
+  return [user];
+};
