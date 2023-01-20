@@ -50,7 +50,7 @@ export default function NavbarApp() {
     <div>
       <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#">NUProjects</Navbar.Brand>
+          <Navbar.Brand href="/">NUProjects</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -58,7 +58,7 @@ export default function NavbarApp() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             </Nav>
 
             {/* Add Profile */}
@@ -73,7 +73,7 @@ export default function NavbarApp() {
                 user && <NavDropdown title={
                   <Image roundedCircle src={user.photoURL} width={30}/>
                 } id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Saved</NavDropdown.Item>
+                  <NavDropdown.Item href={`/profile/${user.uid}`}>Profile</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <SignOutButton />
