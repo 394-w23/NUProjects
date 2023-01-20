@@ -9,6 +9,7 @@ import Alert from "react-bootstrap/Alert";
 import Toast from 'react-bootstrap/Toast';
 import BootstrapSelect from 'react-bootstrap-select-dropdown';
 import {v4 as uuidv4 } from 'uuid';
+import { useAuthState } from '../../utilities/firebase';
 
 
 const AddModal = ({ show, toggleShow }) => {
@@ -20,6 +21,7 @@ const AddModal = ({ show, toggleShow }) => {
   const deadline = useInput("");
   const numberOfPeople = useInput(0);
 
+  const [user] = useAuthState();
   const [skillsRequired, setSkillsRequired] = useState([""]);
   const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
@@ -37,8 +39,6 @@ const AddModal = ({ show, toggleShow }) => {
   }
   const handleSubmit = (event) => {
     // check if all form fields required are entered
-    // print all fields
-    // console.log([projectName.value]);
     if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value) || (skillsRequired.length == 0) || (hashtags.length == 0)) {
       setShowToast(true);
       setShowWageToast(false);
@@ -50,7 +50,7 @@ const AddModal = ({ show, toggleShow }) => {
 
       const params = {
         jobId: uuidv4(),
-        contactInfo: "Test@email.com",
+        contactInfo: user.email,
         dateToSubmit: deadline.value,
         datePosted: new Date(),
         description: description.value,
@@ -62,11 +62,11 @@ const AddModal = ({ show, toggleShow }) => {
         startDate: new Date(),
         endDate: new Date(),
         typeOfProject: typeOfProject.value,
-        user: "John Doe",
+        user: user.displayName,
         wage: wage.value
       }
 
-      console.log("print params: ", Object.values(params));
+      console.log("SUBMITTED FORM PARAMS: ", Object.values(params));
 
       writeJobData(params);
       clearValues();
