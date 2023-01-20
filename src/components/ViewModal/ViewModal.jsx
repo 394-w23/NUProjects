@@ -84,7 +84,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
       </Modal.Body>
       <Modal.Footer>
         <p>
-          <b>Contact Info:</b> {applicationData.contactInfo}
+          <b>Contact Info:</b> <a href={"mailto:"+applicationData.contactInfo}>{applicationData.contactInfo}</a>
         </p>
         <Button
           style={{
