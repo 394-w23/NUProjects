@@ -8,10 +8,8 @@ export default function AddButtonApp() {
     const [showAddModal, setShowAddModal] = useState(false);
     const toggleShowAddModal = () => setShowAddModal(!showAddModal);
     const [user] = useAuthState();
-    console.log("user is logged in")
     useEffect(() => {
         if (user) {
-          
           document.querySelector("#post_button").disabled = false;
         } else {
           document.querySelector("#post_button").disabled = true;

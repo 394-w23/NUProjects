@@ -27,6 +27,7 @@ const activation = ({isActive}) => isActive ? 'active' : 'inactive';
 
 export default function NavbarApp() {
   const [user] = useAuthState();
+  console.log("USER: ", user);
   return (
     <div>
       <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
