@@ -48,6 +48,8 @@ export default function CardPageApp() {
           placeholder="Search positions..."
           className="me-2"
           aria-label="Search"
+          // v-if="searchEnabled" 
+          // role="search"
           onChange={(e) => setSearch(e.target.value)}
         />
         <Button variant="outline-success" className="search-button">
@@ -89,6 +91,12 @@ export default function CardPageApp() {
     jobs = jobs.filter((job) => {
       console.log(job)
       // search in all job fields and keywords
+      job.jobTitle = job.jobTitle || "";
+      job.jobDescription = job.jobDescription || "";
+      job.datePosted = job.datePosted || "";
+      job.companyName = job.companyName || "";  
+      job.skillsRequired = job.skillsRequired || [];
+      job.keywords = job.keywords || [];
       return (
         job.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
         job.jobDescription.toLowerCase().includes(search.toLowerCase()) ||
