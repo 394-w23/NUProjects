@@ -2,25 +2,18 @@ import React from 'react';
 import NavbarApp from "./components/Navbar/Navbar";
 import CardPageApp from "./components/CardPage/CardPage";
 import Profile from './components/Profile/Profile';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 const Routing = () => {
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <CardPageApp />,
-    },
-    {
-      path: "/profile/:p",
-      element: <Profile />
-    }
-  ]);
-  
   return (
     <>
       <NavbarApp />
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CardPageApp />} />
+          <Route path="profile/:userId" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

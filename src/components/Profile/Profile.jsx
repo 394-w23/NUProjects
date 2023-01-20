@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
+  const { userId } = useParams();
+
   return (
-    <div>Profile</div>
+    <>
+      <p>UserId: {userId}</p>
+    </>
   )
 }
 
