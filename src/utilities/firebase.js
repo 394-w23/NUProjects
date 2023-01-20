@@ -66,6 +66,13 @@ export const useDbUpdate = (path) => {
   return [updateData, result];
 };
 
+export const getData = async (path) => {
+  const db = getDatabase();
+  const snapshot = await get(ref(db, path))
+  const data = snapshot.val()
+  return data
+}
+
 export const writeJobData = (params) => {
   const db = getDatabase();
   set(ref(db, "jobs/" + params.jobId), {
@@ -94,8 +101,7 @@ export const writeJobData = (params) => {
 //write a user to the database
 export const writeUserData = async (params) => {
   const db = getDatabase();
-  const userSnapshot = await get(ref(db, "users/"))
-  const userData = userSnapshot.val()
+  const userData = await getData("users/");
 
   for (let user in userData) {
     if (!user.userId) continue;
