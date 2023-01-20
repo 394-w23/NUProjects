@@ -69,20 +69,14 @@ export default function CardPageApp() {
   const search_comp = () => {
     return (
       <div className="search-area">
-        <Form className="d-flex">
+        <Form className="d-flex" onSubmit={(event) => event.preventDefault()}>
           <Form.Control
             type="search"
             placeholder="Search positions..."
             className="me-2"
             aria-label="Search"
-            // v-if="searchEnabled"
-            // role="search"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button variant="outline-success" className="search-button">
-            Search
-          </Button>
-
           <BootstrapSelect
             isMultiSelect
             placeholder="Filter by skills"
