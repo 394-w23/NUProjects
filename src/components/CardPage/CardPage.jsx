@@ -83,16 +83,18 @@ export default function CardPageApp() {
             <Form.Group as={Col} md={2}>
               <Form.Select onChange={handleSortChange}>
                 <option value="datePosted" defaultChecked>
-                  Date posted
+                  Sort by date posted
                 </option>
-                <option value="startDate">Start date</option>
-                <option value="endDate">End date</option>
+                <option value="startDate">Sort by start date</option>
+                <option value="endDate">Sort by end date</option>
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md={2}>
               <BootstrapSelect
                 className="filter-multi-select"
                 isMultiSelect
+                showTicks
+                showSearch
                 placeholder="Filter by skills"
                 selectStyle="btn btn-primary"
                 options={[

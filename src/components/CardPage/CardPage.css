@@ -1,10 +1,10 @@
 .search-area form .row {
   width: 100%;
-  /* margin: 0; */
+  margin: 0;
 }
 
 /* .search-area form .row div[class^="col-"] {
-  padding: 0;
+  padding: 0
 } */
 
 .search-area .filter-multi-select {
