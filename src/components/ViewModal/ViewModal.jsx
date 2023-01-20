@@ -37,7 +37,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
             <b>Position:</b> {applicationData.positionName}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Wage:</b> {applicationData.wage}
+            <b>Wage ($/hr):</b> {applicationData.wage}
           </Col>
         </Row>
         <Row>
