@@ -129,7 +129,7 @@ const AddModal = ({ show, toggleShow }) => {
 
           <Form.Group className="mb-3">
             <Form.Label>Application Deadline</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} min={0} />
+            <Form.Control type="date" onChange={deadline.onChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">

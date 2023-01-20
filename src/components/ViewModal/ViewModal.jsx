@@ -31,29 +31,35 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         <Modal.Title>{applicationData.projectName}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
+        
         <h5>Details</h5>
         <Row>
           <Col lg={6} sm={12}>
-            <b>Position:</b> {applicationData.positionName}
+            <b>Position:</b> {applicationData.positionName || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Wage ($/hr):</b> {applicationData.wage}
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={6} sm={12}>
-            <b>Type:</b> {applicationData.typeOfProject}
-          </Col>
-          <Col lg={6} sm={12}>
-            <b>Timeline:</b> {applicationData.timeline}
+            <b>Wage ($/hr):</b> {applicationData.wage || "0"}
           </Col>
         </Row>
         <Row>
           <Col lg={6} sm={12}>
-            <b>No. of People:</b> {applicationData.numberOfPeople}
+            <b>Type:</b> {applicationData.typeOfProject  || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Date Posted:</b> {applicationData.datePosted}
+            <b>Timeline:</b> {applicationData.timeline || "N/A"}
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={6} sm={12}>
+            <b>No. of People:</b> {applicationData.numberOfPeople || "N/A"}
+          </Col>
+          <Col lg={6} sm={12}>
+            <b>Date Posted:</b> {applicationData.datePosted || "N/A"}
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={6} sm={12}>
+            <b>Deadline:</b> {applicationData.dateToSubmit || "N/A"}
           </Col>
         </Row>
         <hr />
@@ -80,11 +86,11 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         </ul>
         <hr />
         <h5>Description</h5>
-        <p>{applicationData.description}</p>
+        <p>{applicationData.description || "No description found."}</p>
       </Modal.Body>
       <Modal.Footer>
         <p>
-          <b>Contact Info:</b> {applicationData.contactInfo}
+          <b>Contact Info:</b> {applicationData.contactInfo || "N/A"}
         </p>
         <Button
           style={{
