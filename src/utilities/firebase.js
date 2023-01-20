@@ -101,6 +101,7 @@ function writeUserData(userId, name, email, imageUrl) {
   });
 }
 
+// Google Authentication Hook
 export const signInWithGoogle = () => {
   signInWithPopup(getAuth(app), new GoogleAuthProvider());
 };
