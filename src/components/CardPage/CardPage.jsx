@@ -1,126 +1,137 @@
 import CardApp from "./Card";
-import Database from "../Database";
-import { useState, useEffect } from "react";
-import { useDbData } from '../../utilities/firebase';
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDbData } from "../../utilities/firebase";
 import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../logo.svg';
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import BootstrapSelect from 'react-bootstrap-select-dropdown';
-import "./Card.css"
+import BootstrapSelect from "react-bootstrap-select-dropdown";
+import "./CardPage.css";
+import "./Card.css";
+import { Row, Col } from "react-bootstrap";
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);
-  console.log(data);
-  let jobs = null;
-  let users = null;
-  let cards = null;
-  function compare(a, b) {
-    if (a.datePosted < b.datePosted){
-      return 1;
-    }
-    if (a.datePosted > b.datePosted){
-      return -1;
-    }
-    return 0;
-  }
+  const [sortKey, setSortKey] = useState("datePosted");
+
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  const sortComparator = useCallback(
+    (a, b) => {
+      if (!a || !b) {
+        return 0;
+      }
+      if (a[sortKey] < b[sortKey]) {
+        return 1;
+      }
+      if (a[sortKey] > b[sortKey]) {
+        return -1;
+      }
+      return 0;
+    },
+    [sortKey]
+  );
 
   useEffect(() => {
-    console.log(filters)
-  }, [filters])
+    if (!data) {
+      return;
+    }
+
+    let filteredJobs = Object.values(data.jobs).filter((job) => {
+      return (
+        job.positionName.toLowerCase().includes(search.toLowerCase()) ||
+        job.description.toLowerCase().includes(search.toLowerCase()) ||
+        job.projectName.toLowerCase().includes(search.toLowerCase()) ||
+        job.skillsRequired.some((skill) =>
+          skill.toLowerCase().includes(search.toLowerCase())
+        ) ||
+        job.hashtags.some((keyword) =>
+          keyword.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    });
+
+    if (filters.length > 0) {
+      filteredJobs = filteredJobs.filter((job) => {
+        return job.skillsRequired.some((skill) => filters.includes(skill));
+      });
+    }
+
+    setFilteredJobs(filteredJobs.sort(sortComparator));
+  }, [data, search, sortComparator]);
 
   const handleFiltersChange = (selectedOptions) => {
     setFilters(selectedOptions.selectedValue);
-  }
+  };
 
-  let search_comp = () => {
+  const handleSortChange = (event) => {
+    setSortKey(event.target.value);
+  };
+
+  const search_comp = () => {
     return (
       <div className="search-area">
-      <Form className="d-flex">
-        <Form.Control
-          type="search"
-          placeholder="Search positions..."
-          className="me-2"
-          aria-label="Search"
-          // v-if="searchEnabled" 
-          // role="search"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <Button variant="outline-success" className="search-button">
-          Search
-        </Button>
+        <Form className="d-flex" onSubmit={(event) => event.preventDefault()}>
+          <Row>
+            <Form.Group as={Col} md={8}>
+              <Form.Control
+                type="search"
+                placeholder="Search positions..."
+                aria-label="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group as={Col} md={2}>
+              <Form.Select onChange={handleSortChange}>
+                <option value="datePosted" defaultChecked>
+                  Date posted
+                </option>
+                <option value="startDate">Start date</option>
+                <option value="endDate">End date</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group as={Col} md={2}>
+              <BootstrapSelect
+                className="filter-multi-select"
+                isMultiSelect
+                placeholder="Filter by skills"
+                selectStyle="btn btn-primary"
+                options={[
+                  {
+                    labelKey: "facebook",
+                    value: "Facebook",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "javascript",
+                    value: "JavaScript",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "python",
+                    value: "Python",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "htmlcss",
+                    value: "HTML/CSS",
+                    style: { fontSize: "15px" },
+                  },
+                ]}
+                onChange={handleFiltersChange}
+              />
+            </Form.Group>
+          </Row>
+        </Form>
+      </div>
+    );
+  };
 
-        <BootstrapSelect isMultiSelect showTick showSearch placeholder="Filter by skills" selectStyle="btn btn-primary" style={{marginLeft:'5px'}} options={[
-        {
-          "labelKey": "facebook",
-          "value": "Facebook",
-          "style": {"font-size":"15px"}
-        },
-        {
-          "labelKey": "javascript",
-          "value": "JavaScript",
-          "style": {"font-size":"15px"}
-        },
-        {
-          "labelKey": "python",
-          "value": "Python",
-          "style": {"font-size":"15px"}
-        },
-        {
-          "labelKey": "htmlcss",
-          "value": "HTML/CSS",
-          "style": {"font-size":"15px"}
-        },
-        ]} onChange={handleFiltersChange}/>
-
-      </Form>
-    </div>  );
-  }
-  if (data) {
-    jobs = data.jobs;
-    console.log(jobs);
-    users = data.users;
-    jobs = Object.values(jobs);
-    jobs.sort(compare);
-    jobs = jobs.filter((job) => {
-      console.log(job)
-      // search in all job fields and keywords
-      job.jobTitle = job.jobTitle || "";
-      job.jobDescription = job.jobDescription || "";
-      job.datePosted = job.datePosted || "";
-      job.companyName = job.companyName || "";  
-      job.skillsRequired = job.skillsRequired || [];
-      job.keywords = job.keywords || [];
-      return (
-        job.jobTitle.toLowerCase().includes(search.toLowerCase()) ||
-        job.jobDescription.toLowerCase().includes(search.toLowerCase()) ||
-        job.datePosted.toLowerCase().includes(search.toLowerCase()) ||
-        job.companyName.toLowerCase().includes(search.toLowerCase()) ||
-        job.skillsRequired.some(skill => skill.toLowerCase().includes(search.toLowerCase())) ||
-        job.keywords.some(keyword => keyword.toLowerCase().includes(search.toLowerCase()))
-      );
-
-    })
-    
-    if (filters.length > 0) {
-      jobs = jobs.filter((job) => {
-        return job.skillsRequired.some(skill => filters.includes(skill));
-      });
-    }
-    
-    cards = jobs.map((card, i) => {
-      return <CardApp key={i} data={card} />;
-    });
-  }
-  return <>
-  {search_comp()}
-  {cards}</>;
+  return (
+    <div className="card-page">
+      {search_comp()}
+      {filteredJobs.map((job, key) => (
+        <CardApp key={key} data={job} />
+      ))}
+    </div>
+  );
 }
-
-
