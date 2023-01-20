@@ -11,6 +11,6 @@
   width: 100% !important;
 }
 
-.search-area .filter-multi-select button {
-  color: white !important;
+.search-area .filter-multi-select .filter-option {
+  color: white;
 }
