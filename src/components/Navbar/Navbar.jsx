@@ -12,7 +12,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Navbar.css";
 import { signInWithGoogle, signOut, useAuthState, writeUserData } from '../../utilities/firebase';
-// import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import Image from 'react-bootstrap/Image'
 
 const handleSignUp = async () => {
   const user = await signInWithGoogle();
@@ -70,7 +70,9 @@ export default function NavbarApp() {
                 </div>
               }
               {
-                user && <NavDropdown title="Profile" id="collasible-nav-dropdown">
+                user && <NavDropdown title={
+                  <Image roundedCircle src={user.photoURL} width={30}/>
+                } id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Saved</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
                   <NavDropdown.Divider />
