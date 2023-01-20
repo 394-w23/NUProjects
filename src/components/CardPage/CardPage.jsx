@@ -91,7 +91,7 @@ export default function CardPageApp() {
     jobs = jobs.filter((job) => {
       console.log(job)
       // search in all job fields and keywords
-      job.jobTitle = job.jobTitle || "";
+      job.jobTitle = job.projectName|| "";
       job.jobDescription = job.jobDescription || "";
       job.datePosted = job.datePosted || "";
       job.companyName = job.companyName || "";  

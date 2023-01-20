@@ -18,6 +18,8 @@ const AddModal = ({ show, toggleShow }) => {
   const description = useInput("");
   const wage = useInput(0);
   const deadline = useInput("");
+  const startDate = useInput("");
+  const endDate = useInput("");
   const numberOfPeople = useInput(0);
 
   const [skillsRequired, setSkillsRequired] = useState([""]);
@@ -31,6 +33,8 @@ const AddModal = ({ show, toggleShow }) => {
     description.setValue("");
     wage.setValue(0);
     deadline.setValue("");
+    startDate.setValue("");
+    endDate.setValue("");
     numberOfPeople.setValue(0);
     setSkillsRequired([" "]);
     setHashTags([" "]);
@@ -52,6 +56,8 @@ const AddModal = ({ show, toggleShow }) => {
         jobId: uuidv4(),
         contactInfo: "Test@email.com",
         dateToSubmit: deadline.value,
+        projectStartDate: startDate.value,
+        projectEndDate: endDate.value,
         datePosted: new Date(),
         description: description.value,
         hashtags: hashtags,
@@ -130,6 +136,16 @@ const AddModal = ({ show, toggleShow }) => {
           <Form.Group className="mb-3">
             <Form.Label>Application Deadline</Form.Label>
             <Form.Control type="date" onChange={deadline.onChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Project Start Date</Form.Label>
+            <Form.Control type="date" onChange={startDate.onChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Project End Date</Form.Label>
+            <Form.Control type="date" onChange={endDate.onChange} />
           </Form.Group>
 
           <Form.Group className="mb-3">

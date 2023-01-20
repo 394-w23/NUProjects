@@ -70,8 +70,10 @@ export const writeJobData = (params) => {
   set(ref(db, "jobs/" + params.jobId), {
     // default empty if no value passed
     contactInfo: params.contactInfo || "",
-    datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+    datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
     dateToSubmit: params.dateToSubmit || "",
+    projectStartDate: params.projectStartDate || "",
+    projectEndDate: params.projectEndDate || "",
     description: params.description || "",
     hashtags: params.hashtags || [""],
     numberOfPeople: params.numberOfPeople || "",

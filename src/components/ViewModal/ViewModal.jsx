@@ -51,10 +51,10 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         </Row>
         <Row>
           <Col lg={6} sm={12}>
-            <b>Start Date:</b> {applicationData.startDate || "N/A"}
+            <b>Start Date:</b> {applicationData.projectStartDate || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>End Date:</b> {applicationData.endDate || "N/A"}
+            <b>End Date:</b> {applicationData.projectEndDate || "N/A"}
           </Col>
         </Row>
         <Row>
