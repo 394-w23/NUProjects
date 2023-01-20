@@ -11,8 +11,26 @@ import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../l
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Navbar.css";
-import { signInWithGoogle, signOut, useAuthState } from '../../utilities/firebase';
+import { signInWithGoogle, signOut, useAuthState, writeUserData } from '../../utilities/firebase';
+// import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 
+const handleSignUp = async () => {
+  const user = await signInWithGoogle();
+  console.log(user)
+
+  const params = {
+    userId: user.uid,
+    name: user.displayName,
+    email: user.email,
+    profilePic: user.photoURL
+  }
+
+  writeUserData(params);
+}
+
+const SignUpButton = () => (
+  <Nav.Link onClick={handleSignUp}>Sign Up</Nav.Link>
+)
 
 const SignInButton = () => (
   <Nav.Link onClick={signInWithGoogle}>Sign in</Nav.Link>
@@ -45,7 +63,12 @@ export default function NavbarApp() {
 
             {/* Add Profile */}
             <Nav>
-              {!user && <SignInButton />}
+              {!user && 
+                <div className="auth-buttons">
+                  <SignInButton />
+                  <SignUpButton />
+                </div>
+              }
               {
                 user && <NavDropdown title="Profile" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Saved</NavDropdown.Item>

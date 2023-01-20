@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update, set } from "firebase/database";
+import { getDatabase, onValue, ref, update, set, get } from "firebase/database";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -92,18 +92,30 @@ export const writeJobData = (params) => {
 
 
 //write a user to the database
-function writeUserData(userId, name, email, imageUrl) {
+export const writeUserData = async (params) => {
   const db = getDatabase();
-  set(ref(db, "users/" + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl,
+  const userSnapshot = await get(ref(db, "users/"))
+  const userData = userSnapshot.val()
+
+  for (let user in userData) {
+    if (!user.userId) continue;
+    if (user.userId === params.userId) {
+      return;
+    }
+  }
+
+  set(ref(db, "users/" + params.userId), {
+    userId: params.userId || "",
+    name: params.name || "",
+    email: params.email || "",
+    profilePic: params.profilePic || ""
   });
 }
 
 // Google Authentication Hook
-export const signInWithGoogle = () => {
-  signInWithPopup(getAuth(app), new GoogleAuthProvider());
+export const signInWithGoogle = async () => {
+  const res = await signInWithPopup(getAuth(app), new GoogleAuthProvider());
+  return res.user;
 };
 
 const firebaseSignOut = () => signOut(getAuth(app));
