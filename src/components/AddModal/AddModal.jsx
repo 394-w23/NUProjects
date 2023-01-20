@@ -165,7 +165,7 @@ const AddModal = ({ show, toggleShow }) => {
           <Form.Group className="mb-3">
           <Form.Label>Required Skills*</Form.Label>
             <br></br>
-            <BootstrapSelect required isMultiSelect options={[
+            <BootstrapSelect required isMultiSelect showTick showSearch options={[
             {
               "labelKey": "htmlcss",
               "value": "HTML/CSS",
@@ -187,7 +187,7 @@ const AddModal = ({ show, toggleShow }) => {
           <Form.Group className="mb-3">
             <Form.Label>Tags*</Form.Label>
             <br></br>
-            <BootstrapSelect required isMultiSelect options={[
+            <BootstrapSelect required isMultiSelect showTick showSearch options={[
             {
               "labelKey": "mlai",
               "value": "#ML/AI",
