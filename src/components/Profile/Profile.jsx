@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import { getData } from '../../utilities/firebase';
 import "./Profile.css";
+import { UserContext } from '../../context/UserContext';
 
 const Profile = () => {
   const { userId } = useParams();
   const [userData, setUserData] = useState({});
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     async function fetchUserData() {

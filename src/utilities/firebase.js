@@ -114,7 +114,10 @@ export const writeUserData = async (params) => {
     userId: params.userId || "",
     name: params.name || "",
     email: params.email || "",
-    profilePic: params.profilePic || ""
+    profilePic: params.profilePic || "",
+    jobsCreated: params.jobsCreated || [],
+    jobsApplied: params.jobsApplied || [],
+    jobsSaved: params.jobsSaved || []
   });
 }
 
