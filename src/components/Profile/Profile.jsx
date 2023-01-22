@@ -21,11 +21,20 @@ const Profile = () => {
 
   return (
     <>
-      <div className='user-card'>
-        <Image src={userData.profilePic} roundedCircle width={125}/>
-        <p className='user-name'>{userData.name}</p>
-        <em className='user-email'>{userData.email}</em>
+      <div className='info-container'>
+        <div className='user-card'>
+          <Image src={userData.profilePic} roundedCircle width={125}/>
+          <p className='user-name'>{userData.name}</p>
+          <em className='user-email'>{userData.email}</em>
+        </div>
       </div>
+      {user && user.userId === userData.userId ?
+        <div className='user-jobs'>
+          JOBS
+        </div> 
+        :
+        <div />
+      }
     </>
   )
 }

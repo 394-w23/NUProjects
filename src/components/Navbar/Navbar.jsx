@@ -86,9 +86,9 @@ export default function NavbarApp() {
               }
               {
                 user && <NavDropdown title={
-                  <Image roundedCircle src={user.photoURL} width={30}/>
+                  <Image roundedCircle src={user.profilePic} width={30}/>
                 } id="collasible-nav-dropdown">
-                  <NavDropdown.Item href={`/profile/${user.uid}`}>Profile</NavDropdown.Item>
+                  <NavDropdown.Item href={`/profile/${user.userId}`}>Profile</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <SignOutButton />
