@@ -6,6 +6,10 @@ import { UserContext } from "../../context/UserContext";
 const Profile = () => {
   const { user } = useContext(UserContext);
 
+  if (!user) {
+    return <></>;
+  }
+
   return (
     <>
       <div className="info-container">

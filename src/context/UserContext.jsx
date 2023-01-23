@@ -10,15 +10,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribeAuthListener = () => {
       const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const { email, photoURL, displayName, uid } = user;
-          setUser({
-            userId: uid,
-            name: displayName,
-            email: email,
-            profilePic: photoURL,
-          });
+          await refreshUserFromDatabase(user.uid);
         } else {
           setUser(null);
         }
@@ -30,26 +24,13 @@ export const UserProvider = ({ children }) => {
     };
   }, []);
 
-  const setUserFromDatabase = async (value) => {
-    const userFromDatabase = value
-      ? await getData("/users/" + value.uid)
-      : null;
-    console.log(userFromDatabase);
+  const refreshUserFromDatabase = async (userId) => {
+    const userFromDatabase = await getData("/users/" + userId);
     setUser(userFromDatabase);
-    // sessionStorage.setItem("user", JSON.stringify(userFromDatabase));
-  };
-
-  const updateUser = async (value) => {
-    const userFromDatabase = value
-      ? await getData("/users/" + value.userId)
-      : null;
-    console.log(userFromDatabase);
-    setUser(userFromDatabase);
-    // sessionStorage.setItem("user", JSON.stringify(userFromDatabase));
   };
 
   return (
-    <UserContext.Provider value={{ user, setUserFromDatabase, updateUser }}>
+    <UserContext.Provider value={{ user, refreshUserFromDatabase }}>
       {children}
     </UserContext.Provider>
   );

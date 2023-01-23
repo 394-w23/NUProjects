@@ -1,15 +1,8 @@
-// Create a header component to show the logo and the title of the app.
-//Using React bootstarap
-// Add the following code to the src/components/Header.jsx file:
-import React, { useEffect, useState, useContext } from "react";
-import Button from "react-bootstrap/Button";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown"; // import logo from '../logo.svg';
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Navbar.css";
 import {
   signInWithGoogle,
@@ -33,7 +26,6 @@ export default function NavbarApp() {
       jobsApplied: [],
       jobsSaved: [],
     };
-
     await writeUserData(params);
   };
 
@@ -92,12 +84,8 @@ export default function NavbarApp() {
                   }
                   id="collasible-nav-dropdown"
                 >
-                  <NavDropdown.Item href={`/profile/${user.userId}`}>
-                    Profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Settings
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Settings</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <SignOutButton />
                 </NavDropdown>

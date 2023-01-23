@@ -6,11 +6,10 @@ import { Form, InputGroup, FormControl } from "react-bootstrap";
 import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
 import Alert from "react-bootstrap/Alert";
-import Toast from 'react-bootstrap/Toast';
-import BootstrapSelect from 'react-bootstrap-select-dropdown';
-import {v4 as uuidv4 } from 'uuid';
-import { useAuthState } from '../../utilities/firebase';
-
+import Toast from "react-bootstrap/Toast";
+import BootstrapSelect from "react-bootstrap-select-dropdown";
+import { v4 as uuidv4 } from "uuid";
+import { useAuthState } from "../../utilities/firebase";
 
 const AddModal = ({ show, toggleShow }) => {
   const projectName = useInput("");
@@ -28,6 +27,7 @@ const AddModal = ({ show, toggleShow }) => {
   const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
   const [ShowNegToast, setShowNegToast] = useState(false);
+
   const clearValues = () => {
     projectName.setValue("");
     typeOfProject.setValue("");
@@ -40,10 +40,17 @@ const AddModal = ({ show, toggleShow }) => {
     numberOfPeople.setValue(0);
     setSkillsRequired([" "]);
     setHashTags([" "]);
-  }
+  };
   const handleSubmit = (event) => {
     // check if all form fields required are entered
-    if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value) || (skillsRequired.length == 0) || (hashtags.length == 0)) {
+    if (
+      !projectName.value ||
+      !typeOfProject.value ||
+      !positionName.value ||
+      !description.value ||
+      skillsRequired.length == 0 ||
+      hashtags.length == 0
+    ) {
       setShowToast(true);
       setShowNegToast(false);
     } else if (wage.value < 0 || numberOfPeople.value < 0) {
@@ -69,8 +76,8 @@ const AddModal = ({ show, toggleShow }) => {
         endDate: new Date(),
         typeOfProject: typeOfProject.value,
         user: user.displayName,
-        wage: wage.value
-      }
+        wage: wage.value,
+      };
 
       console.log("SUBMITTED FORM PARAMS: ", Object.values(params));
 
@@ -80,18 +87,18 @@ const AddModal = ({ show, toggleShow }) => {
   };
 
   const closeModal = () => {
-    toggleShow(); 
+    toggleShow();
     setShowToast(false);
     setShowNegToast(false);
-  }
+  };
 
   const handleSkillsChange = (selectedOptions) => {
-    setSkillsRequired(selectedOptions.selectedValue)
-  }
-  
+    setSkillsRequired(selectedOptions.selectedValue);
+  };
+
   const handleTagsChange = (selectedOptions) => {
-    setHashTags(selectedOptions.selectedValue)
-  }
+    setHashTags(selectedOptions.selectedValue);
+  };
 
   return (
     <Modal show={show} onHide={closeModal} className="modal">
@@ -135,7 +142,7 @@ const AddModal = ({ show, toggleShow }) => {
 
           <Form.Group className="mb-3">
             <Form.Label>Application Deadline*</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} requireds/>
+            <Form.Control type="date" onChange={deadline.onChange} requireds />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -180,68 +187,86 @@ const AddModal = ({ show, toggleShow }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-          <Form.Label>Required Skills*</Form.Label>
+            <Form.Label>Required Skills*</Form.Label>
             <br></br>
-            <BootstrapSelect required isMultiSelect showTick showSearch options={[
-            {
-              "labelKey": "htmlcss",
-              "value": "HTML/CSS",
-              "style": {"font-size":"15px"}
-            },
-            {
-              "labelKey": "python",
-              "value": "Python",
-              "style": {"font-size":"15px"}
-            },
-            {
-              "labelKey": "javascript",
-              "value": "JavaScript",
-              "style": {"font-size":"15px"}
-            }
-            ]} onChange={handleSkillsChange}/>
+            <BootstrapSelect
+              required
+              isMultiSelect
+              showTick
+              showSearch
+              options={[
+                {
+                  labelKey: "htmlcss",
+                  value: "HTML/CSS",
+                  style: { "font-size": "15px" },
+                },
+                {
+                  labelKey: "python",
+                  value: "Python",
+                  style: { "font-size": "15px" },
+                },
+                {
+                  labelKey: "javascript",
+                  value: "JavaScript",
+                  style: { "font-size": "15px" },
+                },
+              ]}
+              onChange={handleSkillsChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Tags*</Form.Label>
             <br></br>
-            <BootstrapSelect required isMultiSelect showTick showSearch options={[
-            {
-              "labelKey": "mlai",
-              "value": "#ML/AI",
-              "style": {"font-size":"15px"}
-            },
-            {
-              "labelKey": "webdevelopment",
-              "value": "#WebDevelopment",
-              "style": {"font-size":"15px"}
-            },
-            {
-              "labelKey": "hardware",
-              "value": "#Hardware",
-              "style": {"font-size":"15px"}
-            },
-            ]} onChange={handleTagsChange}/>
+            <BootstrapSelect
+              required
+              isMultiSelect
+              showTick
+              showSearch
+              options={[
+                {
+                  labelKey: "mlai",
+                  value: "#ML/AI",
+                  style: { "font-size": "15px" },
+                },
+                {
+                  labelKey: "webdevelopment",
+                  value: "#WebDevelopment",
+                  style: { "font-size": "15px" },
+                },
+                {
+                  labelKey: "hardware",
+                  value: "#Hardware",
+                  style: { "font-size": "15px" },
+                },
+              ]}
+              onChange={handleTagsChange}
+            />
           </Form.Group>
-
         </Form>
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
-      {showToast ?
+        {showToast ? (
           <Alert>
-              Your form is <b>incomplete</b>. Please fill out all required (*) fields.
+            Your form is <b>incomplete</b>. Please fill out all required (*)
+            fields.
           </Alert>
-          : <div></div>}
-        {ShowNegToast ?
-        <Alert>
-            Your cannot enter a <b>negative</b> wage or number of people. Please enter a value of 0 or greater.
-        </Alert>
-        : <div></div>}
+        ) : (
+          <div></div>
+        )}
+        {ShowNegToast ? (
+          <Alert>
+            Your cannot enter a <b>negative</b> wage or number of people. Please
+            enter a value of 0 or greater.
+          </Alert>
+        ) : (
+          <div></div>
+        )}
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </Modal.Footer>
     </Modal>
-
   );
 };
 
