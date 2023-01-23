@@ -52,19 +52,28 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
-export const useDbUpdate = (path) => {
-  const [result, setResult] = useState();
-  const updateData = useCallback(
-    (value) => {
-      update(ref(database, path), value)
-        .then(() => setResult(makeResult()))
-        .catch((error) => setResult(makeResult(error)));
-    },
-    [database, path]
-  );
+export const useDbUpdate = (updates) => {
+  // const [result, setResult] = useState();
+  // const updateData = useCallback(
+  //   (value) => {
+  //     update(ref(database, path), value)
+  //       .then(() => setResult(makeResult()))
+  //       .catch((error) => setResult(makeResult(error)));
+  //   },
+  //   [database, path]
+  // );
 
-  return [updateData, result];
+  // return [updateData, result];
+  const db = getDatabase();
+  return update(ref(db), updates);
 };
+
+export const getData = async (path) => {
+  const db = getDatabase();
+  const snapshot = await get(ref(db, path))
+  const data = snapshot.val()
+  return data
+}
 
 export const writeJobData = (params) => {
   const db = getDatabase();
@@ -94,8 +103,7 @@ export const writeJobData = (params) => {
 //write a user to the database
 export const writeUserData = async (params) => {
   const db = getDatabase();
-  const userSnapshot = await get(ref(db, "users/"))
-  const userData = userSnapshot.val()
+  const userData = await getData("users/");
 
   for (let user in userData) {
     if (!user.userId) continue;
@@ -108,7 +116,10 @@ export const writeUserData = async (params) => {
     userId: params.userId || "",
     name: params.name || "",
     email: params.email || "",
-    profilePic: params.profilePic || ""
+    profilePic: params.profilePic || "",
+    jobsCreated: params.jobsCreated || [],
+    jobsApplied: params.jobsApplied || [],
+    jobsSaved: params.jobsSaved || []
   });
 }
 
