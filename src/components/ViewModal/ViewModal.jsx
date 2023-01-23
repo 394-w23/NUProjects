@@ -7,14 +7,18 @@ import { UserContext } from "../../context/UserContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark as bookmarkRegular } from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as bookmarkSolid } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useDbUpdate } from "../../utilities/firebase";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
 
   const { user, setUserFromDatabase, updateUser } = useContext(UserContext);
   const [isSaved, setIsSaved] = useState(user && user.jobsSaved ? user.jobsSaved.some((jobId) => jobId === applicationData.jobId) : false);
+  const [hasApplied, setHasApplied] = useState(user && user.jobsApplied ? user.jobsApplied.some((jobId) => jobId === applicationData.jobId) : false);
 
   const saveJob = () => {
+    if (!user) return;
+
     const updates = {};
     let userSavedJobs = user.jobsSaved ? user.jobsSaved : [];
     userSavedJobs.push(applicationData.jobId);
@@ -26,10 +30,11 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
   }
 
   const unsaveJob = () => {
+    if (!user) return;
+
     const updates = {};
     let userSavedJobs = user.jobsSaved ? user.jobsSaved : [];
-    userSavedJobs = userSavedJobs.filter((jobId) => {console.log(jobId); jobId !== applicationData.jobId});
-    console.log(userSavedJobs)
+    userSavedJobs = userSavedJobs.filter((jobId) => jobId !== applicationData.jobId);
     updates['users/' + user.userId + '/jobsSaved'] = userSavedJobs;
     useDbUpdate(updates);
     updateUser(user);
@@ -38,6 +43,16 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
   }
 
   const applyToJob = () => {
+    if (!user) return;
+
+    const updates = {};
+    let userAppliedJobs = user.jobsApplied ? user.jobsApplied : [];
+    userAppliedJobs.push(applicationData.jobId);
+    updates['users/' + user.userId + '/jobsApplied'] = userAppliedJobs;
+    useDbUpdate(updates);
+    updateUser(user);
+
+    setHasApplied(!hasApplied);
 
   }
 
@@ -45,12 +60,13 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
     <Modal show={show} onHide={toggleShow} className="modal">
       <Modal.Header className="modal_header" closeButton>
         <Modal.Title>
-          {applicationData.projectName}
           {isSaved ? 
             <FontAwesomeIcon icon={bookmarkSolid} onClick={unsaveJob}/>
             :
             <FontAwesomeIcon icon={bookmarkRegular} onClick={saveJob}/>
           }
+          &nbsp;
+          {applicationData.projectName}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
@@ -109,6 +125,25 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         <p>
           <b>Contact Info:</b> <a href={"mailto:"+applicationData.contactInfo}>{applicationData.contactInfo}</a>
         </p>
+        { hasApplied ?    
+          <Button
+            variant="secondary"
+            onClick={toggleShow}
+            disabled={true}
+          >
+            Applied <FontAwesomeIcon icon={faCheck} />
+          </Button>
+          :
+          <Button
+            style={{
+              backgroundColor: "blueviolet",
+              border: "none",
+            }}
+            onClick={applyToJob}
+          >
+            Apply
+          </Button>
+      }
         <Button
           style={{
             backgroundColor: "blueviolet",

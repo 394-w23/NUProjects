@@ -8,7 +8,6 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(sessionSt ? sessionSt : null);
 
   const setUserFromDatabase = async (value) => {
-    console.log(value)
     const userFromDatabase = value ? await getData("/users/" + value.uid) : null
     console.log(userFromDatabase)
     setUser(userFromDatabase)
@@ -16,7 +15,6 @@ export const UserProvider = ({ children }) => {
   }
 
   const updateUser = async (value) => {
-    console.log(value)
     const userFromDatabase = value ? await getData("/users/" + value.userId) : null
     console.log(userFromDatabase)
     setUser(userFromDatabase)
