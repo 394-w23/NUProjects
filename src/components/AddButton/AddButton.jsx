@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import AddModal from '../AddModal/AddModal';
+import React, { useState, useContext } from "react";
+import {} from "react";
+import Button from "react-bootstrap/Button";
+import { UserContext } from "../../context/UserContext";
+import AddModal from "../AddModal/AddModal";
 import "./AddButton.css";
-import { useAuthState } from '../../utilities/firebase';
 
 export default function AddButtonApp() {
-    const [showAddModal, setShowAddModal] = useState(false);
-    const toggleShowAddModal = () => setShowAddModal(!showAddModal);
-    const [user] = useAuthState();
-    useEffect(() => {
-        if (user) {
-          document.querySelector("#post_button").disabled = false;
-        } else {
-          document.querySelector("#post_button").disabled = true;
-        }
-    }, [user]);
-    
-    return (
-        <>
-          <Button id="post_button" className="add-button" onClick={toggleShowAddModal}>Add New Position Listing</Button>
-          <AddModal show={showAddModal} toggleShow={toggleShowAddModal}></AddModal>
-        </>
-    );
+  const [showAddModal, setShowAddModal] = useState(false);
+  const toggleShowAddModal = () => setShowAddModal(!showAddModal);
+  const { user } = useContext(UserContext);
+
+  return (
+    <React.Fragment>
+      <Button
+        id="post_button"
+        className="add-button"
+        disabled={user ? false : true}
+        onClick={toggleShowAddModal}
+      >
+        Add New Position Listing
+      </Button>
+      <AddModal show={showAddModal} toggleShow={toggleShowAddModal}></AddModal>
+    </React.Fragment>
+  );
 }
