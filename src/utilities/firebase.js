@@ -1,20 +1,21 @@
 // Import the functions you need from the SDKs you need
 import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update, set } from "firebase/database";
+import { getDatabase, onValue, ref, update, set, get } from "firebase/database";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
+  apiKey: "AIzaSyABFVW-AgGP6OrHMrHnYSBD4dWv19fMjFY",
+  authDomain: "nuprojects-37022.firebaseapp.com",
   databaseURL: "https://nuprojects-37022-default-rtdb.firebaseio.com",
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId,
-  appId: process.env.appId,
+  projectId: "nuprojects-37022",
+  storageBucket: "nuprojects-37022.appspot.com",
+  messagingSenderId: "895929247438",
+  appId: "1:895929247438:web:651215d43228c05bef929f",
 };
 
 // Initialize Firebase
@@ -51,19 +52,28 @@ const makeResult = (error) => {
   return { timestamp, error, message };
 };
 
-export const useDbUpdate = (path) => {
-  const [result, setResult] = useState();
-  const updateData = useCallback(
-    (value) => {
-      update(ref(database, path), value)
-        .then(() => setResult(makeResult()))
-        .catch((error) => setResult(makeResult(error)));
-    },
-    [database, path]
-  );
+export const useDbUpdate = (updates) => {
+  // const [result, setResult] = useState();
+  // const updateData = useCallback(
+  //   (value) => {
+  //     update(ref(database, path), value)
+  //       .then(() => setResult(makeResult()))
+  //       .catch((error) => setResult(makeResult(error)));
+  //   },
+  //   [database, path]
+  // );
 
-  return [updateData, result];
+  // return [updateData, result];
+  const db = getDatabase();
+  return update(ref(db), updates);
 };
+
+export const getData = async (path) => {
+  const db = getDatabase();
+  const snapshot = await get(ref(db, path))
+  const data = snapshot.val()
+  return data
+}
 
 export const writeJobData = (params) => {
   const db = getDatabase();
@@ -93,11 +103,45 @@ export const writeJobData = (params) => {
 
 
 //write a user to the database
-function writeUserData(userId, name, email, imageUrl) {
+export const writeUserData = async (params) => {
   const db = getDatabase();
-  set(ref(db, "users/" + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl,
+  const userData = await getData("users/");
+
+  for (let user in userData) {
+    if (!user.userId) continue;
+    if (user.userId === params.userId) {
+      return;
+    }
+  }
+
+  set(ref(db, "users/" + params.userId), {
+    userId: params.userId || "",
+    name: params.name || "",
+    email: params.email || "",
+    profilePic: params.profilePic || "",
+    jobsCreated: params.jobsCreated || [],
+    jobsApplied: params.jobsApplied || [],
+    jobsSaved: params.jobsSaved || []
   });
 }
+
+// Google Authentication Hook
+export const signInWithGoogle = async () => {
+  const res = await signInWithPopup(getAuth(app), new GoogleAuthProvider());
+  return res.user;
+};
+
+const firebaseSignOut = () => signOut(getAuth(app));
+
+export { firebaseSignOut as signOut };
+
+export const useAuthState = () => {
+  const [user, setUser] = useState();
+  useEffect(() => (
+    onAuthStateChanged(getAuth(app), setUser)
+  ), []);
+
+
+
+  return [user];
+};

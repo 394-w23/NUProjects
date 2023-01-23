@@ -12,10 +12,6 @@ export default function CardApp({ data }) {
     return <li key={i}>{hashtag}</li>;
   });
 
-  useEffect(() => {
-    console.log(data);
-  }, []);
-
   return (
     <>
       <Card className="job-card">
