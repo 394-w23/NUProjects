@@ -1,34 +1,57 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "./ViewModal.css";
 import { Row, Col } from "react-bootstrap";
+import { UserContext } from "../../context/UserContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark as bookmarkRegular } from '@fortawesome/free-regular-svg-icons'
+import { faBookmark as bookmarkSolid } from '@fortawesome/free-solid-svg-icons'
+import { useDbUpdate } from "../../utilities/firebase";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
-  // applicationData = {
-  //   "projectName": "NAME",
-  //   "typeOfProject": "Personal Project",
-  //   "hashtags": ["ML", "AI", "Web Dev"],
-  //   "positionName": "FrontEnd Developer",
-  //   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum",
-  //   "wage": 10,
-  //   "deadline": "DEADLINE",
-  //   "datePosted": "POSTED DATE",
-  //   "user": "USER",
-  //   "contactInfo": "sengdao@boss.com",
-  //   "timeline": "TIMELINE",
-  //   "numberOfPeople": 5,
-  //   "skillsRequired": ["Python", "Flask", "HTML"]
-  // }
 
-  //   const [show, setShow] = useState(false)
-  //   const handleClose = () => setShow(false)
-  //   const handleShow = () => setShow(true)
+  const { user, setUserFromDatabase, updateUser } = useContext(UserContext);
+  const [isSaved, setIsSaved] = useState(user && user.jobsSaved ? user.jobsSaved.some((jobId) => jobId === applicationData.jobId) : false);
+
+  const saveJob = () => {
+    const updates = {};
+    let userSavedJobs = user.jobsSaved ? user.jobsSaved : [];
+    userSavedJobs.push(applicationData.jobId);
+    updates['users/' + user.userId + '/jobsSaved'] = userSavedJobs;
+    useDbUpdate(updates);
+    updateUser(user);
+
+    setIsSaved(!isSaved);
+  }
+
+  const unsaveJob = () => {
+    const updates = {};
+    let userSavedJobs = user.jobsSaved ? user.jobsSaved : [];
+    userSavedJobs = userSavedJobs.filter((jobId) => {console.log(jobId); jobId !== applicationData.jobId});
+    console.log(userSavedJobs)
+    updates['users/' + user.userId + '/jobsSaved'] = userSavedJobs;
+    useDbUpdate(updates);
+    updateUser(user);
+
+    setIsSaved(!isSaved);
+  }
+
+  const applyToJob = () => {
+
+  }
 
   return (
     <Modal show={show} onHide={toggleShow} className="modal">
       <Modal.Header className="modal_header" closeButton>
-        <Modal.Title>{applicationData.projectName}</Modal.Title>
+        <Modal.Title>
+          {applicationData.projectName}
+          {isSaved ? 
+            <FontAwesomeIcon icon={bookmarkSolid} onClick={unsaveJob}/>
+            :
+            <FontAwesomeIcon icon={bookmarkRegular} onClick={saveJob}/>
+          }
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
         <h5>Details</h5>

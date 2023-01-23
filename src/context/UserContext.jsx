@@ -12,11 +12,19 @@ export const UserProvider = ({ children }) => {
     const userFromDatabase = value ? await getData("/users/" + value.uid) : null
     console.log(userFromDatabase)
     setUser(userFromDatabase)
-    sessionSt.setItem("user", JSON.stringify(userFromDatabase))
+    sessionStorage.setItem("user", JSON.stringify(userFromDatabase))
+  }
+
+  const updateUser = async (value) => {
+    console.log(value)
+    const userFromDatabase = value ? await getData("/users/" + value.userId) : null
+    console.log(userFromDatabase)
+    setUser(userFromDatabase)
+    sessionStorage.setItem("user", JSON.stringify(userFromDatabase))
   }
 
   return (
-    <UserContext.Provider value={{ user, setUserFromDatabase }}>
+    <UserContext.Provider value={{ user, setUserFromDatabase, updateUser }}>
         {children}
     </UserContext.Provider>
   )

@@ -14,11 +14,10 @@ import "./Navbar.css";
 import { signInWithGoogle, signOut, useAuthState, writeUserData } from '../../utilities/firebase';
 import Image from 'react-bootstrap/Image'
 import { UserContext } from "../../context/UserContext";
-import { getData } from "../../utilities/firebase";
 
 export default function NavbarApp() {
   // const [user] = useAuthState();
-  const {user, setUserFromDatabase} = useContext(UserContext)    // setUser = setUserFromDatabase
+  const {user, setUserFromDatabase} = useContext(UserContext)
   console.log("USER: ", user);
 
   const handleSignUp = async () => {
@@ -33,18 +32,18 @@ export default function NavbarApp() {
       jobsSaved: []
     }
     
-    writeUserData(params);
-    setUserFromDatabase(user)
+    await writeUserData(params);
+    await setUserFromDatabase(user);
   }
 
   const handleSignIn = async () => {
     const user = await signInWithGoogle();
-    setUserFromDatabase(user);
+    await setUserFromDatabase(user);
   }
 
   const handleSignOut = async () => {
     signOut();
-    setUserFromDatabase(null);
+    await setUserFromDatabase(null);
   }
   
   const SignUpButton = () => (
@@ -76,7 +75,6 @@ export default function NavbarApp() {
             <Nav.Link href="/">Home</Nav.Link>
             </Nav>
 
-            {/* Add Profile */}
             <Nav>
               {!user && 
                 <div className="auth-buttons">
