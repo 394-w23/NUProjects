@@ -57,7 +57,7 @@ export default function CardPageApp() {
     }
 
     setFilteredJobs(filteredJobs.sort(sortComparator));
-  }, [data, search, sortComparator]);
+  }, [data, search, sortComparator, filters]);
 
   const handleFiltersChange = (selectedOptions) => {
     setFilters(selectedOptions.selectedValue);
