@@ -2,7 +2,13 @@
 import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update, set, get } from "firebase/database";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,7 +25,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
 const database = getDatabase(app);
@@ -70,17 +76,17 @@ export const useDbUpdate = (updates) => {
 
 export const getData = async (path) => {
   const db = getDatabase();
-  const snapshot = await get(ref(db, path))
-  const data = snapshot.val()
-  return data
-}
+  const snapshot = await get(ref(db, path));
+  const data = snapshot.val();
+  return data;
+};
 
 export const writeJobData = (params) => {
   const db = getDatabase();
   set(ref(db, "jobs/" + params.jobId), {
     // default empty if no value passed
     contactInfo: params.contactInfo || "",
-    datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
+    datePosted: new Date().toJSON().slice(0, 10).replace(/-/g, "-"),
     dateToSubmit: params.dateToSubmit || "",
     projectStartDate: params.projectStartDate || "",
     projectEndDate: params.projectEndDate || "",
@@ -97,10 +103,9 @@ export const writeJobData = (params) => {
     wage: params.wage || "",
     jobId: params.jobId || "",
   });
-}
+};
 
 //write a test to the database
-
 
 //write a user to the database
 export const writeUserData = async (params) => {
@@ -121,9 +126,9 @@ export const writeUserData = async (params) => {
     profilePic: params.profilePic || "",
     jobsCreated: params.jobsCreated || [],
     jobsApplied: params.jobsApplied || [],
-    jobsSaved: params.jobsSaved || []
+    jobsSaved: params.jobsSaved || [],
   });
-}
+};
 
 // Google Authentication Hook
 export const signInWithGoogle = async () => {
@@ -137,11 +142,7 @@ export { firebaseSignOut as signOut };
 
 export const useAuthState = () => {
   const [user, setUser] = useState();
-  useEffect(() => (
-    onAuthStateChanged(getAuth(app), setUser)
-  ), []);
-
-
+  useEffect(() => onAuthStateChanged(getAuth(app), setUser), []);
 
   return [user];
 };
