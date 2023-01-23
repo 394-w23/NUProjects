@@ -35,7 +35,6 @@ export default function CardPageApp() {
     if (!data) {
       return;
     }
-
     let filteredJobs = Object.values(data.jobs).filter((job) => {
       return (
         job.positionName.toLowerCase().includes(search.toLowerCase()) ||

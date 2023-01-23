@@ -82,6 +82,8 @@ export const writeJobData = (params) => {
     contactInfo: params.contactInfo || "",
     datePosted: new Date().toJSON().slice(0,10).replace(/-/g,'-'),
     dateToSubmit: params.dateToSubmit || "",
+    projectStartDate: params.projectStartDate || "",
+    projectEndDate: params.projectEndDate || "",
     description: params.description || "",
     hashtags: params.hashtags || [""],
     numberOfPeople: params.numberOfPeople || "",

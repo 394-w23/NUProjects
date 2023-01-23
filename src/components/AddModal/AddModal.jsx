@@ -19,13 +19,15 @@ const AddModal = ({ show, toggleShow }) => {
   const description = useInput("");
   const wage = useInput(0);
   const deadline = useInput("");
+  const startDate = useInput("");
+  const endDate = useInput("");
   const numberOfPeople = useInput(0);
 
   const [user] = useAuthState();
   const [skillsRequired, setSkillsRequired] = useState([""]);
   const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
-  const [showWageToast, setShowWageToast] = useState(false);
+  const [ShowNegToast, setShowNegToast] = useState(false);
   const clearValues = () => {
     projectName.setValue("");
     typeOfProject.setValue("");
@@ -33,6 +35,8 @@ const AddModal = ({ show, toggleShow }) => {
     description.setValue("");
     wage.setValue(0);
     deadline.setValue("");
+    startDate.setValue("");
+    endDate.setValue("");
     numberOfPeople.setValue(0);
     setSkillsRequired([" "]);
     setHashTags([" "]);
@@ -41,9 +45,9 @@ const AddModal = ({ show, toggleShow }) => {
     // check if all form fields required are entered
     if ((!projectName.value) || (!typeOfProject.value) || (!positionName.value) || (!description.value) || (skillsRequired.length == 0) || (hashtags.length == 0)) {
       setShowToast(true);
-      setShowWageToast(false);
-    } else if (wage.value < 0) {
-      setShowWageToast(true);
+      setShowNegToast(false);
+    } else if (wage.value < 0 || numberOfPeople.value < 0) {
+      setShowNegToast(true);
       setShowToast(false);
     } else {
       closeModal();
@@ -52,6 +56,8 @@ const AddModal = ({ show, toggleShow }) => {
         jobId: uuidv4(),
         contactInfo: user.email,
         dateToSubmit: deadline.value,
+        projectStartDate: startDate.value,
+        projectEndDate: endDate.value,
         datePosted: new Date(),
         description: description.value,
         hashtags: hashtags,
@@ -76,7 +82,7 @@ const AddModal = ({ show, toggleShow }) => {
   const closeModal = () => {
     toggleShow(); 
     setShowToast(false);
-    setShowWageToast(false);
+    setShowNegToast(false);
   }
 
   const handleSkillsChange = (selectedOptions) => {
@@ -128,17 +134,28 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Application Deadline</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} min={0} />
+            <Form.Label>Application Deadline*</Form.Label>
+            <Form.Control type="date" onChange={deadline.onChange} requireds/>
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Number of People</Form.Label>
+            <Form.Label>Project Start Date</Form.Label>
+            <Form.Control type="date" onChange={startDate.onChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Project End Date</Form.Label>
+            <Form.Control type="date" onChange={endDate.onChange} />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Number of People*</Form.Label>
             <Form.Control
               type="number"
               value={numberOfPeople.value}
               onChange={numberOfPeople.onChange}
               min={0}
+              required
             />
           </Form.Group>
 
@@ -214,9 +231,9 @@ const AddModal = ({ show, toggleShow }) => {
               Your form is <b>incomplete</b>. Please fill out all required (*) fields.
           </Alert>
           : <div></div>}
-        {showWageToast ?
+        {ShowNegToast ?
         <Alert>
-            Your cannot enter a <b>negative</b> wage. Please enter a wage value of 0 or greater.
+            Your cannot enter a <b>negative</b> wage or number of people. Please enter a value of 0 or greater.
         </Alert>
         : <div></div>}
         <Button variant="primary" type="submit" onClick={handleSubmit}>

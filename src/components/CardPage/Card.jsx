@@ -15,7 +15,7 @@ export default function CardApp({ data }) {
   return (
     <>
       <Card className="job-card">
-        <Card.Header>{data.projectName}</Card.Header>
+        <Card.Header><b>{data.projectName}</b>  |  {data.numberOfPeople} members</Card.Header>
         <Card.Body>
           <Card.Title>{data.positionName}</Card.Title>
           <Card.Text>{data.description}</Card.Text>
@@ -25,7 +25,7 @@ export default function CardApp({ data }) {
           </Button>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Date posted: {data.datePosted}
+          Date posted: {data.datePosted} | Deadline: {data.dateToSubmit}
         </Card.Footer>
       </Card>
       <ViewModal applicationData={data} show={showViewModal} toggleShow={toggleShowViewModal} />
