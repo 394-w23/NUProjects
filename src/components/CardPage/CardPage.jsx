@@ -61,8 +61,6 @@ export default function CardPageApp() {
     }
 
     setFilteredJobs(filteredJobs.sort(sortComparator));
-
-    console.log(filteredJobs);
   }, [data, search, sortComparator, filters]);
 
   const handleFiltersChange = (selectedOptions) => {

@@ -1,5 +1,9 @@
 import React, { useEffect, useState, createContext } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  getAdditionalUserInfo,
+} from "firebase/auth";
 import { getData } from "../utilities/firebase";
 
 export const UserContext = createContext();
@@ -26,7 +30,8 @@ export const UserProvider = ({ children }) => {
 
   const setUserFromDatabase = async (userId) => {
     const userFromDatabase = await getData("/users/" + userId);
-    setUser(userFromDatabase);
+    console.log(userFromDatabase);
+    setUser({ ...userFromDatabase });
   };
 
   return (
