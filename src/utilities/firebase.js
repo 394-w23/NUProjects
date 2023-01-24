@@ -86,8 +86,6 @@ export const writeJobData = (params) => {
     positionName: params.positionName || "",
     projectName: params.projectName || "",
     skillsRequired: params.skillsRequired || [""],
-    startDate: params.startDate || "",
-    endDate: params.endDate || "",
     typeOfProject: params.typeOfProject || "",
     user: params.user || "",
     wage: params.wage || "",

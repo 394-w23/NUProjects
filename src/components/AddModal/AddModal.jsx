@@ -72,8 +72,6 @@ const AddModal = ({ show, toggleShow }) => {
         positionName: positionName.value,
         projectName: projectName.value,
         skillsRequired: skillsRequired,
-        startDate: new Date(),
-        endDate: new Date(),
         typeOfProject: typeOfProject.value,
         user: user.displayName,
         wage: wage.value,

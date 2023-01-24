@@ -21,17 +21,7 @@ export default function CardPageApp() {
       if (!a || !b) {
         return 0;
       }
-
-      const aDate = new Date(a[sortKey]);
-      const bDate = new Date(b[sortKey]);
-
-      if (aDate < bDate) {
-        return 1;
-      }
-      if (aDate > bDate) {
-        return -1;
-      }
-      return 0;
+      return new Date(a[sortKey]) - new Date(b[sortKey]);
     },
     [sortKey]
   );
@@ -89,8 +79,8 @@ export default function CardPageApp() {
                 <option value="datePosted" defaultChecked>
                   Sort by date posted
                 </option>
-                <option value="startDate">Sort by start date</option>
-                <option value="endDate">Sort by end date</option>
+                <option value="projectStartDate">Sort by start date</option>
+                <option value="projectEndDate">Sort by end date</option>
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md={2}>
