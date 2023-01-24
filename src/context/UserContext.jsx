@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
       const auth = getAuth();
       onAuthStateChanged(auth, async (user) => {
         if (user) {
-          await refreshUserFromDatabase(user.uid);
+          await setUserFromDatabase(user.uid);
         } else {
           setUser(null);
         }
@@ -24,13 +24,13 @@ export const UserProvider = ({ children }) => {
     };
   }, []);
 
-  const refreshUserFromDatabase = async (userId) => {
+  const setUserFromDatabase = async (userId) => {
     const userFromDatabase = await getData("/users/" + userId);
     setUser(userFromDatabase);
   };
 
   return (
-    <UserContext.Provider value={{ user, refreshUserFromDatabase }}>
+    <UserContext.Provider value={{ user, setUserFromDatabase }}>
       {children}
     </UserContext.Provider>
   );

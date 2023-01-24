@@ -11,7 +11,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { updateDatabase } from "../../utilities/firebase";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
-  const { user, refreshUserFromDatabase } = useContext(UserContext);
+  const { user, setUserFromDatabase } = useContext(UserContext);
   const [isSaved, setIsSaved] = useState(
     user && user.jobsSaved
       ? user.jobsSaved.some((jobId) => jobId === applicationData.jobId)
@@ -31,7 +31,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
     userSavedJobs.push(applicationData.jobId);
     updates["users/" + user.userId + "/jobsSaved"] = userSavedJobs;
     updateDatabase(updates);
-    refreshUserFromDatabase(user.userId);
+    setUserFromDatabase(user.userId);
 
     setIsSaved(!isSaved);
   };
@@ -46,7 +46,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
     );
     updates["users/" + user.userId + "/jobsSaved"] = userSavedJobs;
     updateDatabase(updates);
-    refreshUserFromDatabase(user.userId);
+    setUserFromDatabase(user.userId);
 
     setIsSaved(!isSaved);
   };
@@ -59,7 +59,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
     userAppliedJobs.push(applicationData.jobId);
     updates["users/" + user.userId + "/jobsApplied"] = userAppliedJobs;
     updateDatabase(updates);
-    refreshUserFromDatabase(user.userId);
+    setUserFromDatabase(user.userId);
 
     setHasApplied(!hasApplied);
   };
