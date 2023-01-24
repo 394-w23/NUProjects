@@ -6,6 +6,7 @@ import BootstrapSelect from "react-bootstrap-select-dropdown";
 import "./CardPage.css";
 import "./Card.css";
 import { Row, Col } from "react-bootstrap";
+import AddButton from "../AddButton/AddButton";
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
@@ -130,6 +131,7 @@ export default function CardPageApp() {
   return (
     <div className="card-page">
       {search_comp()}
+      <AddButton />
       {filteredJobs.map((job, key) => (
         <CardApp key={key} data={job} />
       ))}
