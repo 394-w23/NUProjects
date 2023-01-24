@@ -1,12 +1,12 @@
 .add-button {
-    background-color: blueviolet;
-    border: none;
-    color: white;
-    width: 95%;
-    margin-top: 20px;
+  background-color: blueviolet;
+  border: none;
+  color: white;
+  width: 100%;
 }
 
-.add-button:hover, .add-button:focus {
-    background-color: blueviolet;
-    filter: brightness(85%);
+.add-button:hover,
+.add-button:focus {
+  background-color: blueviolet;
+  filter: brightness(85%);
 }

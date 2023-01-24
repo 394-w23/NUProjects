@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import BootstrapSelect from "react-bootstrap-select-dropdown";
 import "./CardPage.css";
 import "./Card.css";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import AddButton from "../AddButton/AddButton";
 
 export default function CardPageApp() {
@@ -67,7 +67,7 @@ export default function CardPageApp() {
     setSortKey(event.target.value);
   };
 
-  const search_comp = () => {
+  const renderSearchArea = () => {
     return (
       <div className="search-area">
         <Form className="d-flex" onSubmit={(event) => event.preventDefault()}>
@@ -129,12 +129,14 @@ export default function CardPageApp() {
   };
 
   return (
-    <div className="card-page">
-      {search_comp()}
+    <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
+      {renderSearchArea()}
       <AddButton />
-      {filteredJobs.map((job, key) => (
-        <CardApp key={key} data={job} />
-      ))}
-    </div>
+      <div className="d-flex flex-column gap-3">
+        {filteredJobs.map((job, key) => (
+          <CardApp key={key} data={job} />
+        ))}
+      </div>
+    </Container>
   );
 }
