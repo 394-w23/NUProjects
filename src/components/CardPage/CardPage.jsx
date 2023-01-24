@@ -21,10 +21,14 @@ export default function CardPageApp() {
       if (!a || !b) {
         return 0;
       }
-      if (a[sortKey] < b[sortKey]) {
+
+      const aDate = new Date(a[sortKey]);
+      const bDate = new Date(b[sortKey]);
+
+      if (aDate < bDate) {
         return 1;
       }
-      if (a[sortKey] > b[sortKey]) {
+      if (aDate > bDate) {
         return -1;
       }
       return 0;
@@ -57,6 +61,8 @@ export default function CardPageApp() {
     }
 
     setFilteredJobs(filteredJobs.sort(sortComparator));
+
+    console.log(filteredJobs);
   }, [data, search, sortComparator, filters]);
 
   const handleFiltersChange = (selectedOptions) => {
