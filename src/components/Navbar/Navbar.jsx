@@ -4,42 +4,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Navbar.css";
-import {
-  signInWithGoogle,
-  signOut,
-  writeUserData,
-} from "../../utilities/firebase";
+import { signInWithGoogle, signOut } from "../../utilities/firebase";
 import Image from "react-bootstrap/Image";
 import { UserContext } from "../../context/UserContext";
 
 export default function NavbarApp() {
-  const { user } = useContext(UserContext);
-
-  const handleSignUp = async () => {
-    const user = await signInWithGoogle();
-    const params = {
-      userId: user.uid,
-      name: user.displayName,
-      email: user.email,
-      profilePic: user.photoURL,
-      jobsCreated: [],
-      jobsApplied: [],
-      jobsSaved: [],
-    };
-    await writeUserData(params);
-  };
+  const { user, setUserFromDatabase } = useContext(UserContext);
 
   const handleSignIn = async () => {
-    await signInWithGoogle();
+    const user = await signInWithGoogle();
+    await setUserFromDatabase(user.uid);
   };
 
   const handleSignOut = async () => {
-    signOut();
+    await signOut();
   };
-
-  const SignUpButton = () => (
-    <Nav.Link onClick={handleSignUp}>Sign Up</Nav.Link>
-  );
 
   const SignInButton = () => (
     <Nav.Link onClick={handleSignIn}>Sign in</Nav.Link>
@@ -49,7 +28,9 @@ export default function NavbarApp() {
     <NavDropdown.Item onClick={handleSignOut}>Sign out</NavDropdown.Item>
   );
 
-  const activation = ({ isActive }) => (isActive ? "active" : "inactive");
+  // const activation = ({ isActive }) => (isActive ? "active" : "inactive");
+
+  console.log("Navbar - render");
 
   return (
     <div>
@@ -69,7 +50,6 @@ export default function NavbarApp() {
               {!user && (
                 <div className="auth-buttons">
                   <SignInButton />
-                  <SignUpButton />
                 </div>
               )}
               {user && (

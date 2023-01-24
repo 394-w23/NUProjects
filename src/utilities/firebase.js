@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update, set, get } from "firebase/database";
 import {
+  getAdditionalUserInfo,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -121,8 +122,25 @@ export const writeUserData = async (params) => {
 
 // Google Authentication Hook
 export const signInWithGoogle = async () => {
-  const res = await signInWithPopup(getAuth(app), new GoogleAuthProvider());
-  return res.user;
+  const userCredentials = await signInWithPopup(
+    getAuth(app),
+    new GoogleAuthProvider()
+  );
+  const additionalInfo = getAdditionalUserInfo(userCredentials);
+  const user = userCredentials.user;
+  if (additionalInfo && additionalInfo.isNewUser) {
+    const params = {
+      userId: user.uid,
+      name: user.displayName,
+      email: user.email,
+      profilePic: user.photoURL,
+      jobsCreated: [],
+      jobsApplied: [],
+      jobsSaved: [],
+    };
+    await writeUserData(params);
+  }
+  return user;
 };
 
 const firebaseSignOut = () => signOut(getAuth(app));
