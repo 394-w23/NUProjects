@@ -1,20 +1,14 @@
 .search-button {
-    background-color: blueviolet;
-    border: none;
-    color: white;
+  background-color: blueviolet;
+  border: none;
+  color: white;
 }
 
 .filter-button {
-    margin-left: 5px;
-}
-
-.search-area {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 20px;
+  margin-left: 5px;
 }
 
 .auth-buttons {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }

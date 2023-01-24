@@ -1,29 +1,37 @@
-import React, {useState, createContext} from 'react'
-import { getData } from '../utilities/firebase';
+import React, { useEffect, useState, createContext } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getData } from "../utilities/firebase";
 
-export const UserContext = createContext(null);
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const sessionSt = JSON.parse(sessionStorage.getItem("user"));
-  const [user, setUser] = useState(sessionSt ? sessionSt : null);
+  const [user, setUser] = useState(null);
 
-  const setUserFromDatabase = async (value) => {
-    const userFromDatabase = value ? await getData("/users/" + value.uid) : null
-    console.log(userFromDatabase)
-    setUser(userFromDatabase)
-    sessionStorage.setItem("user", JSON.stringify(userFromDatabase))
-  }
+  useEffect(() => {
+    const unsubscribeAuthListener = () => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          await setUserFromDatabase(user.uid);
+        } else {
+          setUser(null);
+        }
+      });
+    };
 
-  const updateUser = async (value) => {
-    const userFromDatabase = value ? await getData("/users/" + value.userId) : null
-    console.log(userFromDatabase)
-    setUser(userFromDatabase)
-    sessionStorage.setItem("user", JSON.stringify(userFromDatabase))
-  }
+    return () => {
+      unsubscribeAuthListener();
+    };
+  }, []);
+
+  const setUserFromDatabase = async (userId) => {
+    const userFromDatabase = await getData("/users/" + userId);
+    setUser(userFromDatabase);
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUserFromDatabase, updateUser }}>
-        {children}
+    <UserContext.Provider value={{ user, setUserFromDatabase }}>
+      {children}
     </UserContext.Provider>
-  )
-}
+  );
+};

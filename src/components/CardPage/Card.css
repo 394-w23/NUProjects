@@ -1,34 +1,35 @@
 .job-card {
-    margin-left: 2.5%;
+  /* margin-left: 2.5%;
     margin-right: 2.5%;
     margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: left;
+    margin-bottom: 15px; */
+  text-align: left;
 }
 
 .selectOptions {
-    font-size: small;
-    color: aqua;
+  font-size: small;
+  color: aqua;
 }
 
 .job-card Button {
-    background-color: blueviolet ;
-    border: none;
-    margin-top: 10px;
+  background-color: blueviolet;
+  border: none;
+  margin-top: 10px;
 }
 
-.job-card Button:hover, .job-card Button:focus {
-    background-color: blueviolet;
-    filter: brightness(85%);
+.job-card Button:hover,
+.job-card Button:focus {
+  background-color: blueviolet;
+  filter: brightness(85%);
 }
 
 .hashtags {
-    list-style-type: none;
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-    display: flex;
+  list-style-type: none;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+  display: flex;
 }
 
 .hashtags li {
-    padding-right: 7.5px;
+  padding-right: 7.5px;
 }

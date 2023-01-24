@@ -1,11 +1,13 @@
+.card-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .search-area form .row {
   width: 100%;
   margin: 0;
 }
-
-/* .search-area form .row div[class^="col-"] {
-  padding: 0
-} */
 
 .search-area .filter-multi-select {
   width: 100% !important;
