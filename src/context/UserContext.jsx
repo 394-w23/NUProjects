@@ -1,9 +1,11 @@
-import React, { useEffect, useState, createContext } from "react";
-import {
-  getAuth,
-  onAuthStateChanged,
-  getAdditionalUserInfo,
-} from "firebase/auth";
+import React, {
+  useEffect,
+  useMemo,
+  useContext,
+  useState,
+  createContext,
+} from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getData } from "../utilities/firebase";
 
 export const UserContext = createContext();
@@ -34,9 +36,17 @@ export const UserProvider = ({ children }) => {
     setUser({ ...userFromDatabase });
   };
 
-  return (
-    <UserContext.Provider value={{ user, setUserFromDatabase }}>
-      {children}
-    </UserContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      setUserFromDatabase,
+    }),
+    [user]
   );
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+};
+
+export const useAuth = () => {
+  return useContext(UserContext);
 };

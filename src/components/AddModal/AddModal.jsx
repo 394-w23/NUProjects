@@ -9,9 +9,11 @@ import Alert from "react-bootstrap/Alert";
 import Toast from "react-bootstrap/Toast";
 import BootstrapSelect from "react-bootstrap-select-dropdown";
 import { v4 as uuidv4 } from "uuid";
-import { useAuthState } from "../../utilities/firebase";
+import { useAuth } from "../../context/UserContext";
 
 const AddModal = ({ show, toggleShow }) => {
+  const { user } = useAuth();
+
   const projectName = useInput("");
   const typeOfProject = useInput("");
   const positionName = useInput("");
@@ -22,7 +24,6 @@ const AddModal = ({ show, toggleShow }) => {
   const endDate = useInput("");
   const numberOfPeople = useInput(0);
 
-  const [user] = useAuthState();
   const [skillsRequired, setSkillsRequired] = useState([""]);
   const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
@@ -196,7 +197,7 @@ const AddModal = ({ show, toggleShow }) => {
                 {
                   labelKey: "agile",
                   value: "Agile",
-                  style: { fontSize: "15px" },                              
+                  style: { fontSize: "15px" },
                 },
                 {
                   labelKey: "aws",
