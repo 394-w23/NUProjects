@@ -120,9 +120,8 @@ const AddModal = ({ show, toggleShow }) => {
               required
             >
               <option value="">Select a type of project</option>
-              <option value="Personal">Personal</option>
-              <option value="Research">Research</option>
-              <option value="Job">Job</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
             </Form.Select>
           </Form.Group>
 
@@ -182,7 +181,7 @@ const AddModal = ({ show, toggleShow }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Required Skills*</Form.Label>
+            <Form.Label>Skills*</Form.Label>
             <br></br>
             <BootstrapSelect
               required
@@ -271,7 +270,7 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Tags*</Form.Label>
+            <Form.Label>Hashtags*</Form.Label>
             <br></br>
             <BootstrapSelect
               required
