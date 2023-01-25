@@ -91,10 +91,53 @@ export default function CardPageApp() {
                 showSearch
                 placeholder="Filter by skills"
                 selectStyle="btn btn-primary"
+                // add options of Javascript, Python, HTML/CSS, Java, C, C++, C#, Git, SQL, Agile
+                // Scrum, React, Node.js, AWS, Azure, Kubernetes
+                // list options in alphabetical order of labelkey
                 options={[
                   {
-                    labelKey: "facebook",
-                    value: "Facebook",
+                    labelKey: "agile",
+                    value: "Agile",
+                    style: { fontSize: "15px" },                              
+                  },
+                  {
+                    labelKey: "aws",
+                    value: "AWS",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "azure",
+                    value: "Azure",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "c",
+                    value: "C",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "c#",
+                    value: "C#",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "c++",
+                    value: "C++",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "git",
+                    value: "Git",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "html/css",
+                    value: "HTML/CSS",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "java",
+                    value: "Java",
                     style: { fontSize: "15px" },
                   },
                   {
@@ -103,13 +146,28 @@ export default function CardPageApp() {
                     style: { fontSize: "15px" },
                   },
                   {
+                    labelKey: "node.js",
+                    value: "Node.js",
+                    style: { fontSize: "15px" },
+                  },
+                  {
                     labelKey: "python",
                     value: "Python",
                     style: { fontSize: "15px" },
                   },
                   {
-                    labelKey: "htmlcss",
-                    value: "HTML/CSS",
+                    labelKey: "react",
+                    value: "React",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "scrum",
+                    value: "Scrum",
+                    style: { fontSize: "15px" },
+                  },
+                  {
+                    labelKey: "sql",
+                    value: "SQL",
                     style: { fontSize: "15px" },
                   },
                 ]}

@@ -9,6 +9,5 @@
 }
 
 .auth-buttons {
-  display: flex;
   flex-direction: row;
 }

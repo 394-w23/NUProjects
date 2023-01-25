@@ -194,19 +194,79 @@ const AddModal = ({ show, toggleShow }) => {
               showSearch
               options={[
                 {
-                  labelKey: "htmlcss",
-                  value: "HTML/CSS",
-                  style: { "font-size": "15px" },
+                  labelKey: "agile",
+                  value: "Agile",
+                  style: { fontSize: "15px" },                              
                 },
                 {
-                  labelKey: "python",
-                  value: "Python",
-                  style: { "font-size": "15px" },
+                  labelKey: "aws",
+                  value: "AWS",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "azure",
+                  value: "Azure",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "c",
+                  value: "C",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "c#",
+                  value: "C#",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "c++",
+                  value: "C++",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "git",
+                  value: "Git",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "html/css",
+                  value: "HTML/CSS",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "java",
+                  value: "Java",
+                  style: { fontSize: "15px" },
                 },
                 {
                   labelKey: "javascript",
                   value: "JavaScript",
-                  style: { "font-size": "15px" },
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "node.js",
+                  value: "Node.js",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "python",
+                  value: "Python",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "react",
+                  value: "React",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "scrum",
+                  value: "Scrum",
+                  style: { fontSize: "15px" },
+                },
+                {
+                  labelKey: "sql",
+                  value: "SQL",
+                  style: { fontSize: "15px" },
                 },
               ]}
               onChange={handleSkillsChange}
