@@ -77,6 +77,9 @@ export default function CardPageApp() {
                 <option value="datePosted" defaultChecked>
                   Sort by date posted
                 </option>
+                <option value="dateToSubmit" defaultChecked>
+                  Sort by application deadline
+                </option>
                 <option value="projectStartDate">Sort by start date</option>
                 <option value="projectEndDate">Sort by end date</option>
               </Form.Select>
