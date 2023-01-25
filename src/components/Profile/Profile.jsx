@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import Image from "react-bootstrap/Image";
+import React from "react";
+import { Image } from "react-bootstrap";
+import { useAuth } from "../../hooks/useAuth";
 import "./Profile.css";
-import { UserContext } from "../../context/UserContext";
 
 const Profile = () => {
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
 
   if (!user) {
     return <></>;

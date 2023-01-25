@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import React, { useState } from "react";
+import { Button, Card } from "react-bootstrap";
 import ViewModal from "../ViewModal/ViewModal";
 import "./Card.css";
 
@@ -15,7 +14,9 @@ export default function CardApp({ data }) {
   return (
     <>
       <Card className="job-card">
-        <Card.Header><b>{data.projectName}</b>  |  {data.numberOfPeople} members</Card.Header>
+        <Card.Header>
+          <b>{data.projectName}</b> | {data.numberOfPeople} members
+        </Card.Header>
         <Card.Body>
           <Card.Title>{data.positionName}</Card.Title>
           <Card.Text>{data.description}</Card.Text>
@@ -28,7 +29,11 @@ export default function CardApp({ data }) {
           Date posted: {data.datePosted} | Deadline: {data.dateToSubmit}
         </Card.Footer>
       </Card>
-      <ViewModal applicationData={data} show={showViewModal} toggleShow={toggleShowViewModal} />
+      <ViewModal
+        applicationData={data}
+        show={showViewModal}
+        toggleShow={toggleShowViewModal}
+      />
     </>
   );
 }

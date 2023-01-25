@@ -1,14 +1,13 @@
 // Import the functions you need from the SDKs you need
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update, set, get } from "firebase/database";
 import {
   getAdditionalUserInfo,
   getAuth,
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithPopup,
-  signOut,
+  signOut as firebaseSignOut,
 } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -141,13 +140,4 @@ export const signInWithGoogle = async () => {
   return user;
 };
 
-const firebaseSignOut = () => signOut(getAuth(app));
-
-export { firebaseSignOut as signOut };
-
-export const useAuthState = () => {
-  const [user, setUser] = useState();
-  useEffect(() => onAuthStateChanged(getAuth(app), setUser), []);
-
-  return [user];
-};
+export const signOut = () => firebaseSignOut(getAuth(app));

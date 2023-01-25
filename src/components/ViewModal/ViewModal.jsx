@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import "./ViewModal.css";
-import { Row, Col } from "react-bootstrap";
-import { UserContext } from "../../context/UserContext";
+import React, { useState } from "react";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as bookmarkSolid } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../hooks/useAuth";
 import { updateDatabase } from "../../utilities/firebase";
+import "./ViewModal.css";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
-  const { user, setUserFromDatabase } = useContext(UserContext);
+  const { user, setUserFromDatabase } = useAuth();
   const [isSaved, setIsSaved] = useState(
     user && user.jobsSaved
       ? user.jobsSaved.some((jobId) => jobId === applicationData.jobId)

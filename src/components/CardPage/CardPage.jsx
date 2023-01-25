@@ -1,12 +1,10 @@
-import CardApp from "./Card";
 import React, { useState, useEffect, useCallback } from "react";
-import { useDbData } from "../../utilities/firebase";
-import Form from "react-bootstrap/Form";
+import { Row, Col, Container, Form } from "react-bootstrap";
 import BootstrapSelect from "react-bootstrap-select-dropdown";
-import "./CardPage.css";
-import "./Card.css";
-import { Row, Col, Container } from "react-bootstrap";
+import { useDbData } from "../../utilities/firebase";
 import AddButton from "../AddButton/AddButton";
+import CardApp from "./Card";
+import "./CardPage.css";
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
@@ -98,7 +96,7 @@ export default function CardPageApp() {
                   {
                     labelKey: "agile",
                     value: "Agile",
-                    style: { fontSize: "15px" },                              
+                    style: { fontSize: "15px" },
                   },
                   {
                     labelKey: "aws",

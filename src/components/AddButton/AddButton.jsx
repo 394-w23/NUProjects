@@ -1,14 +1,13 @@
-import React, { useState, useContext } from "react";
-import {} from "react";
-import Button from "react-bootstrap/Button";
-import { UserContext } from "../../context/UserContext";
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { useAuth } from "../../hooks/useAuth";
 import AddModal from "../AddModal/AddModal";
 import "./AddButton.css";
 
 export default function AddButtonApp() {
   const [showAddModal, setShowAddModal] = useState(false);
   const toggleShowAddModal = () => setShowAddModal(!showAddModal);
-  const { user } = useContext(UserContext);
+  const { user } = useAuth();
 
   return (
     <React.Fragment>

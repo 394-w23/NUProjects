@@ -1,14 +1,16 @@
 import { useState } from "react";
 import logo from "./logo.svg";
-import Routing from "./Routing";
+import Routes from "./Routes";
 import "./App.css";
 import { UserProvider } from "./context/UserContext";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <UserProvider>
       <div className="App">
-        <Routing />
+        <Navbar />
+        <Routes />
       </div>
     </UserProvider>
   );

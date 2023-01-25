@@ -11,3 +11,9 @@
 .auth-buttons {
   flex-direction: row;
 }
+
+.nav-dropdown .dropdown-menu {
+  top: 100%;
+  right: 0;
+  left: auto;
+}
