@@ -1,13 +1,9 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import "./Navbar.css";
-import { signInWithGoogle, signOut } from "../../utilities/firebase";
-import Image from "react-bootstrap/Image";
-import { useAuth } from "../../context/UserContext";
+import { Container, Nav, Navbar, NavDropdown, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { signInWithGoogle, signOut } from "../../utilities/firebase";
+import { useAuth } from "../../hooks/useAuth";
+import "./Navbar.css";
 
 export default function NavbarApp() {
   const navigate = useNavigate();

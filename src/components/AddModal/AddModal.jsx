@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import "./AddModal.css";
-import { Form, InputGroup, FormControl } from "react-bootstrap";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { Form, Modal, Button, Alert } from "react-bootstrap";
+import BootstrapSelect from "react-bootstrap-select-dropdown";
+import { useAuth } from "../../hooks/useAuth";
 import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
-import Alert from "react-bootstrap/Alert";
-import Toast from "react-bootstrap/Toast";
-import BootstrapSelect from "react-bootstrap-select-dropdown";
-import { v4 as uuidv4 } from "uuid";
-import { useAuth } from "../../context/UserContext";
+import "./AddModal.css";
 
 const AddModal = ({ show, toggleShow }) => {
   const { user } = useAuth();

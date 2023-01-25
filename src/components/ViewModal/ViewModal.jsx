@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import "./ViewModal.css";
-import { Row, Col } from "react-bootstrap";
-import { useAuth } from "../../context/UserContext";
+import React, { useState } from "react";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as bookmarkSolid } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../hooks/useAuth";
 import { updateDatabase } from "../../utilities/firebase";
+import "./ViewModal.css";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
   const { user, setUserFromDatabase } = useAuth();

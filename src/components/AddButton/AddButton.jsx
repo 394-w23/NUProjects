@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import {} from "react";
-import Button from "react-bootstrap/Button";
-import { useAuth } from "../../context/UserContext";
+import { Button } from "react-bootstrap";
+import { useAuth } from "../../hooks/useAuth";
 import AddModal from "../AddModal/AddModal";
 import "./AddButton.css";
 
