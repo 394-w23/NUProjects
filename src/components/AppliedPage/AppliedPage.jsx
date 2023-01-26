@@ -5,21 +5,21 @@ import { useDbData } from "../../utilities/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import CardApp from "../CardPage/Card";
 
-export default function SavedPageApp() {
+export default function AppliedPageApp() {
   const { user } = useAuth();
   const [data, error] = useDbData();
 
   if (user && data) {
-    let savedJobIds = user.jobsSaved ? user.jobsSaved : [];
+    let appliedJobIds = user.jobsApplied ? user.jobsApplied : [];
     let filteredJobs = Object.values(data.jobs).filter((job) => {
       return (
-        savedJobIds.includes(job.jobId)
+        appliedJobIds.includes(job.jobId)
       );
     });
       
     return (
       <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
-        <h1>Saved</h1>
+        <h1>Applied</h1>
         <div className="d-flex flex-column gap-3">
           {filteredJobs.map((job, key) => (
             <CardApp key={key} data={job} />

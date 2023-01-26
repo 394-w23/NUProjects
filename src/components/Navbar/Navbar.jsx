@@ -52,7 +52,8 @@ export default function NavbarApp() {
                   id="collapsible-nav-dropdown"
                 >
                   <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="/savedprojects">Saved Projects</NavDropdown.Item>
+                  <NavDropdown.Item href="/saved">Saved</NavDropdown.Item>
+                  <NavDropdown.Item href="/applied">Applied</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleSignOut}>
                     Sign out
