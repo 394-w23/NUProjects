@@ -7,7 +7,7 @@ import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
 import "./AddModal.css";
 
-const AddModal = ({ show, toggleShow }) => {
+const AddModal = ({ show, toggleShow, alertShower }) => {
   const { user } = useAuth();
 
   const projectName = useInput("");
@@ -78,6 +78,7 @@ const AddModal = ({ show, toggleShow }) => {
 
       writeJobData(params);
       clearValues();
+      alertShower(true);
     }
   };
 

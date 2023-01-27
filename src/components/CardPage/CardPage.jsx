@@ -5,12 +5,14 @@ import { useDbData } from "../../utilities/firebase";
 import AddButton from "../AddButton/AddButton";
 import CardApp from "./Card";
 import "./CardPage.css";
+import Alert from 'react-bootstrap/Alert';
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);
   const [sortKey, setSortKey] = useState("datePosted");
+  const [showAlert, setShowAlert] = useState(false);
 
   const [filteredJobs, setFilteredJobs] = useState([]);
 
@@ -184,7 +186,10 @@ export default function CardPageApp() {
   return (
     <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
       {renderSearchArea()}
-      <AddButton />
+      <AddButton alertShower={setShowAlert} />
+      <Alert variant="success" show={showAlert}>
+        Job successfully added!
+      </Alert>
       <div className="d-flex flex-column gap-3">
         {filteredJobs.map((job, key) => (
           <CardApp key={key} data={job} />

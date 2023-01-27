@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import AddModal from "../AddModal/AddModal";
 import "./AddButton.css";
 
-export default function AddButtonApp() {
+export default function AddButtonApp({alertShower}) {
   const [showAddModal, setShowAddModal] = useState(false);
   const toggleShowAddModal = () => setShowAddModal(!showAddModal);
   const { user } = useAuth();
@@ -19,7 +19,7 @@ export default function AddButtonApp() {
       >
         Add New Position Listing
       </Button>
-      <AddModal show={showAddModal} toggleShow={toggleShowAddModal}></AddModal>
+      <AddModal show={showAddModal} toggleShow={toggleShowAddModal} alertShower={alertShower}></AddModal>
     </React.Fragment>
   );
 }
