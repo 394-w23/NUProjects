@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import "./AddModal.css";
-import { Form, InputGroup, FormControl } from "react-bootstrap";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { Form, Modal, Button, Alert } from "react-bootstrap";
+import BootstrapSelect from "react-bootstrap-select-dropdown";
+import { useAuth } from "../../hooks/useAuth";
 import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
-import Alert from "react-bootstrap/Alert";
-import Toast from "react-bootstrap/Toast";
-import BootstrapSelect from "react-bootstrap-select-dropdown";
-import { v4 as uuidv4 } from "uuid";
-import { useAuthState } from "../../utilities/firebase";
+import "./AddModal.css";
 
-const AddModal = ({ show, toggleShow }) => {
+const AddModal = ({ show, toggleShow, alertShower }) => {
+  const { user } = useAuth();
+
   const projectName = useInput("");
   const typeOfProject = useInput("");
   const positionName = useInput("");
@@ -22,7 +20,6 @@ const AddModal = ({ show, toggleShow }) => {
   const endDate = useInput("");
   const numberOfPeople = useInput(0);
 
-  const [user] = useAuthState();
   const [skillsRequired, setSkillsRequired] = useState([""]);
   const [hashtags, setHashTags] = useState([""]);
   const [showToast, setShowToast] = useState(false);
@@ -81,6 +78,7 @@ const AddModal = ({ show, toggleShow }) => {
 
       writeJobData(params);
       clearValues();
+      alertShower(true);
     }
   };
 
@@ -123,9 +121,8 @@ const AddModal = ({ show, toggleShow }) => {
               required
             >
               <option value="">Select a type of project</option>
-              <option value="Personal">Personal</option>
-              <option value="Research">Research</option>
-              <option value="Job">Job</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
             </Form.Select>
           </Form.Group>
 
@@ -185,7 +182,7 @@ const AddModal = ({ show, toggleShow }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Required Skills*</Form.Label>
+            <Form.Label>Skills*</Form.Label>
             <br></br>
             <BootstrapSelect
               required
@@ -196,7 +193,7 @@ const AddModal = ({ show, toggleShow }) => {
                 {
                   labelKey: "agile",
                   value: "Agile",
-                  style: { fontSize: "15px" },                              
+                  style: { fontSize: "15px" },
                 },
                 {
                   labelKey: "aws",
@@ -274,7 +271,7 @@ const AddModal = ({ show, toggleShow }) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Tags*</Form.Label>
+            <Form.Label>Hashtags*</Form.Label>
             <br></br>
             <BootstrapSelect
               required

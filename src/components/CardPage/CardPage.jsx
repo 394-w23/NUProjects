@@ -1,18 +1,18 @@
-import CardApp from "./Card";
 import React, { useState, useEffect, useCallback } from "react";
-import { useDbData } from "../../utilities/firebase";
-import Form from "react-bootstrap/Form";
+import { Row, Col, Container, Form } from "react-bootstrap";
 import BootstrapSelect from "react-bootstrap-select-dropdown";
-import "./CardPage.css";
-import "./Card.css";
-import { Row, Col, Container } from "react-bootstrap";
+import { useDbData } from "../../utilities/firebase";
 import AddButton from "../AddButton/AddButton";
+import CardApp from "./Card";
+import "./CardPage.css";
+import Alert from 'react-bootstrap/Alert';
 
 export default function CardPageApp() {
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);
   const [sortKey, setSortKey] = useState("datePosted");
+  const [showAlert, setShowAlert] = useState(false);
 
   const [filteredJobs, setFilteredJobs] = useState([]);
 
@@ -86,6 +86,9 @@ export default function CardPageApp() {
                 <option value="datePosted" defaultChecked>
                   Sort by date posted
                 </option>
+                <option value="dateToSubmit" defaultChecked>
+                  Sort by application deadline
+                </option>
                 <option value="projectStartDate">Sort by start date</option>
                 <option value="projectEndDate">Sort by end date</option>
               </Form.Select>
@@ -105,7 +108,7 @@ export default function CardPageApp() {
                   {
                     labelKey: "agile",
                     value: "Agile",
-                    style: { fontSize: "15px" },                              
+                    style: { fontSize: "15px" },
                   },
                   {
                     labelKey: "aws",
@@ -190,7 +193,10 @@ export default function CardPageApp() {
   return (
     <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
       {renderSearchArea()}
-      <AddButton />
+      <AddButton alertShower={setShowAlert} />
+      <Alert variant="success" show={showAlert}>
+        Job successfully added!
+      </Alert>
       <div className="d-flex flex-column gap-3">
         {filteredJobs.map((job, key) => (
           <CardApp key={key} data={job} />

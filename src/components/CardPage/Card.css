@@ -23,13 +23,28 @@
   filter: brightness(85%);
 }
 
-.hashtags {
+.skills {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.skill {
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid gray;
+  border-radius: 1000px;
+}
+
+/* .hashtags {
   list-style-type: none;
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margins */
+  padding: 0;
+  margin: 0;
   display: flex;
 }
 
 .hashtags li {
   padding-right: 7.5px;
-}
+} */
