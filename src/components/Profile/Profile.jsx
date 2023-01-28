@@ -5,8 +5,10 @@ import { UserContext } from "../../context/UserContext";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
-
+  console.log(user)
   if (!user) {
+    // redirect to main page
+    console.log("no user");
     return <></>;
   }
 
