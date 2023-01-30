@@ -4,13 +4,8 @@ import { useAuth } from "../../hooks/useAuth";
 import "./Profile.css";
 
 const Profile = () => {
-<<<<<<< HEAD
   const { user } = useContext(UserContext);
   console.log(user)
-=======
-  const { user } = useAuth();
-
->>>>>>> 24cce2f6256f9794491381b2b468e5e04913e903
   if (!user) {
     // redirect to main page
     console.log("no user");
