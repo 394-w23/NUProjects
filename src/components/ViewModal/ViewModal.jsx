@@ -1,17 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import "./ViewModal.css";
-import { Row, Col } from "react-bootstrap";
-import { UserContext } from "../../context/UserContext";
+import React, { useState } from "react";
+import { Row, Col, Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as bookmarkRegular } from "@fortawesome/free-regular-svg-icons";
 import { faBookmark as bookmarkSolid } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../hooks/useAuth";
 import { updateDatabase } from "../../utilities/firebase";
+import "./ViewModal.css";
 
 const ViewModal = ({ applicationData, show, toggleShow }) => {
-  const { user, setUserFromDatabase } = useContext(UserContext);
+  const { user, setUserFromDatabase } = useAuth();
   const [isSaved, setIsSaved] = useState(
     user && user.jobsSaved
       ? user.jobsSaved.some((jobId) => jobId === applicationData.jobId)
@@ -81,7 +79,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         <h5>Details</h5>
         <Row>
           <Col lg={6} sm={12}>
-            <b>Position:</b> {applicationData.positionName || "N/A"}
+            <b>Position Name:</b> {applicationData.positionName || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
             <b>Wage ($/hr):</b> {applicationData.wage || "0"}
@@ -89,7 +87,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         </Row>
         <Row>
           <Col lg={6} sm={12}>
-            <b>Type:</b> {applicationData.typeOfProject || "N/A"}
+            <b>Type of Project:</b> {applicationData.typeOfProject || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
             <b>No. of People:</b> {applicationData.numberOfPeople || "N/A"}
@@ -97,10 +95,10 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
         </Row>
         <Row>
           <Col lg={6} sm={12}>
-            <b>Start Date:</b> {applicationData.projectStartDate || "N/A"}
+            <b>Project Start Date:</b> {applicationData.projectStartDate || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>End Date:</b> {applicationData.projectEndDate || "N/A"}
+            <b>Project End Date:</b> {applicationData.projectEndDate || "N/A"}
           </Col>
         </Row>
         <Row>
@@ -108,9 +106,12 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
             <b>Date Posted:</b> {applicationData.datePosted || "N/A"}
           </Col>
           <Col lg={6} sm={12}>
-            <b>Deadline:</b> {applicationData.dateToSubmit || "N/A"}
+            <b>Application Deadline:</b> {applicationData.dateToSubmit || "N/A"}
           </Col>
         </Row>
+        <hr />
+        <h5>Description</h5>
+        <p>{applicationData.description || "No description found."}</p>
         <hr />
         <h5>Skills</h5>
         <ul className="skills">
@@ -133,9 +134,6 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
             );
           })}
         </ul>
-        <hr />
-        <h5>Description</h5>
-        <p>{applicationData.description || "No description found."}</p>
       </Modal.Body>
       <Modal.Footer>
         <p>

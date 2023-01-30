@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import "./Navbar.css";
+import React from "react";
+import { Container, Nav, Navbar, NavDropdown, Image } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { signInWithGoogle, signOut } from "../../utilities/firebase";
-import Image from "react-bootstrap/Image";
-import { UserContext } from "../../context/UserContext";
+import { useAuth } from "../../hooks/useAuth";
+import "./Navbar.css";
 
 export default function NavbarApp() {
-  const { user, setUserFromDatabase } = useContext(UserContext);
+  const navigate = useNavigate();
+  const { user, setUserFromDatabase } = useAuth();
 
   const handleSignIn = async () => {
     const user = await signInWithGoogle();
@@ -18,19 +16,10 @@ export default function NavbarApp() {
 
   const handleSignOut = async () => {
     await signOut();
+    navigate("/", { replace: true });
   };
 
-  const SignInButton = () => (
-    <Nav.Link onClick={handleSignIn}>Sign in</Nav.Link>
-  );
-
-  const SignOutButton = () => (
-    <NavDropdown.Item onClick={handleSignOut}>Sign out</NavDropdown.Item>
-  );
-
   // const activation = ({ isActive }) => (isActive ? "active" : "inactive");
-
-  console.log("Navbar - render");
 
   return (
     <div>
@@ -47,13 +36,11 @@ export default function NavbarApp() {
               <Nav.Link href="/">Home</Nav.Link>
             </Nav>
             <Nav>
-              {!user && (
-                <div className="auth-buttons">
-                  <SignInButton />
-                </div>
-              )}
-              {user && (
+              {!user ? (
+                <Nav.Link onClick={handleSignIn}>Sign in</Nav.Link>
+              ) : (
                 <NavDropdown
+                  className="nav-dropdown"
                   title={
                     <Image
                       roundedCircle
@@ -62,12 +49,15 @@ export default function NavbarApp() {
                       referrerPolicy="no-referrer"
                     />
                   }
-                  id="collasible-nav-dropdown"
+                  id="collapsible-nav-dropdown"
                 >
                   <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="#">Settings</NavDropdown.Item>
+                  <NavDropdown.Item href="/saved">Saved</NavDropdown.Item>
+                  <NavDropdown.Item href="/applied">Applied</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <SignOutButton />
+                  <NavDropdown.Item onClick={handleSignOut}>
+                    Sign out
+                  </NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>
