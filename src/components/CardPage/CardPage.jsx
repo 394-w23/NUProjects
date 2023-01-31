@@ -60,12 +60,19 @@ export default function CardPageApp() {
   const handleSortChange = (event) => {
     setSortKey(event.target.value);
   };
+  //apply style to mobile view only
+  const styleRow = {
+    '@media (max-width: 600px)': {
+        gap: "15px"
+    }
+}
+
 
   const renderSearchArea = () => {
     return (
       <div className="search-area">
         <Form className="d-flex" onSubmit={(event) => event.preventDefault()}>
-          <Row>
+          <Row style={styleRow}>
             <Form.Group as={Col} md={8}>
               <Form.Control
                 type="search"
