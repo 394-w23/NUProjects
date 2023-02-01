@@ -25,7 +25,9 @@ export default function NavbarApp() {
     <div>
       <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/" data-cy="pageTitle">NUProjects</Navbar.Brand>
+          <Navbar.Brand href="/" data-cy="page-title">
+            NUProjects
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
