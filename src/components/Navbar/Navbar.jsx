@@ -55,7 +55,7 @@ export default function NavbarApp() {
                   <NavDropdown.Item href="/saved">Saved</NavDropdown.Item>
                   <NavDropdown.Item href="/applied">Applied</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={handleSignOut}>
+                  <NavDropdown.Item data-cy="sign-out" onClick={handleSignOut}>
                     Sign out
                   </NavDropdown.Item>
                 </NavDropdown>

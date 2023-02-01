@@ -37,7 +37,7 @@ console.log("I'm here yayyyyyyyy")
 if (true) {
   console.log("I'm here yay")
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectDatabaseEmulator(db, "127.0.0.1", 9000);
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
 
   signInWithCredential(auth, GoogleAuthProvider.credential(
     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
