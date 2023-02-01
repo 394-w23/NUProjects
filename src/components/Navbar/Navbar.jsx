@@ -37,7 +37,7 @@ export default function NavbarApp() {
             </Nav>
             <Nav>
               {!user ? (
-                <Nav.Link onClick={handleSignIn}>Sign in</Nav.Link>
+                <Nav.Link data-cy="sign-in" onClick={handleSignIn}>Sign in</Nav.Link>
               ) : (
                 <NavDropdown
                   className="nav-dropdown"

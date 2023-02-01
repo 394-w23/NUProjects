@@ -24,25 +24,25 @@ const firebaseConfig = {
   storageBucket: "nuprojects-37022.appspot.com",
   messagingSenderId: "895929247438",
   appId: "1:895929247438:web:651215d43228c05bef929f",
+  REACT_APP_EMULATE: true
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+console.log("I'm here yayyyyyyyy")
 
-// if (!window.EMULATION && import.meta.env.NODE_ENV !== 'production') {
-//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-//   // connectDatabaseEmulator(database, "127.0.0.1", 9000);
-//   connectDatabaseEmulator(database, "localhost", 9000);
 
-//   signInWithCredential(auth, GoogleAuthProvider.credential(
-//     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
-//   ));
-  
-//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-//   window.EMULATION = true;
-// }
+if (true) {
+  console.log("I'm here yay")
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(db, "127.0.0.1", 9000);
+
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+  ));
+}
 
 export const useDbData = (path) => {
   const [data, setData] = useState();

@@ -12,7 +12,8 @@
     "em:start": "firebase emulators:start --import=./saved-data --export-on-exit",
     "em:exec": "firebase emulators:exec --import=./saved-data 'npm start'",
     "em:execui": "firebase emulators:exec --ui --import=./saved-data 'npm start'",
-    "cy:open": "cypress open --e2e"
+    "cy:open": "cypress open --e2e",
+    "em:cy:open": "start-server-and-test em:exec http://127.0.0.1:3000 cy:open"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -39,6 +40,7 @@
     "c8": "^7.12.0",
     "cypress": "^12.4.1",
     "jsdom": "^20.0.3",
+    "start-server-and-test": "^1.15.3",
     "vite": "^4.0.0"
   }
 }
