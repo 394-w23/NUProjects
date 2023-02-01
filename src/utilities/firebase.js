@@ -15,7 +15,7 @@ import {
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Production Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyABFVW-AgGP6OrHMrHnYSBD4dWv19fMjFY",
   authDomain: "nuprojects-37022.firebaseapp.com",
@@ -31,18 +31,18 @@ export const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-if (!window.EMULATION && import.meta.env.NODE_ENV !== 'production') {
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  // connectDatabaseEmulator(database, "127.0.0.1", 9000);
-  connectDatabaseEmulator(database, "localhost", 9000);
+// if (!window.EMULATION && import.meta.env.NODE_ENV !== 'production') {
+//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
+//   // connectDatabaseEmulator(database, "127.0.0.1", 9000);
+//   connectDatabaseEmulator(database, "localhost", 9000);
 
-  signInWithCredential(auth, GoogleAuthProvider.credential(
-    '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
-  ));
+//   signInWithCredential(auth, GoogleAuthProvider.credential(
+//     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+//   ));
   
-  // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-  window.EMULATION = true;
-}
+//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
+//   window.EMULATION = true;
+// }
 
 export const useDbData = (path) => {
   const [data, setData] = useState();

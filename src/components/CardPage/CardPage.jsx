@@ -193,7 +193,7 @@ export default function CardPageApp() {
   return (
     <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
       {renderSearchArea()}
-      <AddButton alertShower={setShowAlert} />
+      <AddButton data-cy="add-new-position-listing" alertShower={setShowAlert} />
       <Alert variant="success" show={showAlert}>
         Job successfully added!
       </Alert>
