@@ -79,6 +79,7 @@ export default function CardPageApp() {
                 placeholder="Search positions..."
                 aria-label="Search"
                 onChange={(e) => setSearch(e.target.value)}
+                data-cy="search-input"
               />
             </Form.Group>
             <Form.Group as={Col} md={2}>
