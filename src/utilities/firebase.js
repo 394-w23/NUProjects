@@ -1,7 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update, set, get, connectDatabaseEmulator } from "firebase/database";
+import {
+  getDatabase,
+  onValue,
+  ref,
+  update,
+  set,
+  get,
+  connectDatabaseEmulator,
+} from "firebase/database";
 import {
   getAdditionalUserInfo,
   getAuth,
@@ -9,7 +17,7 @@ import {
   signInWithPopup,
   signOut as firebaseSignOut,
   connectAuthEmulator,
-  signInWithCredential
+  signInWithCredential,
 } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -31,18 +39,20 @@ export const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-// if (!window.EMULATION && import.meta.env.NODE_ENV !== 'production') {
-//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-//   // connectDatabaseEmulator(database, "127.0.0.1", 9000);
-//   connectDatabaseEmulator(database, "localhost", 9000);
+if (!window.EMULATION && import.meta.env.NODE_ENV !== "production") {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
 
-//   signInWithCredential(auth, GoogleAuthProvider.credential(
-//     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
-//   ));
-  
-//   // set flag to avoid connecting twice, e.g., because of an editor hot-reload
-//   window.EMULATION = true;
-// }
+  signInWithCredential(
+    auth,
+    GoogleAuthProvider.credential(
+      '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+    )
+  );
+
+  // set flag to avoid connecting twice, e.g., because of an editor hot-reload
+  window.EMULATION = true;
+}
 
 export const useDbData = (path) => {
   const [data, setData] = useState();
