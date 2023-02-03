@@ -83,7 +83,7 @@ export default function CardPageApp() {
               />
             </Form.Group>
             <Form.Group as={Col} md={2}>
-              <Form.Select onChange={handleSortChange}>
+              <Form.Select onChange={handleSortChange} data-cy="sorting-button">
                 <option value="datePosted" defaultChecked>
                   Sort by date posted
                 </option>
