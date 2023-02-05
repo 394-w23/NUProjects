@@ -42,8 +42,14 @@ if (true) {
   signInWithCredential(auth, GoogleAuthProvider.credential(
     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
   ));
-}
+  
 
+}
+export const signInCy = async () => {
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+  ));
+}
 export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);

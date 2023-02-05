@@ -40,6 +40,7 @@ export default function NavbarApp() {
                 <Nav.Link data-cy="sign-in" onClick={handleSignIn}>Sign in</Nav.Link>
               ) : (
                 <NavDropdown
+                data 
                   className="nav-dropdown"
                   title={
                     <Image
