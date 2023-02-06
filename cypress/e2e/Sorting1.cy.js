@@ -1,4 +1,5 @@
 describe ('Sorting 1', () => {
+
     it ('launches', () => {
         cy.visit ('/');
     });
