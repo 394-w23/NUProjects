@@ -8,7 +8,6 @@ import "./CardPage.css";
 import Alert from 'react-bootstrap/Alert';
 
 export default function CardPageApp() {
-  console.log("card page hereeee")
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);

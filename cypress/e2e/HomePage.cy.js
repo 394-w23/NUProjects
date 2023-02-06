@@ -1,6 +1,6 @@
 /* globals cy */
     
-describe ('Test App', () => {
+describe ('Test HomePage', () => {
 
     beforeEach(() => {
       cy.visit("/");
@@ -8,10 +8,6 @@ describe ('Test App', () => {
 
     it ('opens with page title', () => {
       cy.get('[data-cy=pageTitle]').should('contain', 'NUProjects');
-    });
-
-    it ('opens with home nav', () => {
-      cy.get("[data-cy=home]").should("contain", "Home");
     });
 
     it ('opens with home nav', () => {
@@ -37,6 +33,5 @@ describe ('Test App', () => {
     it("opens with add new posiiton listing button", () => {
       cy.get("[data-cy=add-button]").should("contain", "Add New Position Listing");
     });
-
     
   });

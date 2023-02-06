@@ -19,7 +19,7 @@ export default function SavedPageApp() {
       
     return (
       <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
-        <h1>Saved</h1>
+        <h1 data-cy="saved-page-title">Saved</h1>
         <div className="d-flex flex-column gap-3">
           {filteredJobs.map((job, key) => (
             <CardApp key={key} data={job} />

@@ -31,12 +31,10 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
-console.log("I'm here yayyyyyyyy")
 
 
 // comment out these lines when deploying!
 if (true) {
-  console.log("I'm here yay")
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectDatabaseEmulator(database, "127.0.0.1", 9000);
   signInWithCredential(auth, GoogleAuthProvider.credential(
