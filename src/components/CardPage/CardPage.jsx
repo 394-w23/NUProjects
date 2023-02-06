@@ -32,6 +32,7 @@ export default function CardPageApp() {
       return;
     }
     let filteredJobs = Object.values(data.jobs).filter((job) => {
+    let searchWithoutSpaces = search.replace(/\s+/g, ''); 
       return (
         job.positionName.toLowerCase().includes(search.toLowerCase()) ||
         job.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -40,7 +41,7 @@ export default function CardPageApp() {
           skill.toLowerCase().includes(search.toLowerCase())
         ) ||
         job.hashtags.some((keyword) =>
-          keyword.toLowerCase().includes(search.toLowerCase())
+        keyword.toLowerCase().includes(searchWithoutSpaces.toLowerCase())
         )
       );
     });

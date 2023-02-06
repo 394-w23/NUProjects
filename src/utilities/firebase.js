@@ -34,16 +34,22 @@ const auth = getAuth(app);
 console.log("I'm here yayyyyyyyy")
 
 
-if (true) {
-  console.log("I'm here yay")
-  connectAuthEmulator(auth, "http://127.0.0.1:9099");
-  connectDatabaseEmulator(database, "127.0.0.1", 9000);
+// if (true) {
+//   console.log("I'm here yay")
+//   connectAuthEmulator(auth, "http://127.0.0.1:9099");
+//   connectDatabaseEmulator(database, "127.0.0.1", 9000);
 
+//   signInWithCredential(auth, GoogleAuthProvider.credential(
+//     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+//   ));
+  
+
+// }
+export const signInCy = async () => {
   signInWithCredential(auth, GoogleAuthProvider.credential(
     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
   ));
 }
-
 export const useDbData = (path) => {
   const [data, setData] = useState();
   const [error, setError] = useState(null);
