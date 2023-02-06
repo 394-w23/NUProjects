@@ -33,7 +33,7 @@ export default function NavbarApp() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/" data-cy="home">Home</Nav.Link>
             </Nav>
             <Nav>
               {!user ? (
@@ -52,9 +52,9 @@ export default function NavbarApp() {
                   }
                   id="collapsible-nav-dropdown"
                 >
-                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved">Saved</NavDropdown.Item>
-                  <NavDropdown.Item href="/applied">Applied</NavDropdown.Item>
+                  <NavDropdown.Item href="/profile" data-cy="profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Item href="/saved" data-cy="saved">Saved</NavDropdown.Item>
+                  <NavDropdown.Item href="/applied" data-cy="applied">Applied</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item data-cy="sign-out" onClick={handleSignOut}>
                     Sign out

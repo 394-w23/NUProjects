@@ -97,6 +97,7 @@ export default function CardPageApp() {
             </Form.Group>
             <Form.Group as={Col} md={2}>
               <BootstrapSelect
+                data-cy="filtering-button"
                 className="filter-multi-select"
                 isMultiSelect
                 showTicks
@@ -195,7 +196,7 @@ export default function CardPageApp() {
   return (
     <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
       {renderSearchArea()}
-      <AddButton data-cy="add-new-position-listing" alertShower={setShowAlert} />
+      <AddButton alertShower={setShowAlert} />
       <Alert variant="success" show={showAlert}>
         Job successfully added!
       </Alert>
