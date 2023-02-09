@@ -80,10 +80,11 @@ export default function CardPageApp() {
                 placeholder="Search positions..."
                 aria-label="Search"
                 onChange={(e) => setSearch(e.target.value)}
+                className="form-element"
               />
             </Form.Group>
             <Form.Group as={Col} md={2}>
-              <Form.Select onChange={handleSortChange} data-cy="sorting-button">
+              <Form.Select onChange={handleSortChange} data-cy="sorting-button" className="form-element">
                 <option value="datePosted" defaultChecked>
                   Sort by date posted
                 </option>
@@ -96,7 +97,7 @@ export default function CardPageApp() {
             </Form.Group>
             <Form.Group as={Col} md={2}>
               <BootstrapSelect
-                className="filter-multi-select"
+                className="filter-multi-select form-element"
                 isMultiSelect
                 showTicks
                 showSearch
