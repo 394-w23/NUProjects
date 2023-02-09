@@ -110,6 +110,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               placeholder="Enter project name"
               onChange={projectName.onChange}
               required
+              data-cy="addmodal-projectname"
             />
           </Form.Group>
 
@@ -119,6 +120,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               aria-label="Default select project type"
               onChange={typeOfProject.onChange}
               required
+              data-cy="addmodal-projecttype"
             >
               <option value="">Select a type of project</option>
               <option value="Full-time">Full-time</option>
@@ -132,22 +134,23 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               type="text"
               placeholder="Front-End Developer, ML Engineer, Data Scientist"
               onChange={positionName.onChange}
+              data-cy="addmodal-positionname"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Application Deadline*</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} requireds />
+            <Form.Control type="date" onChange={deadline.onChange} required data-cy="addmodal-deadline" />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Project Start Date</Form.Label>
-            <Form.Control type="date" onChange={startDate.onChange} />
+            <Form.Control type="date" onChange={startDate.onChange} data-cy="addmodal-startdate"/>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Project End Date</Form.Label>
-            <Form.Control type="date" onChange={endDate.onChange} />
+            <Form.Control type="date" onChange={endDate.onChange} data-cy="addmodal-enddate"/>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -158,6 +161,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={numberOfPeople.onChange}
               min={0}
               required
+              data-cy="addmodal-numpeople"
             />
           </Form.Group>
 
@@ -168,6 +172,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               value={wage.value}
               onChange={wage.onChange}
               min={0}
+              data-cy="addmodal-wage"
               oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
             />
           </Form.Group>
@@ -179,6 +184,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               rows={5}
               onChange={description.onChange}
               required
+              data-cy="addmodal-description"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -189,6 +195,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               isMultiSelect
               showTick
               showSearch
+              data-cy="addmodal-skills"
               options={[
                 {
                   labelKey: "agile",
@@ -278,6 +285,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               isMultiSelect
               showTick
               showSearch
+              data-cy="addmodal-hashtags"
               options={[
                 {
                   labelKey: "mlai",

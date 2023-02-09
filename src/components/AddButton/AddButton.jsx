@@ -17,6 +17,7 @@ export default function AddButtonApp({alertShower}) {
         className="add-button"
         disabled={user ? false : true}
         onClick={toggleShowAddModal}
+        data-cy="addBtn"
       >
         Add New Position Listing
       </Button>
