@@ -12,6 +12,7 @@ export default function AddButtonApp({alertShower}) {
   return (
     <React.Fragment>
       <Button
+        data-cy="add-button"
         id="post_button"
         className="add-button"
         disabled={user ? false : true}

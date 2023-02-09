@@ -1,4 +1,5 @@
 describe ('Sorting 1', () => {
+
     it ('launches', () => {
         cy.visit ('/');
     });
@@ -39,10 +40,11 @@ describe ('Sorting 1', () => {
     it('cards should be sorted by application deadline (in increasing order) when "sort by application deadline" selected', () => {
         cy.visit("/");
         cy.get("[data-cy=sorting-button]").select('dateToSubmit').invoke("val").should("eq", "dateToSubmit");
+        cy.wait(1000); // wait 1 second to ensure dateToSubmit has been selected and the cards have been reordered
         cy.get("[data-cy=card-info]").then(card_info => {
           let application_deadlines = [];
           for (let j = 0; j < card_info.length; j++) {
-            application_deadlines.push(new Date((card_info[j].innerHTML).slice(49,59))); // get the application deadline
+            application_deadlines.push(new Date((card_info[j].innerText).slice(48,58))); // get the application deadline
           }
           let sorted_application_deadlines = [...application_deadlines].sort(function(a,b) {
             return new Date(a) - new Date(b);
@@ -55,6 +57,7 @@ describe ('Sorting 1', () => {
       it('failure for the previous application deadline test', () => {
         cy.visit("/");
         cy.get("[data-cy=sorting-button]").select('dateToSubmit').invoke("val").should("eq", "dateToSubmit");
+        cy.wait(1000); // wait 1 second to ensure dateToSubmit has been selected and the cards have been reordered
         cy.get("[data-cy=card-info]").then(card_info => {
           let application_deadlines = [];
           for (let j = 0; j < card_info.length; j++) {

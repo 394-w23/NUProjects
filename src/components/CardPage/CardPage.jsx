@@ -8,7 +8,6 @@ import "./CardPage.css";
 import Alert from 'react-bootstrap/Alert';
 
 export default function CardPageApp() {
-  console.log("card page hereeee")
   const [data, error] = useDbData();
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState([]);
@@ -32,6 +31,7 @@ export default function CardPageApp() {
       return;
     }
     let filteredJobs = Object.values(data.jobs).filter((job) => {
+    let searchWithoutSpaces = search.replace(/\s+/g, ''); 
       return (
         job.positionName.toLowerCase().includes(search.toLowerCase()) ||
         job.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -40,7 +40,7 @@ export default function CardPageApp() {
           skill.toLowerCase().includes(search.toLowerCase())
         ) ||
         job.hashtags.some((keyword) =>
-          keyword.toLowerCase().includes(search.toLowerCase())
+        keyword.toLowerCase().includes(searchWithoutSpaces.toLowerCase())
         )
       );
     });
@@ -97,7 +97,8 @@ export default function CardPageApp() {
             </Form.Group>
             <Form.Group as={Col} md={2}>
               <BootstrapSelect
-                className="filter-multi-select form-element"
+                data-cy="filtering-button"
+                className="filter-multi-select"
                 isMultiSelect
                 showTicks
                 showSearch
@@ -195,7 +196,7 @@ export default function CardPageApp() {
   return (
     <Container fluid className="px-4 py-4 d-flex flex-column gap-3">
       {renderSearchArea()}
-      <AddButton data-cy="add-new-position-listing" alertShower={setShowAlert} />
+      <AddButton alertShower={setShowAlert} />
       <Alert variant="success" show={showAlert}>
         Job successfully added!
       </Alert>
