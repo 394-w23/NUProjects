@@ -31,7 +31,10 @@ export default function CardPageApp() {
       return;
     }
     let filteredJobs = Object.values(data.jobs).filter((job) => {
-    let searchWithoutSpaces = search.replace(/\s+/g, ''); 
+    // remove all spaces from search string
+    // remove special characters from search string
+    let searchWithoutSpaces = search.replace(/\s+/g, '').replace(/[^\w\s]/gi, '');
+    // check if searchWithoutSpaces is also equal to job properties without spaces
       return (
         job.positionName.toLowerCase().includes(search.toLowerCase()) ||
         job.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -41,6 +44,12 @@ export default function CardPageApp() {
         ) ||
         job.hashtags.some((keyword) =>
         keyword.toLowerCase().includes(searchWithoutSpaces.toLowerCase())
+        ) ||
+        job.projectName.replace(/\s+/g, '').toLowerCase().includes(searchWithoutSpaces.toLowerCase()) ||
+        job.positionName.replace(/\s+/g, '').toLowerCase().includes(searchWithoutSpaces.toLowerCase()) ||
+        job.description.replace(/\s+/g, '').toLowerCase().includes(searchWithoutSpaces.toLowerCase()) ||
+        job.skillsRequired.some((skill) =>
+          skill.replace(/\s+/g, '').toLowerCase().includes(searchWithoutSpaces.toLowerCase())
         )
       );
     });
