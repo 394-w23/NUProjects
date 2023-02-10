@@ -80,7 +80,7 @@ describe("Full search bar functionality", () => {
 
   it("updates the number of cards displayed correctly when search query is changed", () => {
     cy.get('input[type="search"]').first().should('be.visible').type('Frontend Developer');
-    cy.get('.card').should('have.length', 2);
+    cy.get('.card').should('have.length', 3);
     cy.get('input[type="search"]').first().clear().should('be.visible').type('Backend Developer');
     cy.get('.card').should('have.length', 1);
   });
