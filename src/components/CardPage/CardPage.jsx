@@ -121,6 +121,7 @@ export default function CardPageApp() {
                     labelKey: "agile",
                     value: "Agile",
                     style: { fontSize: "15px" },
+                    test: "agile-test"
                   },
                   {
                     labelKey: "aws",
