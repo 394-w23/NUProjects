@@ -38,10 +38,6 @@ describe("Searching for positions", () => {
 });
 
 describe("Searching for positions partially", () => {
-  it("launches", () => {
-    cy.visit("/");
-  });
-
   beforeEach(() => {
     cy.visit("/");
   });
@@ -69,5 +65,51 @@ describe("Searching for positions partially", () => {
   it("searches for hashtags (partial input)", () => {
     cy.get('input[type="search"]').first().type('Web');
     cy.contains('WebDevelopment');
+  });
+});
+
+describe("Full search bar functionality", () => {
+  beforeEach(() => {
+    cy.visit("/");
+  });
+
+  it("displays correct cards when searching for a specific term", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type('Backend Developer');
+    cy.get('.card').should('contain', 'Backend Developer');
+  });
+
+  it("updates the number of cards displayed correctly when search query is changed", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type('Frontend Developer');
+    cy.get('.card').should('have.length', 3);
+    cy.get('input[type="search"]').first().clear().should('be.visible').type('Backend Developer');
+    cy.get('.card').should('have.length', 1);
+  });
+
+  it("filters cards correctly based on title, description, or tags", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type('Frontend Developer');
+    cy.get('.card').should('contain', 'Frontend Developer');
+    cy.get('input[type="search"]').first().clear().should('be.visible').type('React');
+    cy.get('.card').should('contain', 'React');
+  });
+
+  it("correctly handles special characters and spaces in search query", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type(' Frontend Dev');
+    cy.get('.card').should('contain', 'Frontend Dev');
+    cy.get('input[type="search"]').first().clear().should('be.visible').type('Frontend Dev!');
+    cy.get('.card').should('contain', 'Frontend Dev');
+  });
+
+  it("correctly handles case sensitivity in search query", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type('end developer');
+    cy.get('.card').should('contain', 'end developer');
+    cy.get('input[type="search"]').first().clear().should('be.visible').type('End Developer');
+    cy.get('.card').should('contain', 'End Developer');
+  });
+
+  it("correctly handles partial match searches", () => {
+    cy.get('input[type="search"]').first().should('be.visible').type('Web');
+    cy.get('.card').should('contain', 'Web');
+    cy.get('input[type="search"]').first().clear().should('be.visible').type('Dev');
+    cy.get('.card').should('contain', 'Dev');
   });
 });

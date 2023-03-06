@@ -140,17 +140,30 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
 
           <Form.Group className="mb-3">
             <Form.Label>Application Deadline*</Form.Label>
-            <Form.Control type="date" onChange={deadline.onChange} required data-cy="addmodal-deadline" />
+            <Form.Control
+              type="date"
+              onChange={deadline.onChange}
+              required
+              data-cy="addmodal-deadline"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Project Start Date</Form.Label>
-            <Form.Control type="date" onChange={startDate.onChange} data-cy="addmodal-startdate"/>
+            <Form.Control
+              type="date"
+              onChange={startDate.onChange}
+              data-cy="addmodal-startdate"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Project End Date</Form.Label>
-            <Form.Control type="date" onChange={endDate.onChange} data-cy="addmodal-enddate"/>
+            <Form.Control
+              type="date"
+              onChange={endDate.onChange}
+              data-cy="addmodal-enddate"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -310,7 +323,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
         {showToast ? (
-          <Alert>
+          <Alert data-cy="alert-toast">
             Your form is <b>incomplete</b>. Please fill out all required (*)
             fields.
           </Alert>
@@ -325,7 +338,12 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
         ) : (
           <div></div>
         )}
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={handleSubmit}
+          data-cy="submitButton"
+        >
           Submit
         </Button>
       </Modal.Footer>
