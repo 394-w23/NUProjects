@@ -1,17 +1,16 @@
 {
-  "projects": {
-    "default": "nuprojects-37022"
-  },
-   "targets": {
+  "projects": {},
+  "targets": {
     "nuprojects-37022": {
       "hosting": {
-        "production": [
-          "nuprojects-37022"
-        ],
         "development": [
           "nuprojects-37022-dev"
+        ],
+        "production": [
+          "nuprojects-37022"
         ]
       }
     }
   },
+  "etags": {}
 }
