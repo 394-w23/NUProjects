@@ -9,7 +9,7 @@
     "serve": "vite preview",
     "test": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "em:run": "firebase emulators:start --import=./saved-data --export-on-exit",
+    "em:start": "firebase emulators:start --import=./saved-data --export-on-exit",
     "em:exec": "firebase emulators:exec --import=./saved-data 'npm start'",
     "em:execui": "firebase emulators:exec --ui --import=./saved-data 'npm start'",
     "cy:open": "cypress open --e2e",
