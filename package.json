@@ -13,7 +13,7 @@
     "em:exec": "firebase emulators:exec --import=./saved-data 'npm start'",
     "em:execui": "firebase emulators:exec --ui --import=./saved-data 'npm start'",
     "cy:open": "cypress open --e2e",
-    "em:cy:open": "npm run build && em:exec http://127.0.0.1:3000 cy:open"
+    "em:cy:open": "npm run build && npm run em:exec http://127.0.0.1:3000 cy:open"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
