@@ -33,7 +33,7 @@ jobs:
         with:
           build: npm run build
           start: npm run em:cy:open
-          wait-on: http://localhost:5000
+          wait-on: http://localhost:5173
 
 
   deploy:
