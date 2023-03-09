@@ -47,7 +47,7 @@ jobs:
         with:
           tools-version: 11.9.0
           firebase_token: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
-      - run: firebase init --project nuprojects-37022
+      - run: firebase use --project nuprojects-37022
       - uses: cypress-io/github-action@v4
         with:
           build: npm run build
