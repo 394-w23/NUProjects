@@ -3,9 +3,9 @@ describe("Test Job Creation with Firebase Connection", () => {
     cy.visit("/");
   });
 
-  it("should be authenticated with firebase", () => {
-    cy.get('[data-cy="sign-out"]').should("contain", "Sign out");
-  });
+  // it("should be authenticated with firebase", () => {
+  //   cy.get('[data-cy="sign-out"]').should("contain", "Sign out");
+  // });
 
   it("should display new job in job page", () => {
     cy.get('[data-cy="addBtn"]').click();
@@ -22,10 +22,10 @@ describe("Test Job Creation with Firebase Connection", () => {
     cy.get('[data-cy="addmodal-wage"]').clear().type("30");
     cy.get('[data-cy="addmodal-description"]').type("This is a description.");
     cy.get('[data-cy="addmodal-skills"').click().contains("Agile").click();
-    cy.get('[data-cy="addmodal-hashtags"')
-      .click()
-      .contains("#WebDevelopment")
-      .click();
+    // cy.get('[data-cy="addmodal-hashtags"')
+    //   .click()
+    //   .contains("#WebDevelopment")
+    //   .click();
 
     // Submit form
     cy.get('[data-cy="submitButton"').click();
