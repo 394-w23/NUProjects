@@ -33,28 +33,9 @@ jobs:
         with:
           build: npm run build
           start: npm run em:cy:open
-          wait-on: http://localhost:3000
+          wait-on: http://localhost:5000
 
 
-  cypress2:
-    name: Cypress test2
-    needs: []
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v3
-      - uses: w9jds/setup-firebase@main
-        with:
-          tools-version: 11.9.0
-          firebase_token: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
-      - run: firebase use --project nuprojects-37022
-      - uses: cypress-io/github-action@v4
-        with:
-          build: npm run build
-          start: npm run em:exec
-          run: npm run cy:open
-          wait-on: http://localhost:3000
-    
   deploy:
     name: Firebase deploy
     needs: [build]
