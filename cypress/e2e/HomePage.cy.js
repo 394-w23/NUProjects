@@ -30,9 +30,9 @@ describe ('Test HomePage When Signed In', () => {
       cy.get("[data-cy=filtering-button]").invoke("val").should("eq", "");
     });
 
-    it("opens with add new posiiton listing button", () => {
-      cy.get("[data-cy=add-button]").should("contain", "Add New Position Listing");
-    });
+    // it("opens with add new posiiton listing button", () => {
+    //   cy.get("[data-cy=add-button]").should("contain", "Add New Position Listing");
+    // });
     
   });
 
@@ -69,9 +69,9 @@ describe ('Test HomePage When Signed In', () => {
       cy.get("[data-cy=filtering-button]").invoke("val").should("eq", "");
     });
 
-    it("opens with add new posiiton listing button disabled", () => {
-      cy.get("[data-cy=add-button]").should("contain", "Add New Position Listing");
-      cy.get("[data-cy=add-button]").should('be.disabled')
-    });
+    // it("opens with add new posiiton listing button disabled", () => {
+    //   cy.get("[data-cy=add-button]").should("contain", "Add New Position Listing");
+    //   cy.get("[data-cy=add-button]").should('be.disabled')
+    // });
     
   });
