@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Row, Col, Container, Form } from "react-bootstrap";
-import BootstrapSelect from "react-bootstrap-select-dropdown";
 import { useDbData } from "../../utilities/firebase";
 import AddButton from "../AddButton/AddButton";
 import CardApp from "./Card";
@@ -63,8 +62,15 @@ export default function CardPageApp() {
     setFilteredJobs(filteredJobs.sort(sortComparator));
   }, [data, search, sortComparator, filters]);
 
-  const handleFiltersChange = (selectedOptions) => {
-    setFilters(selectedOptions.selectedValue);
+  const handleFiltersChange = (event) => {
+    const options = event.target.options;
+    const selected = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    setFilters(selected);
   };
 
   const handleSortChange = (event) => {
@@ -105,97 +111,23 @@ export default function CardPageApp() {
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md={2}>
-              <BootstrapSelect
-                data-cy="filtering-button"
-                className="filter-multi-select"
-                isMultiSelect
-                showTicks
-                showSearch
-                placeholder="Filter by skills"
-                selectStyle="btn btn-primary"
-                // add options of Javascript, Python, HTML/CSS, Java, C, C++, C#, Git, SQL, Agile
-                // Scrum, React, Node.js, AWS, Azure, Kubernetes
-                // list options in alphabetical order of labelkey
-                options={[
-                  {
-                    labelKey: "agile",
-                    value: "Agile",
-                    style: { fontSize: "15px" },
-                    test: "agile-test"
-                  },
-                  {
-                    labelKey: "aws",
-                    value: "AWS",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "azure",
-                    value: "Azure",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "c",
-                    value: "C",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "c#",
-                    value: "C#",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "c++",
-                    value: "C++",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "git",
-                    value: "Git",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "html/css",
-                    value: "HTML/CSS",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "java",
-                    value: "Java",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "javascript",
-                    value: "JavaScript",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "node.js",
-                    value: "Node.js",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "python",
-                    value: "Python",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "react",
-                    value: "React",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "scrum",
-                    value: "Scrum",
-                    style: { fontSize: "15px" },
-                  },
-                  {
-                    labelKey: "sql",
-                    value: "SQL",
-                    style: { fontSize: "15px" },
-                  },
-                ]}
-                onChange={handleFiltersChange}
-              />
+            <select data-cy="filtering-button" multiple onChange={handleFiltersChange}>
+              <option value="Agile">Agile</option>
+              <option value="AWS">AWS</option>
+              <option value="Azure">Azure</option>
+              <option value="C">C</option>
+              <option value="C#">C#</option>
+              <option value="C++">C++</option>
+              <option value="Git">Git</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="Java">Java</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Node.js">Node.js</option>
+              <option value="Python">Python</option>
+              <option value="React">React</option>
+              <option value="Scrum">Scrum</option>
+              <option value="SQL">SQL</option>
+            </select>
             </Form.Group>
           </Row>
         </Form>

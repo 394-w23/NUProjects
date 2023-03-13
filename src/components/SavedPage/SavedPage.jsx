@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Row, Col, Container, Form } from "react-bootstrap";
-import BootstrapSelect from "react-bootstrap-select-dropdown";
 import { useDbData } from "../../utilities/firebase";
 import { useAuth } from "../../hooks/useAuth";
 import CardApp from "../CardPage/Card";

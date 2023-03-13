@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Form, Modal, Button, Alert } from "react-bootstrap";
-import BootstrapSelect from "react-bootstrap-select-dropdown";
 import { useAuth } from "../../hooks/useAuth";
 import { useInput } from "../../hooks/useInput";
 import { writeJobData } from "../../utilities/firebase";
@@ -88,12 +87,26 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
     setShowNegToast(false);
   };
 
-  const handleSkillsChange = (selectedOptions) => {
-    setSkillsRequired(selectedOptions.selectedValue);
+  const handleSkillsChange = (event) => {
+    const options = event.target.options;
+    const selected = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    setSkillsRequired(selected);
   };
 
-  const handleTagsChange = (selectedOptions) => {
-    setHashTags(selectedOptions.selectedValue);
+  const handleTagsChange = (event) => {
+    const options = event.target.options;
+    const selected = [];
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    setHashTags(selected);
   };
 
   return (
@@ -186,7 +199,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={wage.onChange}
               min={0}
               data-cy="addmodal-wage"
-              oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+              onInput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
             />
           </Form.Group>
 
@@ -203,121 +216,33 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
           <Form.Group className="mb-3">
             <Form.Label>Skills*</Form.Label>
             <br></br>
-            <BootstrapSelect
-              required
-              isMultiSelect
-              showTick
-              showSearch
-              data-cy="addmodal-skills"
-              options={[
-                {
-                  labelKey: "agile",
-                  value: "Agile",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "aws",
-                  value: "AWS",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "azure",
-                  value: "Azure",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "c",
-                  value: "C",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "c#",
-                  value: "C#",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "c++",
-                  value: "C++",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "git",
-                  value: "Git",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "html/css",
-                  value: "HTML/CSS",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "java",
-                  value: "Java",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "javascript",
-                  value: "JavaScript",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "node.js",
-                  value: "Node.js",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "python",
-                  value: "Python",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "react",
-                  value: "React",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "scrum",
-                  value: "Scrum",
-                  style: { fontSize: "15px" },
-                },
-                {
-                  labelKey: "sql",
-                  value: "SQL",
-                  style: { fontSize: "15px" },
-                },
-              ]}
-              onChange={handleSkillsChange}
-            />
+            <select data-cy="addmodal-skills" multiple required onChange={handleSkillsChange}>
+              <option value="Agile">Agile</option>
+              <option value="AWS">AWS</option>
+              <option value="Azure">Azure</option>
+              <option value="C">C</option>
+              <option value="C#">C#</option>
+              <option value="C++">C++</option>
+              <option value="Git">Git</option>
+              <option value="HTML/CSS">HTML/CSS</option>
+              <option value="Java">Java</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Node.js">Node.js</option>
+              <option value="Python">Python</option>
+              <option value="React">React</option>
+              <option value="Scrum">Scrum</option>
+              <option value="SQL">SQL</option>
+            </select>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Hashtags*</Form.Label>
             <br></br>
-            <BootstrapSelect
-              required
-              isMultiSelect
-              showTick
-              showSearch
-              data-cy="addmodal-hashtags"
-              options={[
-                {
-                  labelKey: "mlai",
-                  value: "#ML/AI",
-                  style: { "font-size": "15px" },
-                },
-                {
-                  labelKey: "webdevelopment",
-                  value: "#WebDevelopment",
-                  style: { "font-size": "15px" },
-                },
-                {
-                  labelKey: "hardware",
-                  value: "#Hardware",
-                  style: { "font-size": "15px" },
-                },
-              ]}
-              onChange={handleTagsChange}
-            />
+            <select data-cy="addmodal-hashtags" multiple required onChange={handleTagsChange}>
+              <option value="#ML/AI">#ML/AI</option>
+              <option value="#WebDevelopment">#WebDevelopment</option>
+              <option value="#Hardware">#Hardware</option>
+            </select>
           </Form.Group>
         </Form>
       </Modal.Body>
