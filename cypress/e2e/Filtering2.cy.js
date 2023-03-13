@@ -19,7 +19,7 @@ describe ('Filtering 2', () => {
         })
         // get all the cards with the skill agile after using the filter
         let application_C_SQL_filtered=[]
-        cy.get('[data-cy="filtering-button"]').click();
+        // cy.get('[data-cy="filtering-button"]').click();
         cy.wait(1000);
         cy.get('[data-value="C++"]').click()
         cy.wait(1000);

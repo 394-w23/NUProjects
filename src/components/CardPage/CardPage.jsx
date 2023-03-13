@@ -112,12 +112,12 @@ export default function CardPageApp() {
             </Form.Group>
             <Form.Group as={Col} md={2}>
             <select data-cy="filtering-button" multiple onChange={handleFiltersChange}>
-              <option value="Agile">Agile</option>
+              <option value="Agile" data-value="Agile">Agile</option>
               <option value="AWS">AWS</option>
               <option value="Azure">Azure</option>
               <option value="C">C</option>
               <option value="C#">C#</option>
-              <option value="C++">C++</option>
+              <option value="C++" data-value="C++">C++</option>
               <option value="Git">Git</option>
               <option value="HTML/CSS">HTML/CSS</option>
               <option value="Java">Java</option>
@@ -126,7 +126,7 @@ export default function CardPageApp() {
               <option value="Python">Python</option>
               <option value="React">React</option>
               <option value="Scrum">Scrum</option>
-              <option value="SQL">SQL</option>
+              <option value="SQL" data-value="SQL">SQL</option>
             </select>
             </Form.Group>
           </Row>
