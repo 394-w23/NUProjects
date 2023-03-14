@@ -33,13 +33,13 @@ const database = getDatabase(app);
 const auth = getAuth(app);
 
 // comment out these lines when deploying, uncomment to run cypress tests!
-// if (true) {
-// //   connectAuthEmulator(auth, "http://127.0.0.1:9099");
-// //   connectDatabaseEmulator(database, "127.0.0.1", 9000);
-//   signInWithCredential(auth, GoogleAuthProvider.credential(
-//     '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
-//   ));
-// }
+if (true) {
+  connectAuthEmulator(auth, "http://127.0.0.1:9099");
+  connectDatabaseEmulator(database, "127.0.0.1", 9000);
+  signInWithCredential(auth, GoogleAuthProvider.credential(
+    '{"sub": "JM9RHR3Fj139pPQKg9akzJAcaJWd", "email": "tester@gmail.com", "displayName":"Test User", "email_verified": true}'
+  ));
+}
 // end commenting out here
 
 export const signInCy = async () => {
