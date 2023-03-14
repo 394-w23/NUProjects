@@ -34,7 +34,7 @@ export default function CardApp({ data }) {
               );
             })}
           </ul>
-          <Button onClick={toggleShowViewModal} variant="primary" data-cy="see-more-button">
+          <Button onClick={toggleShowViewModal} variant="primary" data-cy="see-more-button" data-testid="see-more-button">
             See more
           </Button>
         </Card.Body>

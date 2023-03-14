@@ -94,10 +94,10 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
           </Col>
         </Row>
         <Row>
-          <Col lg={6} sm={12} data-cy="start-date">
+          <Col lg={6} sm={12} data-cy="start-date" data-testid="start-date">
             <b>Project Start Date:</b> {applicationData.projectStartDate || "N/A"}
           </Col>
-          <Col lg={6} sm={12} data-cy="end-date">
+          <Col lg={6} sm={12} data-cy="end-date" data-testid="end-date">
             <b>Project End Date:</b> {applicationData.projectEndDate || "N/A"}
           </Col>
         </Row>
@@ -164,6 +164,7 @@ const ViewModal = ({ applicationData, show, toggleShow }) => {
           }}
           onClick={toggleShow}
           data-cy="close-button"
+          data-testid="close-button"
         >
           Close
         </Button>

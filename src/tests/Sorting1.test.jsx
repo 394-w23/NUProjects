@@ -4,12 +4,12 @@ import CardPageApp from '../components/CardPage/CardPage';
 import { useDbData } from '../utilities/firebase';
 import { useAuth } from "../hooks/useAuth";
 import * as mockData from "./mockdata/nuprojects-37022-default-rtdb-export.json";
-import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
 
 vi.mock('../utilities/firebase')
 vi.mock('../hooks/useAuth')
 
-describe('Sorting1 test', () => {
+describe('Sorting1 tests', () => {
+
     test('cards should be sorted by date posted (in increasing order) by default', () => {
         useDbData.mockReturnValue([mockData, null]);
         useAuth.mockReturnValue({displayName : "Test User"})

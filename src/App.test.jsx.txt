@@ -1,3 +1,5 @@
+// Converted to .txt to get rid of this initial unit test, so we can accurately calculate coverage
+
 import {describe, expect, test} from 'vitest';
 import {fireEvent, render, screen} from '@testing-library/react';
 import Root from './Root';
