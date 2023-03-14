@@ -68,15 +68,8 @@ describe("Navigation", () => {
             <Routes />
           </MemoryRouter>
         );
-
-        screen.debug();
-
-        // const link = getByText('Profile');
-        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-
-        console.log("screen.queryByText('Profile')", screen.queryByText('Profile'))
         expect(screen.queryByText('Sort by date posted')).toBeNull();
-        // expect(screen.queryByText('Profile')).toBeInTheDocument();
+        expect(screen.queryByText('Profile'));
         expect(screen.queryByText('Saved')).toBeNull();
         expect(screen.queryByText('Applied')).toBeNull();
     });
@@ -88,16 +81,9 @@ describe("Navigation", () => {
             <Routes />
           </MemoryRouter>
         );
-
-        screen.debug();
-
-        // const link = getByText('Profile');
-        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-
-        console.log("screen.queryByText('Saved')", screen.queryByText('Saved'))
         expect(screen.queryByText('Sort by date posted')).toBeNull();
         expect(screen.queryByText('Profile')).toBeNull();
-        // expect(screen.queryByText('Saved')).toBeInTheDocument();
+        expect(screen.queryByText('Saved'));
         expect(screen.queryByText('Applied')).toBeNull();
     });
 
@@ -108,17 +94,10 @@ describe("Navigation", () => {
             <Routes />
           </MemoryRouter>
         );
-
-        screen.debug();
-
-        // const link = getByText('Profile');
-        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-
-        console.log("screen.queryByText('Saved')", screen.queryByText('Saved'))
         expect(screen.queryByText('Sort by date posted')).toBeNull();
         expect(screen.queryByText('Profile')).toBeNull();
         expect(screen.queryByText('Saved')).toBeNull();
-        // expect(screen.queryByText('Applied')).toBeInTheDocument();
+        expect(screen.queryByText('Applied'));
     });
 
   });
