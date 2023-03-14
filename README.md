@@ -13,11 +13,11 @@ The following repository is a React and Firebase application called Squirrel, a 
 ## Known bugs in current application
 
 ## Contact info
-Lucy Beck - lucybeck2024@u.northwestern.edu
-Aziz Ben Abderrahmen - azizbenabderrahmen2024@u.northwestern.edu
-Patrick Hoey - patrickhoey2024@u.northwestern.edu
-Tim Huynh - timhuynh2024@u.northwestern.edu
-Sengdao Inthavong - sengdaointhavong2024@u.northwestern.edu
-Salome Khelashvili - salomekhelashvili2023@u.northwestern.edu
-Isaias Lipa - isaiaslipa2023@u.northwestern.edu
-Karthik Subramanian - karthiksubramanian2024@u.northwestern.edu
+Lucy Beck - lucybeck2024@u.northwestern.edu  
+Aziz Ben Abderrahmen - azizbenabderrahmen2024@u.northwestern.edu  
+Patrick Hoey - patrickhoey2024@u.northwestern.edu  
+Tim Huynh - timhuynh2024@u.northwestern.edu  
+Sengdao Inthavong - sengdaointhavong2024@u.northwestern.edu  
+Salome Khelashvili - salomekhelashvili2023@u.northwestern.edu  
+Isaias Lipa - isaiaslipa2023@u.northwestern.edu  
+Karthik Subramanian - karthiksubramanian2024@u.northwestern.edu  
