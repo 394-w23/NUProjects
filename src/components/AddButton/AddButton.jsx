@@ -14,9 +14,10 @@ export default function AddButtonApp({ alertShower }) {
       <Button
         id="post_button"
         className="add-button"
-        disabled={user ? false : true}
+        // disabled={user ? false : true}
         onClick={toggleShowAddModal}
         data-cy="addBtn"
+        data-testid="addBtn"
       >
         Add New Position Listing
       </Button>

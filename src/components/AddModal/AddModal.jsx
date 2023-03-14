@@ -117,12 +117,12 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
       data-testid="add_modal_container"
     >
       <Modal.Header className="modal_header" closeButton>
-        <Modal.Title data-testid="add_modal_title" data-cy="modal-header">
+        <Modal.Title data-cy="modal-header" data-testid="modal-header">
           Create new project
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
-        <Form data-testid="add_modal_input_form">
+        <Form data-testid="add-modal-form">
           <Form.Group className="mb-3">
             <Form.Label>Project name*</Form.Label>
             <Form.Control

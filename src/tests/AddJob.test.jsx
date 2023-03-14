@@ -18,13 +18,13 @@ describe("src/components/AddModal", () => {
   });
 
   it("contains title 'Create new project'", () => {
-    const title = screen.queryByTestId("add_modal_title");
+    const title = screen.queryByTestId("modal-header");
     expect(title).toBeDefined();
     expect(title.textContent).toBe("Create new project");
   });
 
   it("contains 1 input form", () => {
-    const inputForm = screen.queryByTestId("add_modal_input_form");
+    const inputForm = screen.queryByTestId("add-modal-form");
     expect(inputForm).toBeDefined();
   });
 
