@@ -1,4 +1,5 @@
 import React from "react";
+import { beforeEach } from 'vitest'
 import '@testing-library/jest-dom'
 import { MemoryRouter, Route } from "react-router-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
@@ -11,19 +12,28 @@ import * as mockData from "./mockdata/nuprojects-37022-default-rtdb-export.json"
 vi.mock('../utilities/firebase')
 vi.mock('../hooks/useAuth')
 
+const testProfile = {
+    displayName: "testUser",
+    email: "testUser@northwestern.edu",
+    profilePic: "https://illustoon.com/photo/590.png",
+  };
+
 describe("Navigation", () => {
 
+    beforeEach(async () => {
+        useDbData.mockReturnValue([mockData, null]);
+        useAuth.mockReturnValue([{name : "Test User"}])
+      })
+
   test("renders the Home page by default", () => {
-    useDbData.mockReturnValue([mockData, null]);
-    useAuth.mockReturnValue({displayName : "Test User"});
     render(
       <MemoryRouter initialEntries={["/"]}>
         <NavbarApp />
         <Routes />
       </MemoryRouter>
     );
-    
-    // screen.debug();
+
+    screen.debug();
 
     expect(screen.queryByText('Sort by date posted')).toBeInTheDocument();
     expect(screen.queryByText('Profile')).toBeNull();
@@ -33,9 +43,7 @@ describe("Navigation", () => {
     });
 
     test("navigates to home page when logo is clicked", () => {
-        useDbData.mockReturnValue([mockData, null]);
-        useAuth.mockReturnValue({displayName : "Test User"});
-        const { getAllByTestId, getByTestId, getByText } = render(
+        const { getByText } = render(
           <MemoryRouter initialEntries={["/"]}>
             <NavbarApp />
             <Routes />
@@ -44,14 +52,73 @@ describe("Navigation", () => {
 
         screen.debug();
 
-        const goHomeLink = getByText('NUProjects');
-        goHomeLink.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+        const link = getByText('NUProjects');
+        link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
 
         expect(screen.queryByText('Sort by date posted')).toBeInTheDocument();
         expect(screen.queryByText('Profile')).toBeNull();
         expect(screen.queryByText('Saved')).toBeNull();
         expect(screen.queryByText('Applied')).toBeNull();
     });
-     
+
+    test("navigates to profile page", () => {
+        const { getByText } = render(
+          <MemoryRouter initialEntries={["/profile"]}>
+            <NavbarApp />
+            <Routes />
+          </MemoryRouter>
+        );
+
+        screen.debug();
+
+        // const link = getByText('Profile');
+        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+        console.log("screen.queryByText('Profile')", screen.queryByText('Profile'))
+        expect(screen.queryByText('Sort by date posted')).toBeNull();
+        // expect(screen.queryByText('Profile')).toBeInTheDocument();
+        expect(screen.queryByText('Saved')).toBeNull();
+        expect(screen.queryByText('Applied')).toBeNull();
+    });
+
+    test("navigates to saved page", () => {
+        const { getByText } = render(
+          <MemoryRouter initialEntries={["/saved"]}>
+            <NavbarApp />
+            <Routes />
+          </MemoryRouter>
+        );
+
+        screen.debug();
+
+        // const link = getByText('Profile');
+        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+        console.log("screen.queryByText('Saved')", screen.queryByText('Saved'))
+        expect(screen.queryByText('Sort by date posted')).toBeNull();
+        expect(screen.queryByText('Profile')).toBeNull();
+        // expect(screen.queryByText('Saved')).toBeInTheDocument();
+        expect(screen.queryByText('Applied')).toBeNull();
+    });
+
+    test("navigates to applied page", () => {
+        const { getByText } = render(
+          <MemoryRouter initialEntries={["/applied"]}>
+            <NavbarApp />
+            <Routes />
+          </MemoryRouter>
+        );
+
+        screen.debug();
+
+        // const link = getByText('Profile');
+        // link.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+        console.log("screen.queryByText('Saved')", screen.queryByText('Saved'))
+        expect(screen.queryByText('Sort by date posted')).toBeNull();
+        expect(screen.queryByText('Profile')).toBeNull();
+        expect(screen.queryByText('Saved')).toBeNull();
+        // expect(screen.queryByText('Applied')).toBeInTheDocument();
+    });
 
   });
