@@ -37,9 +37,6 @@ describe('Applying to a job', () => {
       .and('contain', 'Job Title');
   });
 });
-This test assumes that the job listing page has a list of job listings with a job-listing class, and that each job listing has an "Apply" button with an apply-btn class. It also assumes that clicking the "Apply" button opens an application form with an application-form id, and that submitting the form sends the application data to the server and redirects to the "Jobs Applied" page, which displays applied jobs with an applied-job-listing class.
-
-You'll need to customize this test to match your specific application's UI and functionality.
 
 
 
