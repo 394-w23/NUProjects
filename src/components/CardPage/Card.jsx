@@ -38,7 +38,7 @@ export default function CardApp({ data }) {
             See more
           </Button>
         </Card.Body>
-        <Card.Footer className="text-muted" data-cy="card-info">
+        <Card.Footer className="text-muted" data-cy="card-info" data-testid="card-info">
           Date posted: {data.datePosted} | Application Deadline: {data.dateToSubmit}
         </Card.Footer>
       </Card>
