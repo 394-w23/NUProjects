@@ -110,12 +110,19 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
   };
 
   return (
-    <Modal show={show} onHide={closeModal} className="modal">
+    <Modal
+      show={show}
+      onHide={closeModal}
+      className="modal"
+      data-testid="add_modal_container"
+    >
       <Modal.Header className="modal_header" closeButton>
-        <Modal.Title data-cy="modal-header">Create new project</Modal.Title>
+        <Modal.Title data-testid="add_modal_title" data-cy="modal-header">
+          Create new project
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
-        <Form>
+        <Form data-testid="add_modal_input_form">
           <Form.Group className="mb-3">
             <Form.Label>Project name*</Form.Label>
             <Form.Control
@@ -124,6 +131,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={projectName.onChange}
               required
               data-cy="addmodal-projectname"
+              data-testid="add_modal_project_name"
             />
           </Form.Group>
 
@@ -134,6 +142,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={typeOfProject.onChange}
               required
               data-cy="addmodal-projecttype"
+              data-testid="add_modal_type_of_project"
             >
               <option value="">Select a type of project</option>
               <option value="Full-time">Full-time</option>
@@ -148,6 +157,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               placeholder="Front-End Developer, ML Engineer, Data Scientist"
               onChange={positionName.onChange}
               data-cy="addmodal-positionname"
+              data-testid="add_modal_position_name"
             />
           </Form.Group>
 
@@ -158,6 +168,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={deadline.onChange}
               required
               data-cy="addmodal-deadline"
+              data-testid="add_modal_deadline"
             />
           </Form.Group>
 
@@ -167,6 +178,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               type="date"
               onChange={startDate.onChange}
               data-cy="addmodal-startdate"
+              data-testid="add_modal_start_date"
             />
           </Form.Group>
 
@@ -176,6 +188,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               type="date"
               onChange={endDate.onChange}
               data-cy="addmodal-enddate"
+              data-testid="add_modal_end_date"
             />
           </Form.Group>
 
@@ -188,6 +201,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               min={0}
               required
               data-cy="addmodal-numpeople"
+              data-testid="add_modal_no_people"
             />
           </Form.Group>
 
@@ -200,6 +214,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               min={0}
               data-cy="addmodal-wage"
               onInput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null"
+              data-testid="add_modal_wage"
             />
           </Form.Group>
 
@@ -211,12 +226,19 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
               onChange={description.onChange}
               required
               data-cy="addmodal-description"
+              data-testid="add_modal_description"
             />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Skills*</Form.Label>
             <br></br>
-            <select data-cy="addmodal-skills" multiple required onChange={handleSkillsChange}>
+            <select
+              data-cy="addmodal-skills"
+              multiple
+              required
+              onChange={handleSkillsChange}
+              data-testid="add_modal_skills"
+            >
               <option value="Agile">Agile</option>
               <option value="AWS">AWS</option>
               <option value="Azure">Azure</option>
@@ -238,7 +260,13 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
           <Form.Group className="mb-3">
             <Form.Label>Hashtags*</Form.Label>
             <br></br>
-            <select data-cy="addmodal-hashtags" multiple required onChange={handleTagsChange}>
+            <select
+              data-cy="addmodal-hashtags"
+              multiple
+              required
+              onChange={handleTagsChange}
+              data-testid="add_modal_hashtags"
+            >
               <option value="#ML/AI">#ML/AI</option>
               <option value="#WebDevelopment">#WebDevelopment</option>
               <option value="#Hardware">#Hardware</option>
@@ -248,7 +276,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
       </Modal.Body>
       <Modal.Footer className="add-modal-footer">
         {showToast ? (
-          <Alert data-cy="alert-toast">
+          <Alert data-cy="alert-toast" data-testid="add_modal_invalid_toast">
             Your form is <b>incomplete</b>. Please fill out all required (*)
             fields.
           </Alert>
@@ -256,7 +284,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
           <div></div>
         )}
         {ShowNegToast ? (
-          <Alert>
+          <Alert data-testid="add_modal_invalid_toast_negative">
             Your cannot enter a <b>negative</b> wage or number of people. Please
             enter a value of 0 or greater.
           </Alert>
@@ -264,6 +292,7 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
           <div></div>
         )}
         <Button
+          data-testid="add_modal_submit_button"
           variant="primary"
           type="submit"
           onClick={handleSubmit}
