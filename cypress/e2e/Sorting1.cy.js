@@ -1,3 +1,4 @@
+// Note: for this to pass, you must uncomment the marked lines in firebase.js to run emulator and sign in to test account
 describe ('Sorting 1', () => {
 
     it ('launches', () => {
