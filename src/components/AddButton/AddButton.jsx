@@ -7,14 +7,14 @@ import "./AddButton.css";
 export default function AddButtonApp({ alertShower }) {
   const [showAddModal, setShowAddModal] = useState(false);
   const toggleShowAddModal = () => setShowAddModal(!showAddModal);
-  const { user } = useAuth();
+  const { user, setUserFromDatabase } = useAuth();
 
   return (
     <React.Fragment>
       <Button
         id="post_button"
         className="add-button"
-        // disabled={user ? false : true}
+        disabled={user ? false : true}
         onClick={toggleShowAddModal}
         data-cy="addBtn"
         data-testid="addBtn"
