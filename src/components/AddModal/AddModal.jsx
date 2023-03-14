@@ -112,10 +112,10 @@ const AddModal = ({ show, toggleShow, alertShower }) => {
   return (
     <Modal show={show} onHide={closeModal} className="modal">
       <Modal.Header className="modal_header" closeButton>
-        <Modal.Title data-cy="modal-header">Create new project</Modal.Title>
+        <Modal.Title data-cy="modal-header" data-testid="modal-header">Create new project</Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal_body">
-        <Form>
+        <Form data-testid="add-modal-form">
           <Form.Group className="mb-3">
             <Form.Label>Project name*</Form.Label>
             <Form.Control
