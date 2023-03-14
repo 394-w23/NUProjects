@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@applitools/eyes-cypress": "^3.29.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@vitejs/plugin-react": "^3.0.0",
     "@vitest/coverage-c8": "^0.25.8",

@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
 import { Image } from "react-bootstrap";
 import { useAuth } from "../../hooks/useAuth";
 import "./Profile.css";
@@ -16,6 +14,7 @@ const Profile = () => {
 
   return (
     <>
+      <h1 style={{paddingTop: "2rem"}}>Profile</h1>
       <div className="info-container">
         <div className="user-card">
           <Image data-cy="profile-pic" src={user.profilePic} roundedCircle width={125} alt="avatar" />
