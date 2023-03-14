@@ -21,5 +21,26 @@ describe('Saving a job', () => {
     cy.get('.saved-job-listing')
       .should('have.length', 1)
       .and('contain', 'Job Title');
+    
+  });
+});
+
+describe('React CI', () => {
+  it('should not fail after 1 minute of running', () => {
+    // Set the timeout to 2 minutes
+    cy.server({ timeout: 120000 });
+
+    // Visit the CI page
+    cy.visit('/ci');
+
+    // Wait for the CI to complete
+    cy.get('.ci-status')
+      .should('not.contain', 'In Progress')
+      .and('contain', 'Completed');
+
+    // Check if the CI failed
+    cy.get('.ci-status')
+      .contains('Failed')
+      .should('not.exist');
   });
 });
