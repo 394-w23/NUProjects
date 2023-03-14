@@ -92,6 +92,7 @@ export default function CardPageApp() {
             <Form.Group as={Col} md={8}>
               <Form.Control
                 type="search"
+                data-testid="search"
                 placeholder="Search positions..."
                 aria-label="Search"
                 onChange={(e) => setSearch(e.target.value)}
