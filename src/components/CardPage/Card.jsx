@@ -16,10 +16,10 @@ export default function CardApp({ data }) {
         <Card.Body>
           <Card.Title>{data.positionName}</Card.Title>
           <Card.Text>{data.description}</Card.Text>
-          <ul className="skills" data-cy="card_skills">
+          <ul className="skills" data-cy="card_skills" data-testid="card_skills">
             {data.skillsRequired.map((skill, id) => {
               return (
-                <li className="skill" key={id}>
+                <li className="skill" key={id} data-testid="card_skill">
                   {skill}
                 </li>
               );

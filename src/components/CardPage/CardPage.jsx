@@ -112,7 +112,7 @@ export default function CardPageApp() {
               </Form.Select>
             </Form.Group>
             <Form.Group as={Col} md={2}>
-            <select data-cy="filtering-button" multiple onChange={handleFiltersChange}>
+            <select data-cy="filtering-button" multiple onChange={handleFiltersChange} data-testid="filtering-button">
               <option value="Agile" data-value="Agile">Agile</option>
               <option value="AWS">AWS</option>
               <option value="Azure">Azure</option>
