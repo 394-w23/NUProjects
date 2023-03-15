@@ -8,7 +8,7 @@ import "./Navbar.css";
 export default function NavbarApp() {
   const navigate = useNavigate();
   const { user, setUserFromDatabase } = useAuth();
-
+  console.log(user, "user issss")
   const handleSignIn = async () => {
     const user = await signInWithGoogle();
     await setUserFromDatabase(user.uid);
