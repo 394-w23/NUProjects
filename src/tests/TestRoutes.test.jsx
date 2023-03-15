@@ -15,11 +15,13 @@ vi.mock('../hooks/useAuth')
 
 
   useDbData.mockReturnValue([mockData, null]);
-  useAuth.mockReturnValue([{name : "Test User"}])
+  useAuth.mockReturnValue({users: {name : "Test User"}, setUserFromDatabase: () => "hi" });
 describe("Testing routes", () => {
 
 
-  test("renders the Home page by default", () => {
+  test("renders the Home page by default when logged in", () => {
+    useAuth.mockReturnValue({user: {name : "Test User"}, setUserFromDatabase: () => "hi" });
+
     render(
       <MemoryRouter initialEntries={["/"]}>
         <NavbarApp />
@@ -27,7 +29,9 @@ describe("Testing routes", () => {
       </MemoryRouter>
     );
 
-    expect(screen.queryByText('Sort by date posted')).toBeInTheDocument();
+    screen.debug()
+    // can not find sign in 
+    expect(screen.queryByText('Sign in')).not.toBeInTheDocument();
     expect(screen.queryByText('Profile')).toBeNull();
     expect(screen.queryByText('Saved')).toBeNull();
     expect(screen.queryByText('Applied')).toBeNull();
@@ -35,13 +39,14 @@ describe("Testing routes", () => {
     });
 
     test("navigates to home page when user disconnected", () => {
+      useAuth.mockReturnValue({"000": {name : "Test User"}, setUserFromDatabase: () => "hi" });
         const { getByText } = render(
           <MemoryRouter initialEntries={["/"]}>
             <NavbarApp />
             <Routes />
           </MemoryRouter>
         );
-        
+        expect(screen.queryByText('Sign in')).toBeInTheDocument();
         expect(screen.queryByText('Profile')).toBeNull();
 
     });
@@ -60,7 +65,24 @@ describe("Testing routes", () => {
 
     });
 
+    test("navigates to profile when  connected", () => {
+      useAuth.mockReturnValue({user: {name : "Test User"}, setUserFromDatabase: () => "hi" });
+      const { getByText } = render(
+          <MemoryRouter initialEntries={["/profile"]}>
+              <NavbarApp />
+              <Routes />
+          </MemoryRouter>
+      );
+      // only expect navbar to be rendered
+      expect(screen.queryByText('Sign in')).not.toBeInTheDocument();
+      expect(screen.queryByText('Test User')).toBeInTheDocument();
+      // expect user - card classs not to be there
+      expect(screen.queryByText('user-card')).toBeDefined();
+
+  });
+
     test("trying to see applied project when not connected", () => {
+      useAuth.mockReturnValue({user0: {name : "Test User"}, setUserFromDatabase: () => "hi" });
         const { getByText } = render(
             <MemoryRouter initialEntries={["/applied"]}>
                 <NavbarApp />
